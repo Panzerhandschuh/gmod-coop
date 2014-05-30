@@ -66,8 +66,6 @@ WEP_CLIP_SIZE["weapon_smg1"] = 45
 WEP_CLIP_SIZE["weapon_frag"] = 1
 
 function GM:PlayerSpawn(ply)
-	ply:AllowFlashlight(true)
-	
 	player_manager.SetPlayerClass(ply, "player_coop")
 
 	self.BaseClass:PlayerSpawn(ply)
@@ -218,9 +216,12 @@ function GM:CheckRespawnGive(ply,wepClass)
 	if WEP_TO_AMMO[wepClass] ~= nil then -- Weapon exists in conversion table
 		local ammo = WEP_TO_AMMO[wepClass]
 		local maxAmmo = MAX_AMMO[ammo]
+		local clipSize = WEP_CLIP_SIZE[wepClass]
 		local currentAmmo = ply:GetAmmoCount(ammo)
 		if currentAmmo >= maxAmmo then
 			return false
+		elseif currentAmmo + clipSize > maxAmmo then
+			ply:SetAmmo(maxAmmo - clipSize, ammo)
 		end
 	end
 	
