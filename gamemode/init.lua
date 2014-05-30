@@ -74,99 +74,56 @@ end
 function GM:InitPostEntity()
 	for k,v in pairs(ents.FindByClass("weapon_*")) do
 		if(v:CreatedByMap()) then
-			local c = v:GetClass()
-			local p = v:GetPos()
-			local m = v:GetModel()
-			local a = v:GetAngles()
-			v:Remove()
-			local e = ents.Create("ent_respawn")
-			e:SetPos(p)
-			e:SetAngles(a)
-			e:SetModel(m)
-			e.rclass = c
-			e:Spawn()
+			v.oPos = v:GetPos()
+			v.oAng = v:GetAngles()
+			v.ei = v:EntIndex()
 		end
 	end
 	for k,v in pairs(ents.FindByClass("item_health*")) do
 		if(v:CreatedByMap()) then
-			local c = v:GetClass()
-			local p = v:GetPos()
-			local m = v:GetModel()
-			local a = v:GetAngles()
-			v:Remove()
-			local e = ents.Create("ent_respawn")
-			e:SetPos(p)
-			e:SetAngles(a)
-			e:SetModel(m)
-			if(c == "item_healthkit") then
-				e.health = 25
-			else
-				e.health = 10
-			end
-			e:Spawn()
+			v.oPos = v:GetPos()
+			v.oAng = v:GetAngles()
+			v.ei = v:EntIndex()
 		end
 	end
 	for k,v in pairs(ents.FindByClass("item_ammo_*")) do
-		if(v:CreatedByMap() && v:GetClass() != "item_ammo_crate") then
-			local c = v:GetClass()
-			local p = v:GetPos()
-			local m = v:GetModel()
-			local a = v:GetAngles()
-			v:Remove()
-			local e = ents.Create("ent_respawn")
-			e:SetPos(p)
-			e:SetAngles(a)
-			e:SetModel(m)
-			e.aclass = c
-			e.aamount = ITEM_TO_AMOUNT[c]
-			e.arclass = ITEM_TO_AMMO[c]
-			e:Spawn()
+		if(v:CreatedByMap()) then
+			v.oPos = v:GetPos()
+			v.oAng = v:GetAngles()
+			v.ei = v:EntIndex()
 		end
 	end
 	for k,v in pairs(ents.FindByClass("item_box_buckshot")) do
 		if(v:CreatedByMap()) then
-			local c = v:GetClass()
-			local p = v:GetPos()
-			local m = v:GetModel()
-			local a = v:GetAngles()
-			v:Remove()
-			local e = ents.Create("ent_respawn")
-			e:SetPos(p)
-			e:SetAngles(a)
-			e:SetModel(m)
-			e.aclass = c
-			e.aamount = ITEM_TO_AMOUNT[c]
-			e.arclass = ITEM_TO_AMMO[c]
-			e:Spawn()
+			v.oPos = v:GetPos()
+			v.oAng = v:GetAngles()
+			v.ei = v:EntIndex()
 		end
 	end
 	for k,v in pairs(ents.FindByClass("item_rpg_round")) do
 		if(v:CreatedByMap()) then
-			local c = v:GetClass()
-			local p = v:GetPos()
-			local m = v:GetModel()
-			local a = v:GetAngles()
-			v:Remove()
-			local e = ents.Create("ent_respawn")
-			e:SetPos(p)
-			e:SetAngles(a)
-			e:SetModel(m)
-			e.aclass = c
-			e.aamount = ITEM_TO_AMOUNT[c]
-			e.arclass = ITEM_TO_AMMO[c]
-			e:Spawn()
+			v.oPos = v:GetPos()
+			v.oAng = v:GetAngles()
+			v.ei = v:EntIndex()
 		end
 	end
+end
+
+local function RespawnEnt(class,index,pos,ang)
+	local e = ents.Create(class)
+	e:SetPos(pos)
+	e:SetAngles(ang)
+	e.ei = index
+	e.oPos = pos
+	e.oAng = ang
+	e:Spawn()
+	e:EmitSound("weapons/stunstick/alyx_stunner2.wav")
 end
 
 function GM:PlayerCanPickupItem(ply, item)
 	-- Limit max ammo
 	local itemClass = item:GetClass()
 	
-	return self:PlayerAllowedItem(ply,itemClass)
-end
-
-function GM:PlayerAllowedItem(ply,itemClass)
 	if ITEM_TO_AMMO[itemClass] ~= nil then -- Item exists in conversion table
 		local ammo = ITEM_TO_AMMO[itemClass]
 		local maxAmmo = MAX_AMMO[ammo]
@@ -179,41 +136,33 @@ function GM:PlayerAllowedItem(ply,itemClass)
 		end
 	end
 	
+	if(item.ei) then
+		local ei = item.ei
+		local pos = item.oPos
+		local ang = item.oAng
+		if(!timer.Exists("respawn_"..ei)) then
+			timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(itemClass,ei,pos,ang) end)
+		end
+	end
 	return true
 end
 
 function GM:PlayerCanPickupWeapon(ply, wep)
 	local wepClass = wep:GetClass()
 	
-	return self:PlayerAllowedWeapon(ply,wepClass)
-end
-
-function GM:PlayerAllowedWeapon(ply,wepClass)
 	if !ply:HasWeapon(wepClass) then
-		return true
-	end
-	
-	if WEP_TO_AMMO[wepClass] ~= nil then -- Weapon exists in conversion table
-		local ammo = WEP_TO_AMMO[wepClass]
-		local maxAmmo = MAX_AMMO[ammo]
-		local clipSize = WEP_CLIP_SIZE[wepClass]
-		local currentAmmo = ply:GetAmmoCount(ammo)
-		if currentAmmo >= maxAmmo then
-			return false
-		elseif currentAmmo + clipSize > maxAmmo then
-			ply:SetAmmo(maxAmmo - clipSize, ammo)
+		if(wep.ei) then
+			local ei = wep.ei
+			local pos = wep.oPos
+			local ang = wep.oAng
+			if(!timer.Exists("respawn_"..ei)) then
+				timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
+			end
 		end
-	end
-
-	return true
-end
-
-function GM:CheckRespawnGive(ply,wepClass)
-	if !ply:HasWeapon(wepClass) then
 		return true
 	end
 	
-	if WEP_TO_AMMO[wepClass] ~= nil then -- Weapon exists in conversion table
+	if WEP_TO_AMMO[wepClass] then -- Weapon exists in conversion table
 		local ammo = WEP_TO_AMMO[wepClass]
 		local maxAmmo = MAX_AMMO[ammo]
 		local clipSize = WEP_CLIP_SIZE[wepClass]
@@ -225,12 +174,13 @@ function GM:CheckRespawnGive(ply,wepClass)
 		end
 	end
 	
-	return true
-end
-
-function GM:GiveWep(ply,class) --for ent respawner
-	ply:Give(class)
-	if(ply:HasWeapon(class) && WEP_TO_AMMO[class]) then
-		ply:GiveAmmo(WEP_CLIP_SIZE[class],WEP_TO_AMMO[class])
+	if(wep.ei) then
+		local ei = wep.ei
+		local pos = wep.oPos
+		local ang = wep.oAng
+		if(!timer.Exists("respawn_"..ei)) then
+			timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
+		end
 	end
+	return true
 end
