@@ -23,17 +23,17 @@ function PLAYER:Loadout()
 
 	self.Player:RemoveAllAmmo()
 
-	-- Start ammo
-	self.Player:GiveAmmo(150, "Pistol", true)
-	self.Player:GiveAmmo(45, "SMG1", true)
-	self.Player:GiveAmmo(1, "grenade", true)
-	
 	-- Start weapons
 	self.Player:Give("weapon_crowbar")
 	self.Player:Give("weapon_physcannon")
 	self.Player:Give("weapon_pistol")
 	self.Player:Give("weapon_smg1")
 	self.Player:Give("weapon_frag")
+	
+	-- Start ammo
+	self.Player:GiveAmmo(150, "Pistol", true)
+	self.Player:GiveAmmo(45, "SMG1", true)
+	self.Player:GiveAmmo(1, "grenade", true)
 
 	self.Player:SwitchToDefaultWeapon()
 

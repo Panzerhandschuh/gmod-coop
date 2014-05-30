@@ -149,24 +149,29 @@ end
 
 function GM:PlayerCanPickupWeapon(ply, wep)
 	local wepClass = wep:GetClass()
+	local ammo = WEP_TO_AMMO[wepClass]
+	if !ammo then -- Weapon does not have ammo
+		return !ply:HasWeapon(wepClass) -- Do not pickup the item if the player already has it
+	end
+	
+	local maxAmmo = MAX_AMMO[ammo]
+	local clipSize = WEP_CLIP_SIZE[wepClass]
+	local currentAmmo = ply:GetAmmoCount(ammo)
 	
 	if !ply:HasWeapon(wepClass) then
+		-- Check ammo capacity
+		if currentAmmo + clipSize > maxAmmo then
+			ply:SetAmmo(maxAmmo - clipSize, ammo)
+		end
+		
 		if(wep.ei) then
-			local ei = wep.ei
-			local pos = wep.oPos
-			local ang = wep.oAng
-			if(!timer.Exists("respawn_"..ei)) then
-				timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
-			end
+			DuplicateWeapon(wep, wepClass)
 		end
 		return true
 	end
 	
 	if WEP_TO_AMMO[wepClass] then -- Weapon exists in conversion table
-		local ammo = WEP_TO_AMMO[wepClass]
-		local maxAmmo = MAX_AMMO[ammo]
-		local clipSize = WEP_CLIP_SIZE[wepClass]
-		local currentAmmo = ply:GetAmmoCount(ammo)
+		-- Check ammo capacity
 		if currentAmmo >= maxAmmo then
 			return false
 		elseif currentAmmo + clipSize > maxAmmo then
@@ -174,13 +179,17 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 		end
 	end
 	
-	if(wep.ei) then
-		local ei = wep.ei
-		local pos = wep.oPos
-		local ang = wep.oAng
-		if(!timer.Exists("respawn_"..ei)) then
-			timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
-		end
+	if (wep.ei) then
+		DuplicateWeapon(wep, wepClass)
 	end
 	return true
+end
+
+function DuplicateWeapon(wep, wepClass)
+	local ei = wep.ei
+	local pos = wep.oPos
+	local ang = wep.oAng
+	if(!timer.Exists("respawn_"..ei)) then
+		timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
+	end
 end
