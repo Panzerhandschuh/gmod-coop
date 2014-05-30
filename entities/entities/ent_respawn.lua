@@ -11,7 +11,7 @@ function ENT:Initialize() --ripped ttt code cause it works
 	self:SetMoveType( MOVETYPE_VPHYSICS )
 	self:SetSolid( SOLID_BBOX )
 
-	self:SetCollisionGroup( COLLISION_GROUP_WEAPON)
+	self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
 	local b = 26
 	self:SetCollisionBounds(Vector(-b, -b, -b), Vector(b,b,b))
 
@@ -34,14 +34,17 @@ if SERVER then
 					v:SetHealth(h)
 					self.respawntime = CurTime() + 10
 					BroadcastLua("Entity("..self:EntIndex()..").respawntime = CurTime() + 10")
+					timer.Simple(10,function() self:EmitSound("weapons/stunstick/alyx_stunner2.wav") end)
 				elseif(self.rclass && GAMEMODE:CheckRespawnGive(v,self.rclass)) then
 					GAMEMODE:GiveWep(v,self.rclass)
 					self.respawntime = CurTime() + 10
 					BroadcastLua("Entity("..self:EntIndex()..").respawntime = CurTime() + 10")
+					timer.Simple(10,function() self:EmitSound("weapons/stunstick/alyx_stunner2.wav") end)
 				elseif(self.aclass && GAMEMODE:PlayerAllowedItem(v,self.aclass)) then
 					v:GiveAmmo(self.aamount,self.arclass)
 					self.respawntime = CurTime() + 10
 					BroadcastLua("Entity("..self:EntIndex()..").respawntime = CurTime() + 10")
+					timer.Simple(10,function() self:EmitSound("weapons/stunstick/alyx_stunner2.wav") end)
 				end
 			end
 		end
