@@ -84,7 +84,7 @@ function GM:PlayerCanPickupItem(ply, item)
 		if currentAmmo >= maxAmmo then
 			return false
 		elseif currentAmmo + itemAmmo > maxAmmo then
-			ply:SetAmmo(maxAmmo, ammo)
+			ply:SetAmmo(maxAmmo - itemAmmo, ammo)
 		end
 	end
 	
@@ -105,7 +105,7 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 		if currentAmmo >= maxAmmo then
 			return false
 		elseif currentAmmo + clipSize > maxAmmo then
-			ply:SetAmmo(maxAmmo, ammo)
+			ply:SetAmmo(maxAmmo - clipSize, ammo)
 		end
 	end
 
