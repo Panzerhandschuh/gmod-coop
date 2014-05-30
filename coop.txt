@@ -1,0 +1,7 @@
+"coop"
+{
+	"base"		"base"
+	"title"		"Coop"
+	"maps"		"^coop_"
+	"menusystem"	"1"
+}
