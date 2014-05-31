@@ -127,6 +127,14 @@ local function RespawnEnt(class,index,pos,ang)
 	e:EmitSound("weapons/stunstick/alyx_stunner2.wav")
 end
 
+function GM:PlayerShouldTakeDamage(ply, attacker)
+	if (attacker:IsValid() && attacker:IsPlayer() && ply != attacker) then
+		return false
+	end
+	return true
+end
+
+-- TODO: Fix ammocrates going over ammo capacity
 function GM:PlayerCanPickupItem(ply, item)
 	local itemClass = item:GetClass()
 	
