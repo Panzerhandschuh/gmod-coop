@@ -40,30 +40,19 @@ WEP_TO_AMMO["weapon_shotgun"] = "Buckshot"
 WEP_TO_AMMO["weapon_smg1"] = "SMG1"
 WEP_TO_AMMO["weapon_frag"] = "Grenade"
 
-local ITEM_TO_AMOUNT = {}
-ITEM_TO_AMOUNT["item_ammo_357"] = 6
-ITEM_TO_AMOUNT["item_ammo_357_large"] = 20
-ITEM_TO_AMOUNT["item_ammo_ar2"] = 20
-ITEM_TO_AMOUNT["item_ammo_ar2_large"] = 60
-ITEM_TO_AMOUNT["item_ammo_ar2_altfire"] = 1
-ITEM_TO_AMOUNT["item_ammo_crossbow"] = 6
-ITEM_TO_AMOUNT["item_ammo_pistol"] = 20
-ITEM_TO_AMOUNT["item_ammo_pistol_large"] = 100
-ITEM_TO_AMOUNT["item_ammo_smg1"] = 45
-ITEM_TO_AMOUNT["item_ammo_smg1_large"] = 225
-ITEM_TO_AMOUNT["item_ammo_smg1_grenade"] = 1
-ITEM_TO_AMOUNT["item_box_buckshot"] = 20
-ITEM_TO_AMOUNT["item_rpg_round"] = 1
+local AMMONUM_TO_STRING = {}
+AMMONUM_TO_STRING[1] = "AR2"
+AMMONUM_TO_STRING[2] = "AR2AltFire"
+AMMONUM_TO_STRING[3] = "Pistol"
+AMMONUM_TO_STRING[4] = "SMG1"
+AMMONUM_TO_STRING[5] = "357"
+AMMONUM_TO_STRING[6] = "XBowBolt"
+AMMONUM_TO_STRING[7] = "Buckshot"
+AMMONUM_TO_STRING[8] = "RPG_Round"
+AMMONUM_TO_STRING[9] = "SMG1_Grenade"
+AMMONUM_TO_STRING[10] = "Grenade"
+AMMONUM_TO_STRING[11] = "slam"
 
-local WEP_CLIP_SIZE = {}
-WEP_CLIP_SIZE["weapon_357"] = 6
-WEP_CLIP_SIZE["weapon_ar2"] = 30
-WEP_CLIP_SIZE["weapon_crossbow"] = 1
-WEP_CLIP_SIZE["weapon_pistol"] = 18
-WEP_CLIP_SIZE["weapon_rpg"] = 3
-WEP_CLIP_SIZE["weapon_shotgun"] = 6
-WEP_CLIP_SIZE["weapon_smg1"] = 45
-WEP_CLIP_SIZE["weapon_frag"] = 1
 
 function GM:PlayerSpawn(ply)
 	player_manager.SetPlayerClass(ply, "player_coop")
@@ -134,7 +123,33 @@ function GM:PlayerShouldTakeDamage(ply, attacker)
 	return true
 end
 
--- TODO: Fix ammocrates going over ammo capacity
+function GM:Think()
+	-- Limit player ammmo
+	for _, ply in pairs(player.GetAll()) do
+		local wep = ply:GetActiveWeapon()
+		-- Primary ammo
+		local ammoNum = wep:GetPrimaryAmmoType()
+		CheckMaxAmmo(ply, wep, ammoNum)
+		
+		-- Secondary ammo
+		ammoNum = wep:GetSecondaryAmmoType()
+		CheckMaxAmmo(ply, wep, ammoNum)
+	end
+end
+
+function CheckMaxAmmo(ply, wep, ammoNum)
+	if (ammoNum == -1) then
+		return
+	end
+	
+	local ammo = AMMONUM_TO_STRING[ammoNum]
+	local maxAmmo = MAX_AMMO[ammo]
+	local currentAmmo = ply:GetAmmoCount(ammo)
+	if currentAmmo >= maxAmmo then
+		ply:SetAmmo(maxAmmo, ammo)
+	end
+end
+
 function GM:PlayerCanPickupItem(ply, item)
 	local itemClass = item:GetClass()
 	
@@ -159,12 +174,9 @@ function GM:PlayerCanPickupItem(ply, item)
 	if (ITEM_TO_AMMO[itemClass] ~= nil) then -- Item exists in conversion table
 		local ammo = ITEM_TO_AMMO[itemClass]
 		local maxAmmo = MAX_AMMO[ammo]
-		local itemAmmo = ITEM_TO_AMOUNT[itemClass]
 		local currentAmmo = ply:GetAmmoCount(ammo)
 		if currentAmmo >= maxAmmo then
 			return false
-		elseif currentAmmo + itemAmmo > maxAmmo then
-			ply:SetAmmo(maxAmmo - itemAmmo, ammo)
 		end
 	end
 		
@@ -186,7 +198,7 @@ end
 function GM:PlayerCanPickupWeapon(ply, wep)
 	local wepClass = wep:GetClass()
 	local ammo = WEP_TO_AMMO[wepClass]
-	if !ammo then -- Weapon does not have ammo
+	if !ammo then -- Weapon type does not have ammo (crowbar, grav gun, etc)
 		if ply:HasWeapon(wepClass) then -- Do not pickup the item if the player already has it
 			return false
 		else -- Player does not have this weapon, so equip it and duplicate if possible
@@ -196,15 +208,9 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 	end
 	
 	local maxAmmo = MAX_AMMO[ammo]
-	local clipSize = WEP_CLIP_SIZE[wepClass]
 	local currentAmmo = ply:GetAmmoCount(ammo)
 	
 	if !ply:HasWeapon(wepClass) then
-		-- Check ammo capacity
-		if currentAmmo + clipSize > maxAmmo then
-			ply:SetAmmo(maxAmmo - clipSize, ammo)
-		end
-		
 		TryDuplicateWeapon(wep, wepClass)
 		return true
 	end
@@ -213,8 +219,6 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 		-- Check ammo capacity
 		if currentAmmo >= maxAmmo then
 			return false
-		elseif currentAmmo + clipSize > maxAmmo then
-			ply:SetAmmo(maxAmmo - clipSize, ammo)
 		end
 	end
 	
