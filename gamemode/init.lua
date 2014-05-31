@@ -42,7 +42,7 @@ WEP_TO_AMMO["weapon_frag"] = "Grenade"
 
 local ITEM_TO_AMOUNT = {}
 ITEM_TO_AMOUNT["item_ammo_357"] = 6
-ITEM_TO_AMOUNT["item_ammo_357_large"] = 12
+ITEM_TO_AMOUNT["item_ammo_357_large"] = 20
 ITEM_TO_AMOUNT["item_ammo_ar2"] = 20
 ITEM_TO_AMOUNT["item_ammo_ar2_large"] = 60
 ITEM_TO_AMOUNT["item_ammo_ar2_altfire"] = 1
@@ -86,6 +86,13 @@ function GM:InitPostEntity()
 			v.ei = v:EntIndex()
 		end
 	end
+	for k,v in pairs(ents.FindByClass("item_battery")) do
+		if(v:CreatedByMap()) then
+			v.oPos = v:GetPos()
+			v.oAng = v:GetAngles()
+			v.ei = v:EntIndex()
+		end
+	end
 	for k,v in pairs(ents.FindByClass("item_ammo_*")) do
 		if(v:CreatedByMap()) then
 			v.oPos = v:GetPos()
@@ -121,10 +128,27 @@ local function RespawnEnt(class,index,pos,ang)
 end
 
 function GM:PlayerCanPickupItem(ply, item)
-	-- Limit max ammo
 	local itemClass = item:GetClass()
 	
-	if ITEM_TO_AMMO[itemClass] ~= nil then -- Item exists in conversion table
+	-- Check for health/suit items
+	if (itemClass == "item_healthkit" || itemClass == "item_healthvial") then
+		if (ply:Health() == 100) then
+			return false
+		else
+			TryDuplicateItem(item, itemClass)
+			return true
+		end
+	elseif (itemClass == "item_battery") then
+		if (ply:Armor() == 100) then
+			return false
+		else
+			TryDuplicateItem(item, itemClass)
+			return true
+		end
+	end
+	
+	-- Limit max ammo
+	if (ITEM_TO_AMMO[itemClass] ~= nil) then -- Item exists in conversion table
 		local ammo = ITEM_TO_AMMO[itemClass]
 		local maxAmmo = MAX_AMMO[ammo]
 		local itemAmmo = ITEM_TO_AMOUNT[itemClass]
@@ -135,7 +159,12 @@ function GM:PlayerCanPickupItem(ply, item)
 			ply:SetAmmo(maxAmmo - itemAmmo, ammo)
 		end
 	end
-	
+		
+	TryDuplicateItem(item, itemClass)
+	return true
+end
+
+function TryDuplicateItem(item, itemClass)
 	if(item.ei) then
 		local ei = item.ei
 		local pos = item.oPos
@@ -144,14 +173,18 @@ function GM:PlayerCanPickupItem(ply, item)
 			timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(itemClass,ei,pos,ang) end)
 		end
 	end
-	return true
 end
 
 function GM:PlayerCanPickupWeapon(ply, wep)
 	local wepClass = wep:GetClass()
 	local ammo = WEP_TO_AMMO[wepClass]
 	if !ammo then -- Weapon does not have ammo
-		return !ply:HasWeapon(wepClass) -- Do not pickup the item if the player already has it
+		if ply:HasWeapon(wepClass) then -- Do not pickup the item if the player already has it
+			return false
+		else -- Player does not have this weapon, so equip it and duplicate if possible
+			TryDuplicateWeapon(wep, wepClass)
+			return true
+		end
 	end
 	
 	local maxAmmo = MAX_AMMO[ammo]
@@ -164,9 +197,7 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 			ply:SetAmmo(maxAmmo - clipSize, ammo)
 		end
 		
-		if(wep.ei) then
-			DuplicateWeapon(wep, wepClass)
-		end
+		TryDuplicateWeapon(wep, wepClass)
 		return true
 	end
 	
@@ -179,17 +210,17 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 		end
 	end
 	
-	if (wep.ei) then
-		DuplicateWeapon(wep, wepClass)
-	end
+	TryDuplicateWeapon(wep, wepClass)
 	return true
 end
 
-function DuplicateWeapon(wep, wepClass)
-	local ei = wep.ei
-	local pos = wep.oPos
-	local ang = wep.oAng
-	if(!timer.Exists("respawn_"..ei)) then
-		timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
+function TryDuplicateWeapon(wep, wepClass)
+	if (wep.ei) then
+		local ei = wep.ei
+		local pos = wep.oPos
+		local ang = wep.oAng
+		if(!timer.Exists("respawn_"..ei)) then
+			timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
+		end
 	end
 end
