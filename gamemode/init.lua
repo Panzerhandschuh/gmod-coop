@@ -3,6 +3,8 @@ AddCSLuaFile("shared.lua")
 
 include("shared.lua")
 
+local ITEM_RESPAWN_TIME = 10
+
 local MAX_AMMO = {}
 MAX_AMMO["Pistol"] = 150
 MAX_AMMO["357"] = 12
@@ -14,6 +16,7 @@ MAX_AMMO["Buckshot"] = 30
 MAX_AMMO["XBowBolt"] = 10
 MAX_AMMO["RPG_Round"] = 3
 MAX_AMMO["Grenade"] = 5
+MAX_AMMO["slam"] = 5
 
 local ITEM_TO_AMMO = {}
 ITEM_TO_AMMO["item_ammo_357"] = "357"
@@ -39,6 +42,7 @@ WEP_TO_AMMO["weapon_rpg"] = "RPG_Round"
 WEP_TO_AMMO["weapon_shotgun"] = "Buckshot"
 WEP_TO_AMMO["weapon_smg1"] = "SMG1"
 WEP_TO_AMMO["weapon_frag"] = "Grenade"
+WEP_TO_AMMO["weapon_slam"] = "slam"
 
 local AMMONUM_TO_STRING = {}
 AMMONUM_TO_STRING[1] = "AR2"
@@ -52,7 +56,6 @@ AMMONUM_TO_STRING[8] = "RPG_Round"
 AMMONUM_TO_STRING[9] = "SMG1_Grenade"
 AMMONUM_TO_STRING[10] = "Grenade"
 AMMONUM_TO_STRING[11] = "slam"
-
 
 function GM:PlayerSpawn(ply)
 	player_manager.SetPlayerClass(ply, "player_coop")
@@ -127,6 +130,10 @@ function GM:Think()
 	-- Limit player ammmo
 	for _, ply in pairs(player.GetAll()) do
 		local wep = ply:GetActiveWeapon()
+		if (wep == nil) then
+			continue
+		end
+		
 		-- Primary ammo
 		local ammoNum = wep:GetPrimaryAmmoType()
 		CheckMaxAmmo(ply, wep, ammoNum)
@@ -190,7 +197,7 @@ function TryDuplicateItem(item, itemClass)
 		local pos = item.oPos
 		local ang = item.oAng
 		if(!timer.Exists("respawn_"..ei)) then
-			timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(itemClass,ei,pos,ang) end)
+			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(itemClass,ei,pos,ang) end)
 		end
 	end
 end
@@ -210,6 +217,7 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 	local maxAmmo = MAX_AMMO[ammo]
 	local currentAmmo = ply:GetAmmoCount(ammo)
 	
+	-- Pickup new weapon
 	if !ply:HasWeapon(wepClass) then
 		TryDuplicateWeapon(wep, wepClass)
 		return true
@@ -232,7 +240,7 @@ function TryDuplicateWeapon(wep, wepClass)
 		local pos = wep.oPos
 		local ang = wep.oAng
 		if(!timer.Exists("respawn_"..ei)) then
-			timer.Create("respawn_"..ei, 10, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
+			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
 		end
 	end
 end
