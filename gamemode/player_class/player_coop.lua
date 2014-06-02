@@ -53,7 +53,7 @@ function PLAYER:Spawn()
 	BaseClass.Spawn(self)
 	
 	self.Player:SetCrouchedWalkSpeed(0.32)
-	self.Player:SetNoCollideWithTeammates(false)
+	self.Player:SetNoCollideWithTeammates(true)
 
 end
 
