@@ -1,7 +1,17 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
+AddCSLuaFile("rtv/config.lua")
+AddCSLuaFile("rtv/cl_rtv.lua")
 
+include("sv_mapseries.lua")
 include("shared.lua")
+include("rtv/sv_rtv.lua")
+
+resource.AddFile("models/items/ammocrate_buckshot.mdl")
+resource.AddFile("models/items/ammocrate_pistol.mdl")
+
+resource.AddFile("materials/models/items/ammocrate_buckshot.vmt")
+resource.AddFile("materials/models/items/ammocrate_pistol.vmt")
 
 local ITEM_RESPAWN_TIME = 10
 
@@ -57,6 +67,23 @@ AMMONUM_TO_STRING[9] = "SMG1_Grenade"
 AMMONUM_TO_STRING[10] = "Grenade"
 AMMONUM_TO_STRING[11] = "slam"
 
+local REPLACE_ENTS = {}
+REPLACE_ENTS["weapon_mp5k"] = "weapon_smg1"
+REPLACE_ENTS["weapon_mg1"] = "weapon_ar2"
+REPLACE_ENTS["weapon_sl8"] = "weapon_ar2"
+REPLACE_ENTS["weapon_sniper"] = "weapon_crossbow"
+REPLACE_ENTS["weapon_gauss"] = "weapon_smg1"
+REPLACE_ENTS["weapon_medkit"] = "item_healthkit"
+REPLACE_ENTS["npc_gargantua"] = "npc_antlionguard"
+REPLACE_ENTS["npc_alien_grunt"] = "npc_combine_s"
+REPLACE_ENTS["npc_hassassin"] = "npc_combine_s"
+REPLACE_ENTS["item_box_sl8_rounds"] = "item_ammo_ar2_large"
+REPLACE_ENTS["item_box_sniper_rounds"] = "item_ammo_crossbow"
+
+for k,_ in pairs(REPLACE_ENTS) do
+	scripted_ents.Register({Type="point"}, k, false)
+end
+
 function GM:PlayerSpawn(ply)
 	player_manager.SetPlayerClass(ply, "player_coop")
 
@@ -64,8 +91,38 @@ function GM:PlayerSpawn(ply)
 end
 
 function GM:InitPostEntity()
+	for ent,replace in pairs(REPLACE_ENTS) do
+		for k,v in pairs(ents.FindByClass(ent)) do
+			if(v:CreatedByMap()) then
+				v:SetSolid(SOLID_NONE)
+			
+				local ne = ents.Create(replace)
+				ne:SetPos(v:GetPos())
+				ne:SetAngles(v:GetAngles())
+				ne:SetName(v:GetName())
+				if(string.sub(ent,1,7) == "weapon_" || string.sub(ent,1,5) == "item_") then
+					ne.oPos = v:GetPos()
+					ne.oAng = v:GetAngles()
+					ne.ei = v:EntIndex()
+				end
+				if(ent == "npc_hassassin") then
+					ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
+				elseif(ent == "npc_alien_grunt") then
+					ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
+				end
+				ne:Spawn()
+				v:Remove()
+			end
+		end
+	end
+	for k,v in pairs(ents.FindByClass("point_template")) do
+		if(v:CreatedByMap()) then
+			v:Spawn() --hopefully refreshes point_template?
+		end
+	end
 	for k,v in pairs(ents.FindByClass("weapon_*")) do
 		if(v:CreatedByMap()) then
+			v:Spawn()
 			v.oPos = v:GetPos()
 			v.oAng = v:GetAngles()
 			v.ei = v:EntIndex()
@@ -135,12 +192,16 @@ function GM:Think()
 		end
 		
 		-- Primary ammo
-		local ammoNum = wep:GetPrimaryAmmoType()
-		CheckMaxAmmo(ply, wep, ammoNum)
+		if(wep.GetPrimaryAmmoType) then
+			local ammoNum = wep:GetPrimaryAmmoType()
+			CheckMaxAmmo(ply, wep, ammoNum)
+		end
 		
 		-- Secondary ammo
-		ammoNum = wep:GetSecondaryAmmoType()
-		CheckMaxAmmo(ply, wep, ammoNum)
+		if(wep.GetSecondaryAmmoType) then
+			ammoNum = wep:GetSecondaryAmmoType()
+			CheckMaxAmmo(ply, wep, ammoNum)
+		end
 	end
 end
 

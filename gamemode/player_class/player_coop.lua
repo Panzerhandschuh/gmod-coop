@@ -23,6 +23,8 @@ function PLAYER:Loadout()
 
 	self.Player:RemoveAllAmmo()
 
+	self.Player:StripWeapons()
+	
 	-- Start weapons
 	self.Player:Give("weapon_crowbar")
 	self.Player:Give("weapon_physcannon")

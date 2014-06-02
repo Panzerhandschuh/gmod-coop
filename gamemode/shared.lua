@@ -1,4 +1,5 @@
 include("player_class/player_coop.lua")
+include("rtv/config.lua")
 
 GM.Name = "Coop"
 GM.Author = "N/A"
