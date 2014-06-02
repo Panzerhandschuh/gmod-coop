@@ -88,6 +88,16 @@ function GM:PlayerSpawn(ply)
 	player_manager.SetPlayerClass(ply, "player_coop")
 
 	self.BaseClass:PlayerSpawn(ply)
+	
+	ply:SetCustomCollisionCheck(true)
+end
+
+function GM:ShouldCollide(ent1,ent2)
+	if(ent1:IsPlayer() && ent2:IsPlayer()) then
+		return false
+	end
+	
+	return true
 end
 
 function GM:InitPostEntity()
