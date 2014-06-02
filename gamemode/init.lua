@@ -92,14 +92,6 @@ function GM:PlayerSpawn(ply)
 	ply:SetCustomCollisionCheck(true)
 end
 
-function GM:ShouldCollide(ent1,ent2)
-	if(ent1:IsPlayer() && ent2:IsPlayer()) then
-		return false
-	end
-	
-	return true
-end
-
 function GM:InitPostEntity()
 	for ent,replace in pairs(REPLACE_ENTS) do
 		for k,v in pairs(ents.FindByClass(ent)) do

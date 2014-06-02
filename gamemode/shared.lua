@@ -8,3 +8,11 @@ GM.Website = "N/A"
 
 DeriveGamemode("base") 
 DEFINE_BASECLASS("gamemode_base")
+
+function GM:ShouldCollide(ent1,ent2)
+	if(ent1:IsPlayer() && ent2:IsPlayer()) then
+		return false
+	end
+	
+	return true
+end
