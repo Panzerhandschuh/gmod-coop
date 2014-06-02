@@ -81,8 +81,12 @@ REPLACE_ENTS["item_box_sl8_rounds"] = "item_ammo_ar2_large"
 REPLACE_ENTS["item_box_sniper_rounds"] = "item_ammo_crossbow"
 
 for k,_ in pairs(REPLACE_ENTS) do
-	scripted_ents.Register({Type="point"}, k, false)
+	if(string.sub(k,1,4) != "npc_") then
+		scripted_ents.Register({Type="point"}, k, false)
+	end
 end
+
+local mapspawn = true
 
 function GM:PlayerSpawn(ply)
 	player_manager.SetPlayerClass(ply, "player_coop")
@@ -113,13 +117,18 @@ function GM:InitPostEntity()
 					ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
 				end
 				ne:Spawn()
+				if(v.out) then
+					for _,o in pairs(v.out) do
+						ne:Fire("AddOutput","OnDeath "..o,0)
+					end
+				end
 				v:Remove()
 			end
 		end
 	end
 	for k,v in pairs(ents.FindByClass("point_template")) do
 		if(v:CreatedByMap()) then
-			v:Spawn() --hopefully refreshes point_template?
+			v:Respawn() --hopefully refreshes point_template?
 		end
 	end
 	for k,v in pairs(ents.FindByClass("weapon_*")) do
@@ -165,6 +174,7 @@ function GM:InitPostEntity()
 			v.ei = v:EntIndex()
 		end
 	end
+	mapspawn = false
 end
 
 local function RespawnEnt(class,index,pos,ang)
@@ -304,6 +314,77 @@ function TryDuplicateWeapon(wep, wepClass)
 		local ang = wep.oAng
 		if(!timer.Exists("respawn_"..ei)) then
 			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
+		end
+	end
+end
+
+function GM:OnEntityCreated( ent )
+	if(!mapspawn) then
+		if(ent:GetClass() == "npc_gargantua") then
+			timer.Simple(0.1,function()
+				if(ent:IsValid()) then
+					ent:SetNoDraw(true)
+					ent:SetSolid(SOLID_NONE)
+					local ne = ents.Create("npc_antlionguard")
+					ne:SetPos(ent:GetPos())
+					ne:SetAngles(ent:GetAngles())
+					ne:SetName(ent:GetName())
+					ne:Spawn()
+					if(ent.out) then
+						for k,v in pairs(ent.out) do
+							ne:Fire("AddOutput","OnDeath "..v,0)
+						end
+					end
+					ent:Remove()
+				end
+			end)
+		elseif(ent:GetClass() == "npc_hassassin") then
+			timer.Simple(0.1,function()
+				if(ent:IsValid()) then
+					ent:SetNoDraw(true)
+					ent:SetSolid(SOLID_NONE)
+					local ne = ents.Create("npc_combine_s")
+					ne:SetPos(ent:GetPos())
+					ne:SetAngles(ent:GetAngles())
+					ne:SetName(ent:GetName())
+					ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
+					ne:Spawn()
+					if(ent.out) then
+						for k,v in pairs(ent.out) do
+							ne:Fire("AddOutput","OnDeath "..v,0)
+						end
+					end
+					ent:Remove()
+				end
+			end)
+		elseif(ent:GetClass() == "npc_alien_grunt") then
+			timer.Simple(0.1,function()
+				if(ent:IsValid()) then
+					ent:SetNoDraw(true)
+					ent:SetSolid(SOLID_NONE)
+					local ne = ents.Create("npc_combine_s")
+					ne:SetPos(ent:GetPos())
+					ne:SetAngles(ent:GetAngles())
+					ne:SetName(ent:GetName())
+					ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
+					ne:Spawn()
+					if(ent.out) then
+						for k,v in pairs(ent.out) do
+							ne:Fire("AddOutput","OnDeath "..v,0)
+						end
+					end
+					ent:Remove()
+				end
+			end)
+		end
+	end
+end
+
+function GM:EntityKeyValue(e,k,v)
+	if(k == "OnDeath") then
+		if(e:GetClass() == "npc_gargantua" || e:GetClass() == "npc_aliengrunt" || e:GetClass() == "npc_hassassin") then
+			if(!e.out) then e.out = {} end
+			table.insert(e.out,v)
 		end
 	end
 end
