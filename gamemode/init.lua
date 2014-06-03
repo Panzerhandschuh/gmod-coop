@@ -87,6 +87,8 @@ for k,_ in pairs(REPLACE_ENTS) do
 	end
 end
 
+scripted_ents.Register({Type="point"}, "info_player_equip", false)
+
 local mapspawn = true
 
 function GM:PlayerSpawn(ply)

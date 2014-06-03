@@ -1,8 +1,8 @@
 HOOKS["EntityKeyValue"] = function(e,k,v)
-	if(e:EntIndex() == 503 && k == "target") then
+	if(e:EntIndex() == 518 && k == "target") then
 		return ""
 	end
-	if(e:EntIndex() == 505 && k == "target") then
+	if(e:EntIndex() == 520 && k == "target") then
 		return ""
 	end
 end
