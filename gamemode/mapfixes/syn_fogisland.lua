@@ -10,11 +10,6 @@ HOOKS["InitPostEntity"] = function()
 		v:SetKeyValue("target","")
 		v:Spawn()
 	end
-	timer.Simple(1,function() --ensures its properly gone
-		for k,v in pairs(ents.FindByName("combinemaker08")) do
-			v:Remove()
-		end
-	end)
 end
 
 HOOKS["EntityKeyValue"] = function(e,k,v)

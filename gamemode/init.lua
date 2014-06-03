@@ -390,4 +390,9 @@ function GM:EntityKeyValue(e,k,v)
 			table.insert(e.out,v)
 		end
 	end
+	if(k == "additionalequipment") then
+		if(REPLACE_ENTS[v]) then
+			return REPLACE_ENTS[v]
+		end
+	end
 end
