@@ -25,3 +25,11 @@ function GM:ShouldCollide(ent1,ent2)
 	
 	return true
 end
+
+if(file.Exists("coop/gamemode/mapfixes/"..game.GetMap()..".lua","LUA")) then
+	HOOKS = {}
+	include("coop/gamemode/mapfixes/"..game.GetMap()..".lua")
+	for k,v in pairs(HOOKS) do
+		hook.Add(k,k.."_"..game.GetMap(),v)
+	end
+end
