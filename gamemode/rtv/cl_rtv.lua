@@ -13,6 +13,7 @@ surface.CreateFont( "VerdanaUI_B", {
 	antialias = true,
 })
 
+RTV.VTab = {}
 RTV.Voter = nil
 RTV.Maps = {}
 RTV.Keys = {}
@@ -67,19 +68,27 @@ function RTV.CreatePanel()
 
 			for k, v in pairs( RTV.Keys ) do
 
-				if input.IsKeyDown( k ) and v[1] then
+				if v[1] and input.IsKeyDown( k ) then
 
 					voted = true
 					v[1]:SetColor( Color( 0, 255, 0, 255 ) )
 					RunConsoleCommand( "rtv_vote", v[2] )
 					surface.PlaySound( "garrysmod/save_load1.wav" )
-
+				
 				end
 
 			end
 
 		end
-
+						
+		-- Update number of votes
+		for k, v in pairs(RTV.Keys) do
+			if (RTV.VTab["MAP_"..v[2]] && RTV.VTab["MAP_"..v[2]] > 0) then
+				local numVotes = " ("..RTV.VTab["MAP_"..v[2]]..")"
+				v[1]:SetText(tostring(v[2])..") "..tostring(RTV.Maps[v[2]])..numVotes)
+				v[1]:SizeToContents()
+			end
+		end
 	end
 end
 
@@ -242,6 +251,10 @@ usermessage.Hook( "RTNom", function()
 	timer.Simple( .5, function()
 		RTV.CreateNominatePanel()
 	end )
+end )
+
+net.Receive( "RTVVTab", function()
+	RTV.VTab = net.ReadTable()
 end )
 
 net.Receive( "RTVMaps", function()

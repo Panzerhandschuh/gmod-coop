@@ -38,6 +38,7 @@ end
 SetGlobalBool( "In_Voting", false )
 RTV.InVote = false
 
+util.AddNetworkString( "RTVVTab" )
 util.AddNetworkString( "RTVMaps" )
 util.AddNetworkString( "RTVNominate" )
 
@@ -154,6 +155,9 @@ concommand.Add( "rtv_vote", function( ply, cmd, args )
 	vote = math.Clamp( tonumber(vote), 1, #RTV.Maps )
 
 	RTV.VTab["MAP_"..vote] = RTV.VTab["MAP_"..vote] + 1
+	net.Start( "RTVVTab" )
+		net.WriteTable( RTV.VTab )
+	net.Send( ply )
 	ply.MapVoted = true
 	ply:PrintMessage( HUD_PRINTTALK, "You have voted for "..RTV.Maps[vote].."!" )
 
