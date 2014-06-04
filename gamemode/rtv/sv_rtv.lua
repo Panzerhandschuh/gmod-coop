@@ -131,7 +131,7 @@ concommand.Add( "rtv_vote", function( ply, cmd, args )
 	if not (ply and ply:IsValid()) then return end
 
 	if not RTV.InVote then
-		ply:PrintMessage( HUD_PRINTTALK, "There is no vote in progress, you are a dumbass." )
+		ply:PrintMessage( HUD_PRINTTALK, "There is no vote in progress." )
 		return
 	end
 
@@ -157,8 +157,8 @@ concommand.Add( "rtv_vote", function( ply, cmd, args )
 	RTV.VTab["MAP_"..vote] = RTV.VTab["MAP_"..vote] + 1
 	net.Start( "RTVVTab" )
 		net.WriteTable( RTV.VTab )
-	net.Send( ply )
-	ply.MapVoted = true
+	net.Send( player.GetAll() )
+	ply.MapVoted = vote
 	ply:PrintMessage( HUD_PRINTTALK, "You have voted for "..RTV.Maps[vote].."!" )
 
 end )
@@ -171,7 +171,7 @@ function RTV.Finish()
 
 	for k, v in pairs( player.GetAll() ) do
 		v.RTVoted = false
-		v.MapVoted = false
+		v.MapVoted = nil
 	end
 
 	local top = 0
@@ -265,6 +265,24 @@ function RTV.CanVote( ply )
 
 end
 
+function RTV.CanReVote( ply )
+
+	if !RTV.InVote then
+		return false, "There is no vote in progress!"
+	end
+
+	if !ply.MapVoted then
+		return false, "You have not voted yet!"
+	end
+
+	if RTV.ChangingMaps then
+		return false, "There has already been a vote, the map is going to change!"
+	end
+
+	return true
+
+end
+
 function RTV.StartVote( ply )
 
 	local can, err = RTV.CanVote(ply)
@@ -275,6 +293,27 @@ function RTV.StartVote( ply )
 	end
 
 	RTV.AddVote( ply )
+
+end
+
+function RTV.Revote( ply )
+
+	local can, err = RTV.CanReVote(ply)
+	
+	if not can then
+		ply:PrintMessage( HUD_PRINTTALK, err )
+		return
+	end
+	
+	-- Remove vote
+	RTV.VTab["MAP_"..ply.MapVoted] = RTV.VTab["MAP_"..ply.MapVoted] - 1
+	net.Start( "RTVVTab" )
+		net.WriteTable( RTV.VTab )
+	net.Send( player.GetAll() )
+	umsg.Start( "RTRevoting", ply )
+	umsg.End()
+	ply:PrintMessage( HUD_PRINTTALK, "You have removed your vote for "..RTV.Maps[ply.MapVoted].."!" )
+	ply.MapVoted = nil
 
 end
 
@@ -312,15 +351,21 @@ concommand.Add( "rtv_nominate", RTV.NominateMap )
 
 hook.Add( "PlayerSay", "RTV Chat Commands", function( ply, text )
 
-	if table.HasValue( RTV.ChatCommands, string.lower(text) ) then
+	local cmd = string.lower(text)
+	if table.HasValue( RTV.ChatCommands, cmd ) then
 		RTV.StartVote( ply )
 		return ""
 	end
 	
-	local s = string.sub(string.lower(text),1,9)
-	local s2 = string.sub(string.lower(text),1,8)
+	if (cmd == "revote" || cmd == "!revote" || cmd == "/revote") then
+		RTV.Revote( ply )
+		return ""
+	end
+	
+	local s = string.sub(cmd,1,9)
+	local s2 = string.sub(cmd,1,8)
 	if(s2 == "nominate" || s == "!nominate" || s == "/nominate") then
-		local im = string.Explode(" ",string.lower(text))
+		local im = string.Explode(" ",cmd)
 		if(im && im[2]) then
 			if(type(im[2]) != "string") then return ""
 			elseif(#im>2) then return "" end

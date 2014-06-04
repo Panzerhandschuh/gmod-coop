@@ -19,6 +19,7 @@ RTV.Maps = {}
 RTV.Keys = {}
 RTV.NKeys = {}
 local menuText = "Rock the Vote"
+local voted = false
 
 function RTV.CreatePanel()
 	if (RTV.Voter and RTV.Voter:IsVisible()) then return end
@@ -46,9 +47,7 @@ function RTV.CreatePanel()
 
 		draw.SimpleText(menuText,"VerdanaUI",w/2,15,Color(236,240,241,255),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 	end
-
-	local voted = false
-
+	
 	for k, v in ipairs( RTV.Maps ) do
 
 		local text = vgui.Create( "DLabel", pn )
@@ -63,7 +62,7 @@ function RTV.CreatePanel()
 	end
 
 	pn.Think = function( self )
-
+		
 		if not voted and GetGlobalBool( "In_Voting" ) and #RTV.Keys > 0 then
 
 			for k, v in pairs( RTV.Keys ) do
@@ -83,8 +82,12 @@ function RTV.CreatePanel()
 						
 		-- Update number of votes
 		for k, v in pairs(RTV.Keys) do
-			if (RTV.VTab["MAP_"..v[2]] && RTV.VTab["MAP_"..v[2]] > 0) then
-				local numVotes = " ("..RTV.VTab["MAP_"..v[2]]..")"
+			if (RTV.VTab["MAP_"..v[2]]) then
+				local numVotes = ""
+				if (RTV.VTab["MAP_"..v[2]] > 0) then
+					numVotes = " ("..RTV.VTab["MAP_"..v[2]]..")"
+				end
+				
 				v[1]:SetText(tostring(v[2])..") "..tostring(RTV.Maps[v[2]])..numVotes)
 				v[1]:SizeToContents()
 			end
@@ -245,6 +248,13 @@ usermessage.Hook( "RTVoting", function()
 		end
 		RTV.CreatePanel()
 	end )
+end )
+
+usermessage.Hook( "RTRevoting", function()
+	voted = false
+	for k, v in pairs( RTV.Keys ) do
+		v[1]:SetColor( Color( 255, 255, 255, 255 ) )
+	end
 end )
 
 usermessage.Hook( "RTNom", function()
