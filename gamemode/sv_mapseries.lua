@@ -49,7 +49,7 @@ function GM:GetNextSeriesMap()
 	
 	for k,v in pairs(MapGroups) do
 		for k2,v2 in pairs(v) do
-			if(v2 == game.GetMap()) then
+			if(v2 == game.GetMap() && k2 < #v) then
 				returnme = MapGroups[k][k2+1]
 			end
 		end
