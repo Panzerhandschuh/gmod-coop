@@ -42,7 +42,18 @@ function PLAYER:Loadout()
 end
 
 function PLAYER:SetModel()
-	self.Player:SetModel("models/player/group01/male_01.mdl") --temp
+	--self.Player:SetModel("models/player/group01/male_01.mdl") --temp
+	BaseClass.SetModel( self )
+	
+	local skin = self.Player:GetInfoNum( "cl_playerskin", 0 )
+	self.Player:SetSkin( skin )
+
+	local groups = self.Player:GetInfo( "cl_playerbodygroups" )
+	if ( groups == nil ) then groups = "" end
+	local groups = string.Explode( " ", groups )
+	for k = 0, self.Player:GetNumBodyGroups() - 1 do
+		self.Player:SetBodygroup( k, tonumber( groups[ k + 1 ] ) or 0 )
+	end
 end
 
 --
@@ -79,7 +90,9 @@ end
 
 function PLAYER:GetHandsModel()
 
-	return { model = "models/weapons/c_arms_citizen.mdl", skin = 1, body = "0000000" }
+	--return { model = "models/weapons/c_arms_citizen.mdl", skin = 1, body = "0000000" }
+	local cl_playermodel = self.Player:GetInfo( "cl_playermodel" )
+	return player_manager.TranslatePlayerHands( cl_playermodel )
 
 end
 
