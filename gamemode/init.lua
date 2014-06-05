@@ -23,6 +23,15 @@ resource.AddFile("materials/models/ministrider/mini_skin_basecolor.vmt")
 resource.AddFile("materials/models/weapons/hunter_flechette.vmt")
 resource.AddFile("materials/models/zombie_classic/combinesoldiersheet_zombie.vmt")
 
+local function AddDir(dir)
+	for k,v in pairs(file.Find(dir.."/*", "GAME")) do
+		resource.AddFile(dir.."/"..v)
+	end
+end
+
+AddDir("sound/npc/ministrider")
+AddDir("sound/npc/zombine")
+
 local ITEM_RESPAWN_TIME = 10
 
 local MAX_AMMO = {}
