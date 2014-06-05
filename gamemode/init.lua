@@ -89,7 +89,6 @@ REPLACE_ENTS["npc_alien_grunt"] = "npc_combine_s"
 REPLACE_ENTS["npc_hassassin"] = "npc_combine_s"
 REPLACE_ENTS["item_box_sl8_rounds"] = "item_ammo_ar2_large"
 REPLACE_ENTS["item_box_sniper_rounds"] = "item_ammo_crossbow"
-REPLACE_ENTS["npc_zombine"] = "npc_zombie"
 
 for k,_ in pairs(REPLACE_ENTS) do
 	if(string.sub(k,1,4) != "npc_") then
