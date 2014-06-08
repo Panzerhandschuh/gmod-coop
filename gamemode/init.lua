@@ -96,6 +96,7 @@ REPLACE_ENTS["weapon_medkit"] = "item_healthkit"
 REPLACE_ENTS["npc_gargantua"] = "npc_antlionguard"
 REPLACE_ENTS["npc_alien_grunt"] = "npc_combine_s"
 REPLACE_ENTS["npc_hassassin"] = "npc_combine_s"
+REPLACE_ENTS["npc_houndeye"] = "npc_headcrab"
 REPLACE_ENTS["item_box_sl8_rounds"] = "item_ammo_ar2_large"
 REPLACE_ENTS["item_box_sniper_rounds"] = "item_ammo_crossbow"
 
