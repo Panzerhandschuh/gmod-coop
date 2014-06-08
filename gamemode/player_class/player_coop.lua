@@ -8,6 +8,7 @@ PLAYER.DuckSpeed			= 0.1		-- How fast to go from not ducking, to ducking
 PLAYER.UnDuckSpeed			= 0.1		-- How fast to go from ducking, to not ducking
 PLAYER.WalkSpeed 			= 200
 PLAYER.RunSpeed				= 320
+PLAYER.AvoidPlayers			= false
 
 --
 -- Set up the network table accessors
