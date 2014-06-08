@@ -117,6 +117,8 @@ function GM:PlayerInitialSpawn(ply)
 			v:UpdatePlayerCount(t)
 		end
 	end
+	
+	self.BaseClass:PlayerIntialSpawn(ply)
 end
 
 function GM:PlayerDisconnected(ply)
@@ -126,6 +128,8 @@ function GM:PlayerDisconnected(ply)
 			v:UpdatePlayerCount(t)
 		end
 	end
+	
+	self.BaseClass:PlayerDisconnected(ply)
 end
 
 function GM:PlayerSpawn(ply)
