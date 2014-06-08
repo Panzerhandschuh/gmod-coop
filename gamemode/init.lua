@@ -438,6 +438,13 @@ function GM:OnEntityCreated( ent )
 	end
 end
 
+local randselect = {
+	"weapon_shotgun",
+	"weapon_ar2",
+	"weapon_smg1",
+	"weapon_pistol"
+}
+
 function GM:EntityKeyValue(e,k,v)
 	if(k == "OnDeath") then
 		if(e:GetClass() == "npc_gargantua" || e:GetClass() == "npc_aliengrunt" || e:GetClass() == "npc_hassassin" || e:GetClass() == "npc_houndeye") then
@@ -453,6 +460,9 @@ function GM:EntityKeyValue(e,k,v)
 	if(k == "additionalequipment") then
 		if(REPLACE_ENTS[v]) then
 			return REPLACE_ENTS[v]
+		end
+		if(v == "random") then
+			return table.Random(randselect)
 		end
 	end
 end
