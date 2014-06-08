@@ -13,6 +13,7 @@ local REPLACE_ENTS = {}
 REPLACE_ENTS["npc_gargantua"] = "npc_antlionguard"
 REPLACE_ENTS["npc_alien_grunt"] = "npc_combine_s"
 REPLACE_ENTS["npc_hassassin"] = "npc_combine_s"
+REPLACE_ENTS["npc_houndeye"] = "npc_headcrab"
 
 for k,_ in pairs(REPLACE_ENTS) do
 	scripted_ents.Register({Type="ai", Base="base_ai"}, k, false)

@@ -110,6 +110,24 @@ scripted_ents.Register({Type="point"}, "info_player_equip", false)
 
 local mapspawn = true
 
+function GM:PlayerInitialSpawn(ply)
+	local t = #player.GetAll()
+	for k,v in pairs(ents.FindByClass("trigger_coop")) do
+		if(v.percentage) then
+			v:UpdatePlayerCount(t)
+		end
+	end
+end
+
+function GM:PlayerDisconnected(ply)
+	local t = #player.GetAll()
+	for k,v in pairs(ents.FindByClass("trigger_coop")) do
+		if(v.percentage) then
+			v:UpdatePlayerCount(t)
+		end
+	end
+end
+
 function GM:PlayerSpawn(ply)
 	player_manager.SetPlayerClass(ply, "player_coop")
 
@@ -398,15 +416,38 @@ function GM:OnEntityCreated( ent )
 					ent:Remove()
 				end
 			end)
+		elseif(ent:GetClass() == "npc_houndeye") then
+			timer.Simple(0.1,function()
+				if(ent:IsValid()) then
+					ent:SetNoDraw(true)
+					ent:SetSolid(SOLID_NONE)
+					local ne = ents.Create("npc_headcrab")
+					ne:SetPos(ent:GetPos())
+					ne:SetAngles(ent:GetAngles())
+					ne:SetName(ent:GetName())
+					ne:Spawn()
+					if(ent.out) then
+						for k,v in pairs(ent.out) do
+							ne:Fire("AddOutput","OnDeath "..v,0)
+						end
+					end
+					ent:Remove()
+				end
+			end)
 		end
 	end
 end
 
 function GM:EntityKeyValue(e,k,v)
 	if(k == "OnDeath") then
-		if(e:GetClass() == "npc_gargantua" || e:GetClass() == "npc_aliengrunt" || e:GetClass() == "npc_hassassin") then
+		if(e:GetClass() == "npc_gargantua" || e:GetClass() == "npc_aliengrunt" || e:GetClass() == "npc_hassassin" || e:GetClass() == "npc_houndeye") then
 			if(!e.out) then e.out = {} end
 			table.insert(e.out,v)
+		end
+	end
+	if(e:GetClass() == "info_player_coop" && k == "StartDisabled") then
+		if(tonumber(v) == 1) then
+			e.disabled = true
 		end
 	end
 	if(k == "additionalequipment") then
@@ -414,4 +455,69 @@ function GM:EntityKeyValue(e,k,v)
 			return REPLACE_ENTS[v]
 		end
 	end
+end
+
+function GM:PlayerSelectSpawn( pl )
+	if(self.currentspawn) then
+		return self.currentspawn
+	end
+	
+	-- Save information about all of the spawn points
+	-- in a team based game you'd split up the spawns
+	if ( !IsTableOfEntitiesValid( self.SpawnPoints ) ) then
+	
+		self.LastSpawnPoint = 0
+		self.SpawnPoints = ents.FindByClass( "info_player_deathmatch" )
+		self.SpawnPoints = table.Add( self.SpawnPoints, ents.FindByClass( "info_player_combine" ) )
+		self.SpawnPoints = table.Add( self.SpawnPoints, ents.FindByClass( "info_player_rebel" ) )
+		for k,v in pairs(ents.FindByClass( "info_player_coop" )) do
+			if(!v.disabled) then
+				table.insert(self.SpawnPoints,v)
+			end
+		end
+		if(table.Count(self.SpawnPoints) == 0) then
+			table.Add(self.SpawnPoints, ents.FindByClass("info_player_start"))
+		end
+	end
+	
+	local Count = table.Count( self.SpawnPoints )
+	
+	if ( Count == 0 ) then
+		Msg("[PlayerSelectSpawn] Error! No spawn points!\n")
+		return nil
+	end
+	
+	-- If any of the spawnpoints have a MASTER flag then only use that one.
+	-- This is needed for single player maps.
+	for k, v in pairs( self.SpawnPoints ) do
+		
+		if ( v:HasSpawnFlags( 1 ) ) then
+			return v
+		end
+		
+	end
+	
+	local ChosenSpawnPoint = nil
+	
+	-- Try to work out the best, random spawnpoint
+	for i=0, Count do
+	
+		ChosenSpawnPoint = table.Random( self.SpawnPoints )
+
+		if ( ChosenSpawnPoint &&
+			ChosenSpawnPoint:IsValid() &&
+			ChosenSpawnPoint:IsInWorld() &&
+			ChosenSpawnPoint != pl:GetVar( "LastSpawnpoint" ) &&
+			ChosenSpawnPoint != self.LastSpawnPoint ) then
+			
+			self.LastSpawnPoint = ChosenSpawnPoint
+			pl:SetVar( "LastSpawnpoint", ChosenSpawnPoint )
+			return ChosenSpawnPoint
+			
+		end
+			
+	end
+	
+	return ChosenSpawnPoint
+	
 end
