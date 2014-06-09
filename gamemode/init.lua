@@ -10,6 +10,7 @@ include("rtv/sv_rtv.lua")
 resource.AddFile("models/items/ammocrate_buckshot.mdl")
 resource.AddFile("models/items/ammocrate_pistol.mdl")
 resource.AddFile("models/hunter.mdl")
+resource.AddFile("models/hunter_animations.mdl")
 resource.AddFile("models/weapons/hunter_flechette.mdl")
 resource.AddFile("models/zombie/zombie_soldier.mdl")
 resource.AddFile("models/zombie/zombie_soldier_animations.mdl")
@@ -18,19 +19,18 @@ resource.AddFile("models/zombie/zombie_soldier_torso.mdl")
 
 resource.AddFile("materials/models/items/ammocrate_buckshot.vmt")
 resource.AddFile("materials/models/items/ammocrate_pistol.vmt")
-resource.AddFile("materials/models/ministrider/mini_armor_basecolor.vmt")
-resource.AddFile("materials/models/ministrider/mini_skin_basecolor.vmt")
 resource.AddFile("materials/models/weapons/hunter_flechette.vmt")
 resource.AddFile("materials/models/zombie_classic/combinesoldiersheet_zombie.vmt")
 
 local function AddDir(dir)
 	for k,v in pairs(file.Find(dir.."/*", "GAME")) do
-		resource.AddFile(dir.."/"..v)
+		resource.AddSingleFile(dir.."/"..v)
 	end
 end
 
 AddDir("sound/npc/ministrider")
 AddDir("sound/npc/zombine")
+AddDir("materials/models/ministrider")
 
 local ITEM_RESPAWN_TIME = 10
 
