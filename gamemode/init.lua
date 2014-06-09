@@ -21,6 +21,8 @@ resource.AddFile("materials/models/items/ammocrate_buckshot.vmt")
 resource.AddFile("materials/models/items/ammocrate_pistol.vmt")
 resource.AddFile("materials/models/weapons/hunter_flechette.vmt")
 resource.AddFile("materials/models/zombie_classic/combinesoldiersheet_zombie.vmt")
+resource.AddFile("materials/models/zombie_classic/combinesoldiersheet_zombie_normal.vtf")
+resource.AddFile("materials/models/zombie_classic/combinesoldiersheet_zombie_phong.vtf")
 
 local function AddDir(dir)
 	for k,v in pairs(file.Find(dir.."/*", "GAME")) do
