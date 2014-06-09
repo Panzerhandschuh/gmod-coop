@@ -154,7 +154,7 @@ function GM:InitPostEntity()
 		ne:SetAngles(v:GetAngles())
 		ne:SetName(v:GetName())
 		ne:SetModel(v:GetModel())
-		ne:SetKeyValue("spawnflags", v.spfl)
+		ne:SetKeyValue("spawnflags", v.spf)
 		if(v.oc_out) then
 			for _,o in pairs(v.oc_out) do
 				ne:Fire("AddOutput",o,0)
@@ -169,7 +169,7 @@ function GM:InitPostEntity()
 		ne:SetAngles(v:GetAngles())
 		ne:SetName(v:GetName())
 		ne:SetModel(v:GetModel())
-		ne:SetKeyValue("spawnflags", v.spfl)
+		ne:SetKeyValue("spawnflags", v.spf)
 		if(v.oc_out) then
 			for _,o in pairs(v.oc_out) do
 				ne:Fire("AddOutput",o,0)
