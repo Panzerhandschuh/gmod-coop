@@ -118,7 +118,7 @@ function GM:PlayerInitialSpawn(ply)
 		end
 	end
 	
-	self.BaseClass:PlayerIntialSpawn(ply)
+	self.BaseClass:PlayerInitialSpawn(ply)
 end
 
 function GM:PlayerDisconnected(ply)
