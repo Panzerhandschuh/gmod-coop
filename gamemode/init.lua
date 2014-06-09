@@ -109,6 +109,8 @@ for k,_ in pairs(REPLACE_ENTS) do
 end
 
 scripted_ents.Register({Type="point"}, "info_player_equip", false)
+scripted_ents.Register({Type="brush", Base="base_brush"}, "trigger_once_oc", false)
+scripted_ents.Register({Type="brush", Base="base_brush"}, "trigger_multiple_oc", false)
 
 local mapspawn = true
 
@@ -130,6 +132,9 @@ function GM:PlayerDisconnected(ply)
 			v:UpdatePlayerCount(t)
 		end
 	end
+	for k,v in pairs(ents.FindByClass("trigger_player_count")) do --it wont affect if it is a connect
+		v:UpdatePlayerCount(t)
+	end
 	
 	self.BaseClass:PlayerDisconnected(ply)
 end
@@ -143,6 +148,36 @@ function GM:PlayerSpawn(ply)
 end
 
 function GM:InitPostEntity()
+	for k,v in pairs(ents.FindByClass("trigger_multiple_oc")) do
+		local ne = ents.Create("trigger_multiple")
+		ne:SetPos(v:GetPos())
+		ne:SetAngles(v:GetAngles())
+		ne:SetName(v:GetName())
+		ne:SetModel(v:GetModel())
+		ne:SetKeyValue("spawnflags", v.spfl)
+		if(v.oc_out) then
+			for _,o in pairs(v.oc_out) do
+				ne:Fire("AddOutput",o,0)
+			end
+		end
+		ne:Spawn()
+		v:Remove()
+	end
+	for k,v in pairs(ents.FindByClass("trigger_once_oc")) do
+		local ne = ents.Create("trigger_once")
+		ne:SetPos(v:GetPos())
+		ne:SetAngles(v:GetAngles())
+		ne:SetName(v:GetName())
+		ne:SetModel(v:GetModel())
+		ne:SetKeyValue("spawnflags", v.spfl)
+		if(v.oc_out) then
+			for _,o in pairs(v.oc_out) do
+				ne:Fire("AddOutput",o,0)
+			end
+		end
+		ne:Spawn()
+		v:Remove()
+	end
 	for ent,replace in pairs(REPLACE_ENTS) do
 		for k,v in pairs(ents.FindByClass(ent)) do
 			if(v:CreatedByMap()) then
@@ -456,6 +491,14 @@ function GM:EntityKeyValue(e,k,v)
 		if(e:GetClass() == "npc_gargantua" || e:GetClass() == "npc_aliengrunt" || e:GetClass() == "npc_hassassin" || e:GetClass() == "npc_houndeye") then
 			if(!e.out) then e.out = {} end
 			table.insert(e.out,v)
+		end
+	end
+	if(e:GetClass() == "trigger_multiple_oc" || e:GetClass() == "trigger_once_oc") then
+		if(string.sub(k,1,2) == "On") then
+			if(!e.oc_out) then e.oc_out = {} end
+			table.insert(e.oc_out,k.." "..v)
+		elseif(k == "spawnflags") then
+			e.spf = v
 		end
 	end
 	if(e:GetClass() == "info_player_coop" && k == "StartDisabled") then
