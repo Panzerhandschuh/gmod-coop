@@ -114,6 +114,28 @@ scripted_ents.Register({Type="brush", Base="base_brush"}, "trigger_multiple_oc",
 
 local mapspawn = true
 
+GM.RefreshOCSpawn = false
+
+function GM:Initialize()
+	local s = scripted_ents.Get("info_player_deathmatch")
+	s.KeyValue = function(self, key, value)
+		if(key == "StartDisabled" && tonumber(value) == 1) then
+			self.disabled = true
+		end
+	end
+	
+	s.AcceptInput = function(self, inputName, activator, called, data)
+		if(inputName == "Enable") then
+			self.disabled = false
+			GAMEMODE.RefreshOCSpawn = true
+		elseif(inputName == "Disable") then
+			self.disabled = true
+			GAMEMODE.RefreshOCSpawn = true
+		end
+	end
+	scripted_ents.Register(s,"info_player_deathmatch")
+end
+
 function GM:PlayerInitialSpawn(ply)
 	local t = #player.GetAll()
 	for k,v in pairs(ents.FindByClass("trigger_coop")) do
@@ -123,6 +145,40 @@ function GM:PlayerInitialSpawn(ply)
 	end
 	
 	self.BaseClass:PlayerInitialSpawn(ply)
+end
+
+function GM:PlayerPostThink(ply)
+	if(self.RespawnJeep) then
+		if(ply.CurrentJeep) then
+			local j = ply.CurrentJeep
+			if(j:GetPos():DistToSqr(ply:GetPos()) >= 640000) then --800 units away
+				if(j.spawner) then
+					j.spawner.JeepCount = j.spawner.JeepCount - 1
+				end
+				j:Remove()
+				ply.CurrentJeep = nil
+			end
+		end
+	end
+	
+	self.BaseClass:PlayerPostThink(ply)
+end
+
+function GM:CanPlayerEnterVehicle(ply,vehicle,role)
+	if(self.RespawnJeep && vehicle:GetClass() == "prop_vehicle_jeep" && (vehicle.IsOwned && (!ply.CurrentJeep || ply.CurrentJeep != vehicle))) then
+		return false
+	end
+	
+	return self.BaseClass:CanPlayerEnterVehicle(ply,vehicle,role)
+end
+
+function GM:PlayerEnteredVehicle(ply,vehicle,role)
+	if(self.RespawnJeep && vehicle:GetClass() == "prop_vehicle_jeep") then
+		vehicle.IsOwned = true
+		ply.CurrentJeep = vehicle
+	end
+	
+	self.BaseClass:PlayerEnteredVehicle(ply,vehicle,role)
 end
 
 function GM:PlayerDisconnected(ply)
@@ -526,7 +582,12 @@ function GM:PlayerSelectSpawn( pl )
 	if ( !IsTableOfEntitiesValid( self.SpawnPoints ) ) then
 	
 		self.LastSpawnPoint = 0
-		self.SpawnPoints = ents.FindByClass( "info_player_deathmatch" )
+		self.SpawnPoints = {}
+		for k,v in pairs(ents.FindByClass( "info_player_deathmatch" )) do
+			if(!v.disabled) then
+				table.insert(self.SpawnPoints,v)
+			end
+		end
 		self.SpawnPoints = table.Add( self.SpawnPoints, ents.FindByClass( "info_player_combine" ) )
 		self.SpawnPoints = table.Add( self.SpawnPoints, ents.FindByClass( "info_player_rebel" ) )
 		for k,v in pairs(ents.FindByClass( "info_player_coop" )) do
@@ -537,6 +598,15 @@ function GM:PlayerSelectSpawn( pl )
 		if(table.Count(self.SpawnPoints) == 0) then
 			table.Add(self.SpawnPoints, ents.FindByClass("info_player_start"))
 		end
+	elseif(self.RefreshOCSpawn) then
+		for k,v in pairs(ents.FindByClass("info_player_deathmatch")) do
+			if(v.disabled) then
+				table.RemoveByValue(self.SpawnPoints, v)
+			else
+				table.insert(self.SpawnPoints, v)
+			end
+		end
+		self.RefreshOCSpawn = false
 	end
 	
 	local Count = table.Count( self.SpawnPoints )
