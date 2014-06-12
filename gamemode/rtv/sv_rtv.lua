@@ -159,7 +159,7 @@ concommand.Add( "rtv_vote", function( ply, cmd, args )
 		net.WriteTable( RTV.VTab )
 	net.Send( player.GetAll() )
 	ply.MapVoted = vote
-	ply:PrintMessage( HUD_PRINTTALK, "You have voted for "..RTV.Maps[vote].."!" )
+	ply:PrintMessage( HUD_PRINTTALK, "You have voted for "..RTV.Maps[vote].."! Type !revote to change your vote." )
 
 end )
 
