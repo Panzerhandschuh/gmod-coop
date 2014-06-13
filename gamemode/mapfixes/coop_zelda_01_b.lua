@@ -1,0 +1,16 @@
+HOOKS["InitPostEntity"] = function()
+	ents.FindByName("equip_weapon_smg")[1]:Remove()
+	local smge = ents.Create("game_player_equip")
+	smge:SetName("equip_weapon_smg")
+	smge:SetKeyValue("item_ammo_smg1_grenade", "1")
+	smge:SetKeyValue("item_ammo_smg1", "2")
+	smge:SetKeyValue("weapon_smg1", "1")
+	smge:Spawn()
+	
+	ents.FindByName("equip_weapon_ar2")[1]:Remove()
+	local ar2e = ents.Create("game_player_equip")
+	ar2e:SetName("equip_weapon_ar2")
+	ar2e:SetKeyValue("item_ammo_ar2", "1")
+	ar2e:SetKeyValue("weapon_ar2", "1")
+	ar2e:Spawn()
+end
