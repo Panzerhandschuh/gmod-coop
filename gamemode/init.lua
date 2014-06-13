@@ -18,7 +18,11 @@ resource.AddFile("models/zombie/zombie_soldier_legs.mdl")
 resource.AddFile("models/zombie/zombie_soldier_torso.mdl")
 resource.AddFile("models/antlion_worker.mdl")
 resource.AddFile("models/magnusson_device.mdl")
-
+resource.AddFile("models/antlion_grub.mdl")
+resource.AddFile("models/antlion_grub_squashed.mdl")
+resource.AddFile("models/spitball_large.mdl")
+resource.AddFile("models/spitball_medium.mdl")
+resource.AddFile("models/spitball_small.mdl")
 
 resource.AddFile("materials/models/items/ammocrate_buckshot.vmt")
 resource.AddFile("materials/models/items/ammocrate_pistol.vmt")
@@ -38,6 +42,8 @@ AddDir("sound/npc/zombine")
 AddDir("materials/models/ministrider")
 AddDir("materials/models/antlion")
 AddDir("materials/models/magnusson_device")
+AddDir("materials/models/antlion_grub")
+AddDir("materials/models/spitball")
 
 local ITEM_RESPAWN_TIME = 10
 
