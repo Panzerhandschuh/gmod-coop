@@ -16,8 +16,8 @@ resource.AddFile("models/zombie/zombie_soldier.mdl")
 resource.AddFile("models/zombie/zombie_soldier_animations.mdl")
 resource.AddFile("models/zombie/zombie_soldier_legs.mdl")
 resource.AddFile("models/zombie/zombie_soldier_torso.mdl")
-resource.AddFile("models/zombie/antlion_worker.mdl")
-resource.AddFile("models/zombie/magnusson_device.mdl")
+resource.AddFile("models/antlion_worker.mdl")
+resource.AddFile("models/magnusson_device.mdl")
 
 
 resource.AddFile("materials/models/items/ammocrate_buckshot.vmt")
