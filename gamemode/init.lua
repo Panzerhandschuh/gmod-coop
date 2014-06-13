@@ -71,7 +71,7 @@ ITEM_TO_AMMO["item_ammo_pistol"] = "pistol"
 ITEM_TO_AMMO["item_ammo_pistol_large"] = "pistol"
 ITEM_TO_AMMO["item_ammo_smg1"] = "smg1"
 ITEM_TO_AMMO["item_ammo_smg1_large"] = "smg1"
-ITEM_TO_AMMO["item_ammo_smg1_grenade"] = "smg1_Grenade"
+ITEM_TO_AMMO["item_ammo_smg1_grenade"] = "smg1_grenade"
 ITEM_TO_AMMO["item_box_buckshot"] = "buckshot"
 ITEM_TO_AMMO["item_rpg_round"] = "rpg_round"
 
