@@ -16,6 +16,9 @@ resource.AddFile("models/zombie/zombie_soldier.mdl")
 resource.AddFile("models/zombie/zombie_soldier_animations.mdl")
 resource.AddFile("models/zombie/zombie_soldier_legs.mdl")
 resource.AddFile("models/zombie/zombie_soldier_torso.mdl")
+resource.AddFile("models/zombie/antlion_worker.mdl")
+resource.AddFile("models/zombie/magnusson_device.mdl")
+
 
 resource.AddFile("materials/models/items/ammocrate_buckshot.vmt")
 resource.AddFile("materials/models/items/ammocrate_pistol.vmt")
@@ -33,6 +36,8 @@ end
 AddDir("sound/npc/ministrider")
 AddDir("sound/npc/zombine")
 AddDir("materials/models/ministrider")
+AddDir("materials/models/antlion")
+AddDir("materials/models/magnusson_device")
 
 local ITEM_RESPAWN_TIME = 10
 
