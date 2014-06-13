@@ -568,7 +568,7 @@ local randselect = {
 
 function GM:EntityKeyValue(e,k,v)
 	if(k == "OnDeath") then
-		if(e:GetClass() == "npc_gargantua" || e:GetClass() == "npc_aliengrunt" || e:GetClass() == "npc_hassassin" || e:GetClass() == "npc_houndeye") then
+		if(REPLACE_ENTS[e:GetClass()] && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) != "monster_")) then
 			if(!e.out) then e.out = {} end
 			table.insert(e.out,v)
 		end
@@ -589,6 +589,9 @@ function GM:EntityKeyValue(e,k,v)
 		if(tonumber(v) == 1) then
 			e.disabled = true
 		end
+	end
+	if(k == "NPCType" && REPLACE_ENTS[v]) then
+		return REPLACE_ENTS[v]
 	end
 	if(k == "additionalequipment") then
 		if(REPLACE_ENTS[v]) then
