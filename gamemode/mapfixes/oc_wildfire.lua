@@ -4,6 +4,9 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 			e.script = v
 		end
 	end
+	if(k == "OnTrigger" && v == "Cutscene_Camera_7_1,Disable,,35,-1") then
+		return "Cutscene_Camera_7_1,AddOutput,targetname dummy,35,-1"
+	end
 end
 
 HOOKS["InitPostEntity"] = function()

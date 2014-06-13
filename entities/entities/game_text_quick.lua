@@ -12,7 +12,9 @@ function ENT:Initialize()
 		end
 		self.text:SetKeyValue("x",self.kv.x)
 		self.text:SetKeyValue("y",self.kv.y)
-		self.text:SetKeyValue("effect",self.kv.effect)
+		if(self.kv.effect) then
+			self.text:SetKeyValue("effect",self.kv.effect)
+		end
 		self.text:SetKeyValue("color",self.kv.color)
 		self.text:SetKeyValue("color2",self.kv.color2)
 		self.text:SetKeyValue("fadein",self.kv.fadein)
@@ -20,6 +22,7 @@ function ENT:Initialize()
 		self.text:SetKeyValue("holdtime",self.kv.holdtime)
 		self.text:SetKeyValue("fxtime",self.kv.fxtime)
 		self.text:SetKeyValue("channel",self.kv.channel)
+		self.text:SetKeyValue("spawnflags","1")
 		self.text:Spawn()
 	end)
 end

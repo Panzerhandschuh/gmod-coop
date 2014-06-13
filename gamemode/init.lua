@@ -42,73 +42,83 @@ AddDir("materials/models/magnusson_device")
 local ITEM_RESPAWN_TIME = 10
 
 local MAX_AMMO = {}
-MAX_AMMO["Pistol"] = 150
+MAX_AMMO["pistol"] = 150
 MAX_AMMO["357"] = 12
-MAX_AMMO["SMG1"] = 225
-MAX_AMMO["SMG1_Grenade"] = 3
-MAX_AMMO["AR2"] = 60
-MAX_AMMO["AR2AltFire"] = 3
-MAX_AMMO["Buckshot"] = 30
-MAX_AMMO["XBowBolt"] = 10
-MAX_AMMO["RPG_Round"] = 3
-MAX_AMMO["Grenade"] = 5
+MAX_AMMO["smg1"] = 225
+MAX_AMMO["smg1_grenade"] = 3
+MAX_AMMO["ar2"] = 60
+MAX_AMMO["ar2altfire"] = 3
+MAX_AMMO["buckshot"] = 30
+MAX_AMMO["xbowbolt"] = 10
+MAX_AMMO["rpg_round"] = 3
+MAX_AMMO["grenade"] = 5
 MAX_AMMO["slam"] = 5
 
 local ITEM_TO_AMMO = {}
 ITEM_TO_AMMO["item_ammo_357"] = "357"
 ITEM_TO_AMMO["item_ammo_357_large"] = "357"
-ITEM_TO_AMMO["item_ammo_ar2"] = "AR2"
-ITEM_TO_AMMO["item_ammo_ar2_large"] = "AR2"
-ITEM_TO_AMMO["item_ammo_ar2_altfire"] = "AR2AltFire"
-ITEM_TO_AMMO["item_ammo_crossbow"] = "XBowBolt"
-ITEM_TO_AMMO["item_ammo_pistol"] = "Pistol"
-ITEM_TO_AMMO["item_ammo_pistol_large"] = "Pistol"
-ITEM_TO_AMMO["item_ammo_smg1"] = "SMG1"
-ITEM_TO_AMMO["item_ammo_smg1_large"] = "SMG1"
-ITEM_TO_AMMO["item_ammo_smg1_grenade"] = "SMG1_Grenade"
-ITEM_TO_AMMO["item_box_buckshot"] = "Buckshot"
-ITEM_TO_AMMO["item_rpg_round"] = "RPG_Round"
+ITEM_TO_AMMO["item_ammo_ar2"] = "ar2"
+ITEM_TO_AMMO["item_ammo_ar2_large"] = "ar2"
+ITEM_TO_AMMO["item_ammo_ar2_altfire"] = "ar2altfire"
+ITEM_TO_AMMO["item_ammo_crossbow"] = "xbowbolt"
+ITEM_TO_AMMO["item_ammo_pistol"] = "pistol"
+ITEM_TO_AMMO["item_ammo_pistol_large"] = "pistol"
+ITEM_TO_AMMO["item_ammo_smg1"] = "smg1"
+ITEM_TO_AMMO["item_ammo_smg1_large"] = "smg1"
+ITEM_TO_AMMO["item_ammo_smg1_grenade"] = "smg1_Grenade"
+ITEM_TO_AMMO["item_box_buckshot"] = "buckshot"
+ITEM_TO_AMMO["item_rpg_round"] = "rpg_round"
 
 local WEP_TO_AMMO = {}
 WEP_TO_AMMO["weapon_357"] = "357"
-WEP_TO_AMMO["weapon_ar2"] = "AR2"
-WEP_TO_AMMO["weapon_crossbow"] = "XBowBolt"
-WEP_TO_AMMO["weapon_pistol"] = "Pistol"
-WEP_TO_AMMO["weapon_rpg"] = "RPG_Round"
-WEP_TO_AMMO["weapon_shotgun"] = "Buckshot"
-WEP_TO_AMMO["weapon_smg1"] = "SMG1"
-WEP_TO_AMMO["weapon_frag"] = "Grenade"
+WEP_TO_AMMO["weapon_ar2"] = "ar2"
+WEP_TO_AMMO["weapon_crossbow"] = "xbowbolt"
+WEP_TO_AMMO["weapon_pistol"] = "pistol"
+WEP_TO_AMMO["weapon_rpg"] = "rpg_round"
+WEP_TO_AMMO["weapon_shotgun"] = "buckshot"
+WEP_TO_AMMO["weapon_smg1"] = "smg1"
+WEP_TO_AMMO["weapon_frag"] = "grenade"
 WEP_TO_AMMO["weapon_slam"] = "slam"
 
 local AMMONUM_TO_STRING = {}
-AMMONUM_TO_STRING[1] = "AR2"
-AMMONUM_TO_STRING[2] = "AR2AltFire"
-AMMONUM_TO_STRING[3] = "Pistol"
-AMMONUM_TO_STRING[4] = "SMG1"
+AMMONUM_TO_STRING[1] = "ar2"
+AMMONUM_TO_STRING[2] = "ar2altfire"
+AMMONUM_TO_STRING[3] = "pistol"
+AMMONUM_TO_STRING[4] = "smg1"
 AMMONUM_TO_STRING[5] = "357"
-AMMONUM_TO_STRING[6] = "XBowBolt"
-AMMONUM_TO_STRING[7] = "Buckshot"
-AMMONUM_TO_STRING[8] = "RPG_Round"
-AMMONUM_TO_STRING[9] = "SMG1_Grenade"
-AMMONUM_TO_STRING[10] = "Grenade"
+AMMONUM_TO_STRING[6] = "xbowbolt"
+AMMONUM_TO_STRING[7] = "buckshot"
+AMMONUM_TO_STRING[8] = "rpg_round"
+AMMONUM_TO_STRING[9] = "smg1_grenade"
+AMMONUM_TO_STRING[10] = "grenade"
 AMMONUM_TO_STRING[11] = "slam"
 
 local REPLACE_ENTS = {}
 REPLACE_ENTS["weapon_mp5k"] = "weapon_smg1"
 REPLACE_ENTS["weapon_mg1"] = "weapon_ar2"
 REPLACE_ENTS["weapon_sl8"] = "weapon_ar2"
-REPLACE_ENTS["weapon_sniper"] = "weapon_crossbow"
+REPLACE_ENTS["weapon_sniperrifle"] = "weapon_crossbow"
+REPLACE_ENTS["weapon_uzi"] = "weapon_smg1"
 REPLACE_ENTS["weapon_gauss"] = "weapon_smg1"
 REPLACE_ENTS["weapon_medkit"] = "item_healthkit"
 REPLACE_ENTS["npc_gargantua"] = "npc_antlionguard"
 REPLACE_ENTS["npc_alien_grunt"] = "npc_combine_s"
 REPLACE_ENTS["npc_hassassin"] = "npc_combine_s"
 REPLACE_ENTS["npc_houndeye"] = "npc_headcrab"
+REPLACE_ENTS["npc_bullsquid"] = "npc_headcrab_fast"
+REPLACE_ENTS["npc_hgrunt"] = "npc_combine_s"
+REPLACE_ENTS["npc_defender"] = "npc_hunter"
+REPLACE_ENTS["monster_alien_grunt"] = "npc_combine_s"
+REPLACE_ENTS["monster_alien_slave"] = "npc_vortigaunt"
+REPLACE_ENTS["monster_bigmomma"] = "npc_antlionguard"
+REPLACE_ENTS["monster_gargantua"] = "npc_antlionguard"
+REPLACE_ENTS["monster_human_assassin"] = "npc_combine_s"
 REPLACE_ENTS["item_box_sl8_rounds"] = "item_ammo_ar2_large"
 REPLACE_ENTS["item_box_sniper_rounds"] = "item_ammo_crossbow"
+REPLACE_ENTS["item_ammo_tau"] = "item_ammo_smg_large"
 
 for k,_ in pairs(REPLACE_ENTS) do
-	if(string.sub(k,1,4) != "npc_") then
+	if(string.sub(k,1,4) != "npc_" && string.sub(k,1,8) != "monster_" && k != "weapon_medkit") then
 		scripted_ents.Register({Type="point"}, k, false)
 	end
 end
@@ -216,6 +226,12 @@ function GM:InitPostEntity()
 		ne:SetName(v:GetName())
 		ne:SetModel(v:GetModel())
 		ne:SetKeyValue("spawnflags", v.spf)
+		if(v.wa) then
+			ne:SetKeyValue("wait", v.wa)
+		end
+		if(v.dis) then
+			ne:SetKeyValue("StartDisabled", v.dis)
+		end
 		if(v.oc_out) then
 			for _,o in pairs(v.oc_out) do
 				ne:Fire("AddOutput",o,0)
@@ -231,6 +247,9 @@ function GM:InitPostEntity()
 		ne:SetName(v:GetName())
 		ne:SetModel(v:GetModel())
 		ne:SetKeyValue("spawnflags", v.spf)
+		if(v.dis) then
+			ne:SetKeyValue("StartDisabled", v.dis)
+		end
 		if(v.oc_out) then
 			for _,o in pairs(v.oc_out) do
 				ne:Fire("AddOutput",o,0)
@@ -253,11 +272,25 @@ function GM:InitPostEntity()
 					ne.oAng = v:GetAngles()
 					ne.ei = v:EntIndex()
 				end
+				
+				if(string.sub(ent,1,4) == "npc_" || string.sub(ent,1,8) == "monster_") then
+					for key,value in pairs(v:GetKeyValues()) do
+						if(key != "classname" && string.sub(key,1,2) != "On") then
+							ne:SetKeyValue(key,value)
+						end
+					end
+				end
+				
 				if(ent == "npc_hassassin") then
 					ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
 				elseif(ent == "npc_alien_grunt") then
 					ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
+				elseif(ent == "monster_alien_grunt") then
+					ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
+				elseif(ent == "monster_human_assassin") then
+					ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
 				end
+					
 				ne:Spawn()
 				if(v.out) then
 					for _,o in pairs(v.out) do
@@ -319,13 +352,18 @@ function GM:InitPostEntity()
 	mapspawn = false
 end
 
-local function RespawnEnt(class,index,pos,ang)
+local function RespawnEnt(class,index,pos,ang,cmodel,amount,atype)
 	local e = ents.Create(class)
 	e:SetPos(pos)
 	e:SetAngles(ang)
 	e.ei = index
 	e.oPos = pos
 	e.oAng = ang
+	if(cmodel) then
+		e.cmodel = cmodel
+		e.AmmoAmount = amount
+		e.AmmoType = atype
+	end
 	e:Spawn()
 	e:EmitSound("weapons/stunstick/alyx_stunner2.wav")
 end
@@ -392,6 +430,15 @@ function GM:PlayerCanPickupItem(ply, item)
 		end
 	end
 	
+	if(itemClass == "item_custom") then
+		local ammo = item.AmmoType
+		local maxAmmo = MAX_AMMO[string.lower(ammo)]
+		local currentAmmo = ply:GetAmmoCount(ammo)
+		if currentAmmo >= maxAmmo then
+			return false
+		end
+	end
+	
 	-- Limit max ammo
 	if (ITEM_TO_AMMO[itemClass] ~= nil) then -- Item exists in conversion table
 		local ammo = ITEM_TO_AMMO[itemClass]
@@ -411,8 +458,15 @@ function TryDuplicateItem(item, itemClass)
 		local ei = item.ei
 		local pos = item.oPos
 		local ang = item.oAng
+		local cmodel, amount, atype
+		if(item.cmodel) then
+			cmodel = item.cmodel
+			amount = item.AmmoAmount
+			atype = item.AmmoType
+		end
 		if(!timer.Exists("respawn_"..ei)) then
-			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(itemClass,ei,pos,ang) end)
+			timer.Simple(0.1,function() if(item && item:IsValid() && item:GetOwner() == nil) then timer.Destroy("respawn_"..ei) end end)
+			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(itemClass,ei,pos,ang,cmodel,amount,atype) end)
 		end
 	end
 end
@@ -455,6 +509,7 @@ function TryDuplicateWeapon(wep, wepClass)
 		local pos = wep.oPos
 		local ang = wep.oAng
 		if(!timer.Exists("respawn_"..ei)) then
+			timer.Simple(0.1,function() if(wep && wep:IsValid() && wep:GetOwner() == nil) then timer.Destroy("respawn_"..ei) end end)
 			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
 		end
 	end
@@ -462,72 +517,36 @@ end
 
 function GM:OnEntityCreated( ent )
 	if(!mapspawn) then
-		if(ent:GetClass() == "npc_gargantua") then
+		if(REPLACE_ENTS[ent:GetClass()] && (string.sub(ent:GetClass(),1,4) == "npc_" || string.sub(ent:GetClass(),1,8) == "monster_")) then
 			timer.Simple(0.1,function()
 				if(ent:IsValid()) then
+					local c = ent:GetClass()
+					print(c)
 					ent:SetNoDraw(true)
 					ent:SetSolid(SOLID_NONE)
-					local ne = ents.Create("npc_antlionguard")
+					local ne = ents.Create(REPLACE_ENTS[c])
 					ne:SetPos(ent:GetPos())
 					ne:SetAngles(ent:GetAngles())
 					ne:SetName(ent:GetName())
-					ne:Spawn()
-					if(ent.out) then
-						for k,v in pairs(ent.out) do
-							ne:Fire("AddOutput","OnDeath "..v,0)
+					
+					for key,value in pairs(ent:GetKeyValues()) do
+						if(key != "classname" && string.sub(key,1,2) != "On") then
+							ne:SetKeyValue(key,value)
 						end
 					end
-					ent:Remove()
-				end
-			end)
-		elseif(ent:GetClass() == "npc_hassassin") then
-			timer.Simple(0.1,function()
-				if(ent:IsValid()) then
-					ent:SetNoDraw(true)
-					ent:SetSolid(SOLID_NONE)
-					local ne = ents.Create("npc_combine_s")
-					ne:SetPos(ent:GetPos())
-					ne:SetAngles(ent:GetAngles())
-					ne:SetName(ent:GetName())
-					ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
-					ne:Spawn()
-					if(ent.out) then
-						for k,v in pairs(ent.out) do
-							ne:Fire("AddOutput","OnDeath "..v,0)
-						end
+				
+					if(c == "npc_hassassin") then
+						ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
+					elseif(c == "npc_alien_grunt") then
+						ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
+					elseif(c == "monster_alien_grunt") then
+						ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
+					elseif(c == "monster_human_assassin") then
+						ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
 					end
-					ent:Remove()
-				end
-			end)
-		elseif(ent:GetClass() == "npc_alien_grunt") then
-			timer.Simple(0.1,function()
-				if(ent:IsValid()) then
-					ent:SetNoDraw(true)
-					ent:SetSolid(SOLID_NONE)
-					local ne = ents.Create("npc_combine_s")
-					ne:SetPos(ent:GetPos())
-					ne:SetAngles(ent:GetAngles())
-					ne:SetName(ent:GetName())
-					ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
+				
 					ne:Spawn()
-					if(ent.out) then
-						for k,v in pairs(ent.out) do
-							ne:Fire("AddOutput","OnDeath "..v,0)
-						end
-					end
-					ent:Remove()
-				end
-			end)
-		elseif(ent:GetClass() == "npc_houndeye") then
-			timer.Simple(0.1,function()
-				if(ent:IsValid()) then
-					ent:SetNoDraw(true)
-					ent:SetSolid(SOLID_NONE)
-					local ne = ents.Create("npc_headcrab")
-					ne:SetPos(ent:GetPos())
-					ne:SetAngles(ent:GetAngles())
-					ne:SetName(ent:GetName())
-					ne:Spawn()
+					
 					if(ent.out) then
 						for k,v in pairs(ent.out) do
 							ne:Fire("AddOutput","OnDeath "..v,0)
@@ -560,6 +579,10 @@ function GM:EntityKeyValue(e,k,v)
 			table.insert(e.oc_out,k.." "..v)
 		elseif(k == "spawnflags") then
 			e.spf = v
+		elseif(k == "wait") then
+			e.wa = v
+		elseif(k == "StartDisabled") then
+			e.dis = v
 		end
 	end
 	if(e:GetClass() == "info_player_coop" && k == "StartDisabled") then
@@ -570,6 +593,9 @@ function GM:EntityKeyValue(e,k,v)
 	if(k == "additionalequipment") then
 		if(REPLACE_ENTS[v]) then
 			return REPLACE_ENTS[v]
+		end
+		if(string.sub(v,1,7) == "custom_") then
+			return "weapon_shotgun"
 		end
 		if(v == "random") then
 			return table.Random(randselect)
