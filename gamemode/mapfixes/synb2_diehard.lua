@@ -6,3 +6,9 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 		return "1024"
 	end
 end
+
+HOOKS["InitPostEntity"] = function()
+	for k,v in pairs(ents.FindByClass("game_player_equip")) do
+		v:Remove()
+	end
+end
