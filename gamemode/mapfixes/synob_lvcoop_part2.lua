@@ -1,5 +1,7 @@
-HOOKS["EntityKeyValue"] = function(e,k,v)
-	if(e:GetName() == "big_citadel_door1" && k == "spawnflags") then
-		return "2816"
-	end
+HOOKS["InitPostEntity"] = function()
+	ents.FindByName("big_citadel_door1")[1]:Remove()
+	ents.FindByName("clip_combineshieldwall3")[1]:Remove()
+	ents.FindByName("clip_combineshieldwall4")[1]:Remove()
+	ents.FindByName("brush_combineshieldwall3")[1]:Remove()
+	ents.FindByName("brush_combineshieldwall4")[1]:Remove()
 end
