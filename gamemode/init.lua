@@ -359,7 +359,7 @@ function GM:InitPostEntity()
 end
 
 local function RespawnEnt(ent,class,index,pos,ang,cmodel,amount,atype)
-	if (ent:IsValid()) then -- Don't respawn entities that still exist (they should've been picked up and nullified)
+	if (ent && ent:IsValid() && !ent:GetOwner()) then -- Don't respawn entities that still exist (they should've been picked up and nullified)
 		return
 	end
 
