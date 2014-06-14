@@ -358,7 +358,11 @@ function GM:InitPostEntity()
 	mapspawn = false
 end
 
-local function RespawnEnt(class,index,pos,ang,cmodel,amount,atype)
+local function RespawnEnt(ent,class,index,pos,ang,cmodel,amount,atype)
+	if (ent:IsValid()) then -- Don't respawn entities that still exist (they should've been picked up and nullified)
+		return
+	end
+
 	local e = ents.Create(class)
 	e:SetPos(pos)
 	e:SetAngles(ang)
@@ -472,7 +476,7 @@ function TryDuplicateItem(item, itemClass)
 		end
 		if(!timer.Exists("respawn_"..ei)) then
 			timer.Simple(0.5,function() if(item && item:IsValid()) then timer.Destroy("respawn_"..ei) end end)
-			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(itemClass,ei,pos,ang,cmodel,amount,atype) end)
+			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(item,itemClass,ei,pos,ang,cmodel,amount,atype) end)
 		end
 	end
 end
@@ -516,7 +520,7 @@ function TryDuplicateWeapon(wep, wepClass)
 		local ang = wep.oAng
 		if(!timer.Exists("respawn_"..ei)) then
 			timer.Simple(0.5,function() if(wep && wep:IsValid()) then timer.Destroy("respawn_"..ei) end end)
-			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(wepClass,ei,pos,ang) end)
+			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(wep,wepClass,ei,pos,ang) end)
 		end
 	end
 end
@@ -689,4 +693,10 @@ function GM:PlayerSelectSpawn( pl )
 	
 	return ChosenSpawnPoint
 	
+end
+
+function GM:GravGunOnPickedUp(ply, ent)
+	if (ent:GetClass() == "npc_turret_floor") then
+		ent:AddRelationship("!player D_NU 99")
+	end
 end
