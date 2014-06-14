@@ -690,3 +690,9 @@ function GM:PlayerSelectSpawn( pl )
 	return ChosenSpawnPoint
 	
 end
+
+function GM:GravGunOnPickedUp(ply, ent)
+	if (ent:GetClass() == "npc_turret_floor") then
+		ent:AddRelationship("!player D_NU 99")
+	end
+end
