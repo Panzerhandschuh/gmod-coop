@@ -475,7 +475,7 @@ function TryDuplicateItem(item, itemClass)
 			atype = item.AmmoType
 		end
 		if(!timer.Exists("respawn_"..ei)) then
-			timer.Simple(0.5,function() if(item && item:IsValid()) then timer.Destroy("respawn_"..ei) end end)
+			timer.Simple(0.5,function() if(item && item:IsValid() && !item:GetOwner()) then timer.Destroy("respawn_"..ei) end end)
 			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(item,itemClass,ei,pos,ang,cmodel,amount,atype) end)
 		end
 	end
@@ -519,7 +519,7 @@ function TryDuplicateWeapon(wep, wepClass)
 		local pos = wep.oPos
 		local ang = wep.oAng
 		if(!timer.Exists("respawn_"..ei)) then
-			timer.Simple(0.5,function() if(wep && wep:IsValid()) then timer.Destroy("respawn_"..ei) end end)
+			timer.Simple(0.5,function() if(wep && wep:IsValid() && !wep:GetOwner()) then timer.Destroy("respawn_"..ei) end end)
 			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(wep,wepClass,ei,pos,ang) end)
 		end
 	end
