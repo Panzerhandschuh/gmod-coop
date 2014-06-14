@@ -475,7 +475,6 @@ function TryDuplicateItem(item, itemClass)
 			atype = item.AmmoType
 		end
 		if(!timer.Exists("respawn_"..ei)) then
-			timer.Simple(0.5,function() if(item && item:IsValid() && !item:GetOwner()) then timer.Destroy("respawn_"..ei) end end)
 			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(item,itemClass,ei,pos,ang,cmodel,amount,atype) end)
 		end
 	end
