@@ -24,7 +24,7 @@ REPLACE_ENTS["monster_gargantua"] = "npc_antlionguard"
 REPLACE_ENTS["monster_human_assassin"] = "npc_combine_s"
 
 for k,_ in pairs(REPLACE_ENTS) do
-	scripted_ents.Register({Type="ai", Base="base_ai"}, k, false)
+	scripted_ents.Register({Type="ai", Base="base_ai"}, k)
 end
 
 function GM:ShouldCollide(ent1,ent2)
