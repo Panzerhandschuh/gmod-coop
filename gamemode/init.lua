@@ -525,10 +525,11 @@ end
 
 function GM:OnEntityCreated( ent )
 	if(!mapspawn) then
-		if(REPLACE_ENTS[ent:GetClass()] && (string.sub(ent:GetClass(),1,4) == "npc_" || string.sub(ent:GetClass(),1,8) == "monster_")) then
+		local class = ent:GetClass()
+		if(REPLACE_ENTS[class] && (string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_")) then
 			timer.Simple(0.1,function()
-				if(REPLACE_ENTS[ent:GetClass()] && ent:IsValid()) then
-					local c = ent:GetClass()
+				local c = ent:GetClass()
+				if(REPLACE_ENTS[c] && ent:IsValid()) then
 					print(c)
 					ent:SetNoDraw(true)
 					ent:SetSolid(SOLID_NONE)
