@@ -696,6 +696,8 @@ end
 
 function GM:GravGunOnPickedUp(ply, ent)
 	if (ent:GetClass() == "npc_turret_floor") then
-		ent:AddRelationship("player D_NU 99")
+		for _, pl in pairs(player.GetAll()) do
+			ent:AddEntityRelationship(pl, D_NU, 99)
+		end
 	end
 end
