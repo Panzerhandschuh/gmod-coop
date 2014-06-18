@@ -37,10 +37,6 @@ function GM:PlayerSay(sender, text, teamChat)
 	end
 end
 
-function GM:PlayerDeathThink(ply)
-	return !IsSpec(ply)
-end
-
 concommand.Add("spectate", function(ply)
 	if (!IsSpec(ply)) then
 		StartSpectate(ply)
@@ -48,6 +44,10 @@ concommand.Add("spectate", function(ply)
 		StopSpectate(ply)
 	end
 end)
+
+-- function GM:PlayerDeathThink(ply)
+	-- return !IsSpec(ply)
+-- end
 
 function GM:KeyPress(ply, key)
 	if (!IsValid(ply) || !IsSpec(ply)) then 
