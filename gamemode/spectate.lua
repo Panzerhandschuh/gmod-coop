@@ -28,7 +28,6 @@ end
 function GM:PlayerSay(sender, text, teamChat)
 	local cmd = string.lower(text)
 	cmd = string.sub(cmd, 1, 9)
-	print(cmd)
 	if (cmd == "!spectate" || cmd == "/spectate") then
 		if (!IsSpec(sender)) then
 			StartSpectate(sender)
@@ -56,7 +55,6 @@ function GM:KeyPress(ply, key)
 	end
 	
 	-- Spectator keys
-	--ply:ResetViewRoll()
 	if (key == IN_ATTACK) then -- Spectate next guy
 		local target = GetNextAlivePlayer(ply)
 		ply:Spectate(ply.spec_mode)
