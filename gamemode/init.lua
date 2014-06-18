@@ -607,7 +607,7 @@ function GM:EntityKeyValue(e,k,v)
 			return REPLACE_ENTS[v]
 		end
 		if(string.sub(v,1,7) == "custom_") then
-			return "weapon_shotgun"
+			return "weapon_smg1"
 		end
 		if(v == "random") then
 			return table.Random(randselect)
