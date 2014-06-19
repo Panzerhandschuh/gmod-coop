@@ -12,7 +12,7 @@ function ENT:AcceptInput(inputName, activator, called, data)
 			else
 				RunConsoleCommand("changelevel",next)
 			end
-		else
+		elseif (!string.find(data, "sk_")) then
 			game.ConsoleCommand(data.."\n")
 		end
 	end
