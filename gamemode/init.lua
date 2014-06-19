@@ -530,12 +530,10 @@ function GM:OnEntityCreated( ent )
 		local class = ent:GetClass()
 		if(REPLACE_ENTS[class] && (string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_")) then
 			timer.Simple(0.1,function()
-				local c = ent:GetClass()
-				if(REPLACE_ENTS[c] && ent:IsValid()) then
-					print(c)
+				if(ent:IsValid()) then
 					ent:SetNoDraw(true)
 					ent:SetSolid(SOLID_NONE)
-					local ne = ents.Create(REPLACE_ENTS[c])
+					local ne = ents.Create(REPLACE_ENTS[class])
 					ne:SetPos(ent:GetPos())
 					ne:SetAngles(ent:GetAngles())
 					ne:SetName(ent:GetName())
@@ -546,13 +544,13 @@ function GM:OnEntityCreated( ent )
 						end
 					end
 				
-					if(c == "npc_hassassin") then
+					if(class == "npc_hassassin") then
 						ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
-					elseif(c == "npc_alien_grunt") then
+					elseif(class == "npc_alien_grunt") then
 						ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
-					elseif(c == "monster_alien_grunt") then
+					elseif(class == "monster_alien_grunt") then
 						ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
-					elseif(c == "monster_human_assassin") then
+					elseif(class == "monster_human_assassin") then
 						ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
 					end
 				
