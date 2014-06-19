@@ -25,7 +25,7 @@ function ENT:AcceptInput(inputName, activator, called, data)
 				end)
 			end
 		end
-	elseif (inputName == "Kill") then
+	elseif (inputName == "kill") then
 		self:Remove()
 	end
 end
