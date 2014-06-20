@@ -135,8 +135,6 @@ scripted_ents.Register({Type="point"}, "info_player_equip", false)
 scripted_ents.Register({Type="brush", Base="base_brush"}, "trigger_once_oc", false)
 scripted_ents.Register({Type="brush", Base="base_brush"}, "trigger_multiple_oc", false)
 
-local mapspawn = true
-
 GM.RefreshOCSpawn = false
 
 function GM:Initialize()
@@ -267,6 +265,7 @@ function GM:InitPostEntity()
 		v:Remove()
 	end
 	for ent,replace in pairs(REPLACE_ENTS) do
+		if(string.sub(ent,1,4) == "npc_" || string.sub(ent,1,8) == "monster_") then continue end
 		for k,v in pairs(ents.FindByClass(ent)) do
 			if(v:CreatedByMap()) then
 				v:SetSolid(SOLID_NONE)
@@ -279,24 +278,6 @@ function GM:InitPostEntity()
 					ne.oPos = v:GetPos()
 					ne.oAng = v:GetAngles()
 					ne.ei = v:EntIndex()
-				end
-				
-				if(string.sub(ent,1,4) == "npc_" || string.sub(ent,1,8) == "monster_") then
-					for key,value in pairs(v:GetKeyValues()) do
-						if(key != "classname" && string.sub(key,1,2) != "On") then
-							ne:SetKeyValue(key,value)
-						end
-					end
-				end
-				
-				if(ent == "npc_hassassin") then
-					ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
-				elseif(ent == "npc_alien_grunt") then
-					ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
-				elseif(ent == "monster_alien_grunt") then
-					ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
-				elseif(ent == "monster_human_assassin") then
-					ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
 				end
 					
 				ne:Spawn()
@@ -357,7 +338,6 @@ function GM:InitPostEntity()
 			v.ei = v:EntIndex()
 		end
 	end
-	mapspawn = false
 end
 
 local function RespawnEnt(ent,class,index,pos,ang,cmodel,amount,atype)
@@ -526,7 +506,6 @@ function TryDuplicateWeapon(wep, wepClass)
 end
 
 function GM:OnEntityCreated( ent )
-	if(!mapspawn) then
 		local class = ent:GetClass()
 		if(REPLACE_ENTS[class] && (string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_")) then
 			timer.Simple(0.1,function()
@@ -565,7 +544,6 @@ function GM:OnEntityCreated( ent )
 				end
 			end)
 		end
-	end
 end
 
 local randselect = {
