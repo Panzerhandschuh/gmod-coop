@@ -137,6 +137,33 @@ scripted_ents.Register({Type="brush", Base="base_brush"}, "trigger_multiple_oc",
 
 GM.RefreshOCSpawn = false
 
+local rebelmaps = {
+	"js_build_puzzle1_ob",
+	"js_build_puzzle2_ob",
+	"js_build_puzzle3_ob",
+	"js_build_puzzle4_ob",
+	"js_build_puzzle5_ob",
+	"js_build_puzzle6_ob",
+	"js_build_puzzle7_ob",
+	"js_build_puzzle8_ob",
+	"js_build_puzzle9_ob_r1",
+	"js_build_puzzle10_ob_v4",
+	"js_build_puzzle_eleven_v7",
+	"js_build_puzzle12_ob",
+	"js_build_puzzle13_ob",
+	"js_build_puzzle14_ob1",
+	"js_build_puzzle_fifteen_v5a",
+	"js_build_puzzle_sixteen_v5c",
+	"js_build_puzzle_seventeen_v5e",
+	"js_build_puzzle_eighteen_v2",
+	"js_build_puzzle19_ob",
+	"poison_puzzle_aztec_v6",
+	"poison_puzzle_base_v1",
+	"poison_puzzle_christmas_beta2",
+	"poison_puzzle_lego_v2",
+	"mph_puzzle_one_v4"
+}
+
 function GM:Initialize()
 	local s = scripted_ents.Get("info_player_deathmatch")
 	s.KeyValue = function(self, key, value)
@@ -609,7 +636,9 @@ function GM:PlayerSelectSpawn( pl )
 				table.insert(self.SpawnPoints,v)
 			end
 		end
-		self.SpawnPoints = table.Add( self.SpawnPoints, ents.FindByClass( "info_player_combine" ) )
+		if(!table.HasValue(rebelmaps,game.GetMap())) then
+			self.SpawnPoints = table.Add( self.SpawnPoints, ents.FindByClass( "info_player_combine" ) )
+		end
 		self.SpawnPoints = table.Add( self.SpawnPoints, ents.FindByClass( "info_player_rebel" ) )
 		for k,v in pairs(ents.FindByClass( "info_player_coop" )) do
 			if(!v.disabled) then
