@@ -152,7 +152,7 @@ local rebelmaps = {
 	"js_build_puzzle12_ob",
 	"js_build_puzzle13_ob",
 	"js_build_puzzle14_ob1",
-	"js_build_puzzle_fifteen_v5a",
+	--"js_build_puzzle_fifteen_v5a",
 	"js_build_puzzle_sixteen_v5c",
 	"js_build_puzzle_seventeen_v5e",
 	"js_build_puzzle_eighteen_v2",
