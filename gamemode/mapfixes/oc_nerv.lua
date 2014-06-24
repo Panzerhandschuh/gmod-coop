@@ -1,5 +1,7 @@
 HOOKS["InitPostEntity"] = function()
 	ents.FindByName("3imphap")[1]:Remove()
+	ents.FindByName("live")[1]:Remove()
+	ents.FindByName("clip")[1]:Remove()
 end
 
 HOOKS["EntityKeyValue"] = function(e,k,v)
