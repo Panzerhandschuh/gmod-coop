@@ -199,7 +199,7 @@ function GM:PlayerPostThink(ply)
 	if(self.RespawnJeep) then
 		if(ply.CurrentJeep) then
 			local j = ply.CurrentJeep
-			if(j:GetPos():DistToSqr(ply:GetPos()) >= 640000) then --800 units away
+			if(j:GetPos():DistToSqr(ply:GetPos()) >= 4000000) then --2000 units away
 				if(j.spawner) then
 					j.spawner.JeepCount = j.spawner.JeepCount - 1
 				end
