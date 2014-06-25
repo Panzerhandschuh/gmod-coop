@@ -1,6 +1,11 @@
 HOOKS["InitPostEntity"] = function()
 	ents.FindByName("3imphap")[1]:Remove()
 	ents.FindByName("live")[1]:Remove()
+	ents.FindByName("spawntel1")[1]:Remove()
+	ents.FindByName("spawntel2")[1]:Remove()
+	ents.FindByName("spawntel3")[1]:Remove()
+	ents.FindByName("bosstel")[1]:Remove()
+	ents.FindByName("magitel")[1]:Remove()
 	for k,v in pairs(ents.FindByName("clip")) do
 		v:Remove()
 	end
