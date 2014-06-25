@@ -12,7 +12,7 @@ RTV.UsePrefixes = true -- Should we check prefixes? If not, all maps inside your
 
 RTV.Limit = 5 -- The amount of maps added to the vote (if available). Can only be 2-8. There is always one additional option added to extend the map.
 
-RTV.Wait = 5 -- The wait time in seconds. This is how long a player has to wait before voting when the map changes. If the "extend" option is picked, you have to wait double this before voting again.
+RTV.Wait = 60 -- The wait time in seconds. This is how long a player has to wait before voting when the map changes. If the "extend" option is picked, you have to wait double this before voting again.
 
 RTV.ChatCommands = { -- Do I need to explain it?
 	
