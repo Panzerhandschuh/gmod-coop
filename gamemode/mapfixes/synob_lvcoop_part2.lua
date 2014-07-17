@@ -5,6 +5,12 @@ HOOKS["InitPostEntity"] = function()
 	ents.FindByName("brush_combineshieldwall3")[1]:Remove()
 	ents.FindByName("brush_combineshieldwall4")[1]:Remove()
 	
+	-- Lower counters for now until fixing npc path targets
+	local counter1 = ents.FindByName("end_counter1")[1]
+	counter1:SetKeyValue("max", "5")
+	local counter2 = ents.FindByName("end_counter2")[1]
+	counter2:SetKeyValue("max", "30")
+	
 	local cp = ents.Create("coop_checkpoint")
 	cp:SetPos(Vector(-4800, -4000, -120))
 	cp:SetAngles(Angle(0,270,0))
