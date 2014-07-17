@@ -15,6 +15,9 @@ end
 function ENT:AcceptInput(inputName, activator, called, data)
 	inputName = string.lower(inputName)
 	if (inputName == "equipactivator" || inputName == "equipplayer" || inputName == "use") then
+		if (!activator:IsValid()) then
+			return
+		end
 		for k, v in pairs(keyvalues) do
 			for i = 1, v, 1 do
 				local ent = activator:Give(k)
