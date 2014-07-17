@@ -97,7 +97,10 @@ end
 
 function RTV.ChangeMap( map )
 
-	if not map then return end
+	if not map then
+		RTV.ChangingMaps = false
+		return 
+	end
 
 	if RTV.TTT then
 
@@ -107,6 +110,7 @@ function RTV.ChangeMap( map )
 
 			RunConsoleCommand( "GM", GM.FolderName )
 			RunConsoleCommand( "changelevel", map )
+			RTV.ChangingMaps = false
 
 		end )
 
@@ -116,9 +120,8 @@ function RTV.ChangeMap( map )
 
 		timer.Simple( 5, function()
 
-			if not map then ServerLog( "Couldn't change the map.\n" ) return end
-
 			RunConsoleCommand( "changelevel", map )
+			RTV.ChangingMaps = false
 
 		end )
 

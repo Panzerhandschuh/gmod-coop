@@ -11,7 +11,6 @@ HOOKS["InitPostEntity"] = function()
 	ents.FindByName("crane_rope_end_3")[1]:Remove()
 	ents.FindByName("crane_rope_end_4")[1]:Remove()
 	
-	
 	ents.FindByName("fence_door1")[1]:GetPhysicsObject():SetMass(500)
 	ents.FindByName("fence_door2")[1]:GetPhysicsObject():SetMass(500)
 	ents.FindByName("fence_door3")[1]:GetPhysicsObject():SetMass(500)
