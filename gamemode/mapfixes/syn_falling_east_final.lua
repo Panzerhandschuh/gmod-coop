@@ -14,4 +14,13 @@ HOOKS["InitPostEntity"] = function()
 	ents.FindByName("fence_door1")[1]:GetPhysicsObject():SetMass(500)
 	ents.FindByName("fence_door2")[1]:GetPhysicsObject():SetMass(500)
 	ents.FindByName("fence_door3")[1]:GetPhysicsObject():SetMass(500)
+	
+	local ge = ents.Create("game_end")
+	ge:SetName("fakegameender")
+	ge:Spawn()
+	for k,v in pairs(ents.FindByClass("trigger_once")) do
+		if(v:GetPos() == Vector(-3235, -322, 73)) then
+			v:Fire("AddOutput","OnTrigger fakegameender,EndGame,,10,-1",0)
+		end
+	end
 end
