@@ -2,7 +2,9 @@ ENT.Base = "base_brush"
 ENT.Type = "brush"
 
 function ENT:StartTouch(ent)
-	ChangeLevel(ent)
+	if(ent:IsPlayer() && ent:IsValid() && !self.disabled) then
+		ChangeLevel()
+	end
 end
 
 function ENT:AcceptInput(inputName, activator, called, data)
@@ -20,7 +22,7 @@ function ENT:AcceptInput(inputName, activator, called, data)
 		end
 		return true
 	elseif(inputName == "ChangeLevel") then
-		ChangeLevel(ent)
+		ChangeLevel()
 		return true
 	end
 end
@@ -32,13 +34,11 @@ function ENT:KeyValue(key, value)
 	end
 end
 
-function ChangeLevel(ent)
-	if(ent:IsPlayer() && ent:IsValid() && !self.disabled) then
-		local next = GAMEMODE:GetNextSeriesMap()
-		if(!next) then
-			RTV.Start()
-		else
-			RunConsoleCommand("changelevel", next)
-		end
+function ChangeLevel()
+	local next = GAMEMODE:GetNextSeriesMap()
+	if(!next) then
+		RTV.Start()
+	else
+		RunConsoleCommand("changelevel", next)
 	end
 end
