@@ -55,7 +55,7 @@ hook.Add( "PlayerInitialSpawn", "SendList", function(ply)
 end)
 
 function RTV.ShouldChange()
-	return RTV.TotalVotes >= math.Round(#player.GetHumans()*0.66)
+	return RTV.TotalVotes >= math.Round(#player.GetHumans()*0.6)
 end
 
 function RTV.RemoveVote()
