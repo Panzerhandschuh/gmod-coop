@@ -162,6 +162,7 @@ local rebelmaps = {
 	"poison_puzzle_christmas_beta2",
 	"poison_puzzle_lego_v2",
 	"mph_puzzle_one_v4"
+	"puzlehl2"
 }
 
 function GM:Initialize()
