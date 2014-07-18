@@ -3,7 +3,7 @@ HOOKS["InitPostEntity"] = function()
 	ent:SetKeyValue("SpawnFrequency", "1")
 	ent:SetKeyValue("MaxNPCCount", "15")
 	
-	local ent = ents.FindByName("fastzombie3_maker")[1]
+	ent = ents.FindByName("fastzombie3_maker")[1]
 	ent:SetKeyValue("SpawnFrequency", "1")
 	ent:SetKeyValue("MaxNPCCount", "15")
 end

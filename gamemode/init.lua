@@ -599,8 +599,9 @@ function GM:EntityKeyValue(e,k,v)
 		elseif(k == "StartDisabled") then
 			e.dis = v
 		end
-	end
-	if(e:GetClass() == "info_player_coop" && k == "StartDisabled") then
+	elseif(e:GetClass() == "npc_template_maker" && k == "DestinationGroup") then
+		return ""
+	elseif(e:GetClass() == "info_player_coop" && k == "StartDisabled") then
 		if(tonumber(v) == 1) then
 			e.disabled = true
 		end
