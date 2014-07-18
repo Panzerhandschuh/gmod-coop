@@ -20,7 +20,7 @@ HOOKS["InitPostEntity"] = function()
 	cp = nil
 	
 	cp = ents.Create("coop_checkpoint")
-	cp:SetPos(Vector(-8688, -1344 -456))
+	cp:SetPos(Vector(-8688, -1344, -456))
 	cp:SetAngles(Angle(0,270,0))
 	cp:SetName("fcp2")
 	cp:Spawn()
