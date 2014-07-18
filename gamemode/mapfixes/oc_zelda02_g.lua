@@ -1,6 +1,12 @@
 HOOKS["EntityKeyValue"] = function(e,k,v)
 	if(k == "OnStartTouch" && v == "!activator,SetTeam,2,0,-1") then
 		return "!activator,AddOutput,dummykey 0,0,-1" --so that it registers a change
+	elseif(k == "OnStartTouch" && v == "start_teleport,Disable,,300,1") then
+		return "!activator,AddOutput,dummykey 0,0,-1"
+	elseif(k == "OnTrigger" && v == "start_teleport,Disable,,0,-1") then
+		return "!activator,AddOutput,dummykey 0,0,-1"
+	elseif(k == "OnTrigger" && v == "start_teleport,Disable,,30,-1") then
+		return "!activator,AddOutput,dummykey 0,0,-1"
 	end
 	if(k == "npchealth") then
 		e.health = tonumber(v)
