@@ -1,12 +1,14 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("spectate.lua")
+AddCSLuaFile("sv_adverts.lua")
 AddCSLuaFile("rtv/config.lua")
 AddCSLuaFile("rtv/cl_rtv.lua")
 
 include("sv_mapseries.lua")
 include("shared.lua")
 include("spectate.lua")
+include("sv_adverts.lua")
 include("rtv/sv_rtv.lua")
 
 resource.AddFile("models/items/ammocrate_buckshot.mdl")
