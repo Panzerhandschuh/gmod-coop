@@ -221,7 +221,7 @@ function RTV.AddVote( ply )
 		RTV.TotalVotes = RTV.TotalVotes + 1
 		ply.RTVoted = true
 		MsgN( ply:Nick().." has voted to Rock the Vote." )
-		PrintMessage( HUD_PRINTTALK, ply:Nick().." has voted to Rock the Vote. ("..RTV.TotalVotes.."/"..math.Round(#player.GetHumans()*0.66)..")" )
+		PrintMessage( HUD_PRINTTALK, ply:Nick().." has voted to Rock the Vote. ("..RTV.TotalVotes.."/"..math.Round(#player.GetHumans()*0.6)..")" )
 
 		if RTV.ShouldChange() then
 			RTV.Start()
