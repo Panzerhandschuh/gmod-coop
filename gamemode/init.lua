@@ -103,6 +103,22 @@ AMMONUM_TO_STRING[9] = "smg1_grenade"
 AMMONUM_TO_STRING[10] = "grenade"
 AMMONUM_TO_STRING[11] = "slam"
 
+local WEAPON_RANDOM = {}
+WEAPON_RANDOM[1] = "weapon_357"
+WEAPON_RANDOM[2] = "weapon_ar2"
+WEAPON_RANDOM[3] = "weapon_crossbow"
+WEAPON_RANDOM[4] = "weapon_pistol"
+WEAPON_RANDOM[5] = "weapon_shotgun"
+WEAPON_RANDOM[6] = "weapon_smg1"
+
+local ITEM_RANDOM = {}
+ITEM_RANDOM[1] = "item_ammo_357_large"
+ITEM_RANDOM[2] = "item_ammo_ar2_large"
+ITEM_RANDOM[3] = "item_ammo_crossbow"
+ITEM_RANDOM[4] = "item_ammo_pistol_large"
+ITEM_RANDOM[5] = "item_ammo_smg1_large"
+ITEM_RANDOM[6] = "item_box_buckshot"
+
 local REPLACE_ENTS = {}
 REPLACE_ENTS["weapon_mp5k"] = "weapon_smg1"
 REPLACE_ENTS["weapon_mg1"] = "weapon_ar2"
@@ -125,7 +141,9 @@ REPLACE_ENTS["monster_gargantua"] = "npc_antlionguard"
 REPLACE_ENTS["monster_human_assassin"] = "npc_combine_s"
 REPLACE_ENTS["item_box_sl8_rounds"] = "item_ammo_ar2_large"
 REPLACE_ENTS["item_box_sniper_rounds"] = "item_ammo_crossbow"
-REPLACE_ENTS["item_ammo_tau"] = "item_ammo_smg_large"
+REPLACE_ENTS["item_ammo_tau"] = "item_ammo_smg1_large"
+REPLACE_ENTS["weapon_scripted"] = "WEAPON_RANDOM"
+REPLACE_ENTS["item_custom"] = "ITEM_RANDOM"
 
 for k,_ in pairs(REPLACE_ENTS) do
 	if(string.sub(k,1,4) != "npc_" && string.sub(k,1,8) != "monster_" && k != "weapon_medkit") then
@@ -300,8 +318,21 @@ function GM:InitPostEntity()
 			if(v:CreatedByMap()) then
 				v:SetSolid(SOLID_NONE)
 			
-				local ne = ents.Create(replace)
-				ne:SetPos(v:GetPos())
+				-- Replace with random weapon or item
+				local newEnt = replace
+				local pos = v:GetPos()
+				if (replace == "WEAPON_RANDOM") then
+					math.randomseed(pos.x + pos.y + pos.z)
+					local rand = math.random(1, table.Count(WEAPON_RANDOM))
+					newEnt = WEAPON_RANDOM[rand]
+				elseif (replace == "ITEM_RANDOM") then
+					math.randomseed(pos.x + pos.y + pos.z)
+					local rand = math.random(1, table.Count(ITEM_RANDOM))
+					newEnt = ITEM_RANDOM[rand]
+				end
+				
+				local ne = ents.Create(newEnt)
+				ne:SetPos(pos)
 				ne:SetAngles(v:GetAngles())
 				ne:SetName(v:GetName())
 				if(string.sub(ent,1,7) == "weapon_" || string.sub(ent,1,5) == "item_") then

@@ -10,11 +10,9 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 	if (k == "OnTrigger" || k == "OnStartTouch" || k == "OnPass" || k == "OnBreak" || k == "OnFullyOpen" || k == "OnIn") then
 		if (v == "spawnpoint_1,Kill,,80,1" || string.match(v, "spawnpoint_%d,Kill") || 
 			string.find(v, "Quick_text,DisplayText,Respawn deactivated!")) then
-			print(v)
 			return "!activator,AddOutput,dummykey 0,0,-1"
 		end
 	elseif ((k == "OnOpen" && v == "spawnpoint_b,Kill,,60,1") || (k == "OnIn" && v == "spawnpoint_5a,Kill,,60,-1")) then
-		print(v)
 		return "!activator,AddOutput,dummykey 0,0,-1"
 	end
 end
