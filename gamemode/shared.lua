@@ -28,8 +28,10 @@ for k,_ in pairs(REPLACE_ENTS) do
 end
 
 function GM:ShouldCollide(ent1,ent2)
-	if(ent1:IsPlayer() && ent2:IsPlayer()) then
-		return false
+	if (ent1 && ent2) then
+		if (ent1:IsPlayer() && ent2:IsPlayer()) then
+			return false
+		end
 	end
 	
 	return true
