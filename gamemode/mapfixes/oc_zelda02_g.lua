@@ -13,6 +13,12 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 	end
 end
 
+HOOKS["InitPostEntity"] = function()
+	for k,v in pairs(ents.FindByClass("rescue_door*")) do
+		v:Remove()
+	end
+end
+
 HOOKS["OnEntityCreated"] = function(ent)
 	if(string.sub(ent:GetClass(),1,4) == "npc_") then
 		timer.Simple(0.1,function()
