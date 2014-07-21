@@ -12,7 +12,7 @@ function ENT:AcceptInput(inputName, activator, called, data)
 			else
 				RunConsoleCommand("changelevel",next)
 			end
-		elseif (!string.find(data, "sk_")) then
+		elseif (!string.find(data, "sk_") && !string.find(data, "mp_weaponstay")) then
 			game.ConsoleCommand(data.."\n")
 		end
 	end
