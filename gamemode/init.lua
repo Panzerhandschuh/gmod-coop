@@ -152,6 +152,7 @@ for k,_ in pairs(REPLACE_ENTS) do
 end
 
 scripted_ents.Register({Type="point"}, "info_player_equip", false)
+scripted_ents.Register({Type="anim"}, "info_waypoint", false)
 scripted_ents.Register({Type="brush", Base="base_brush"}, "trigger_once_oc", false)
 scripted_ents.Register({Type="brush", Base="base_brush"}, "trigger_multiple_oc", false)
 
@@ -639,6 +640,8 @@ function GM:EntityKeyValue(e,k,v)
 		if(tonumber(v) == 1) then
 			e.disabled = true
 		end
+	elseif(e:GetClass() == "info_waypoint" && k == "text") then
+		e:SetNetworkedString("text", v)
 	end
 	if(k == "NPCType" && REPLACE_ENTS[v]) then
 		return REPLACE_ENTS[v]

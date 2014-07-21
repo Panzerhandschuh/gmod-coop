@@ -14,3 +14,25 @@ function GM:HUDPaintBackground()
 		end
 	end
 end
+
+function DrawWaypointText()
+	for k,v in pairs(ents.FindByClass("info_waypoint")) do
+		if (v:GetPos():DistToSqr(LocalPlayer():GetPos()) >= 1000000) then
+			continue
+		end
+	
+		local angles = LocalPlayer():GetAngles()
+		local position = v:GetPos();
+		local message = v:GetNetworkedString("text")
+		local offset = angles:Right() * -7;
+
+		angles:RotateAroundAxis(angles:Forward(), 90);
+		angles:RotateAroundAxis(angles:Right(), 90);
+		angles:RotateAroundAxis(angles:Up(), 0);
+
+		cam.Start3D2D(position + offset, angles, 0.1);
+			draw.SimpleText(message, "DebugFixed", 80.5, 46, Color(255, 255, 255, 255), 1, 1);
+		cam.End3D2D();
+	end
+end
+hook.Add("PostDrawOpaqueRenderables", "DrawWaypointText", DrawWaypointText)
