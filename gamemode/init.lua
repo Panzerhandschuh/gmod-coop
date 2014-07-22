@@ -618,7 +618,7 @@ local randselect = {
 
 function GM:EntityKeyValue(e,k,v)
 	if(k == "OnDeath") then
-		if(REPLACE_ENTS[e:GetClass()] && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) != "monster_")) then
+		if(REPLACE_ENTS[e:GetClass()] && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) == "monster_")) then
 			if(!e.out) then e.out = {} end
 			table.insert(e.out,v)
 		end
