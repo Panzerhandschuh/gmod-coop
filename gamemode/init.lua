@@ -126,6 +126,7 @@ REPLACE_ENTS["weapon_sl8"] = "weapon_ar2"
 REPLACE_ENTS["weapon_sniperrifle"] = "weapon_crossbow"
 REPLACE_ENTS["weapon_uzi"] = "weapon_smg1"
 REPLACE_ENTS["weapon_gauss"] = "weapon_smg1"
+REPLACE_ENTS["weapon_deagle"] = "weapon_357"
 REPLACE_ENTS["weapon_medkit"] = "item_healthkit"
 REPLACE_ENTS["npc_gargantua"] = "npc_antlionguard"
 REPLACE_ENTS["npc_alien_grunt"] = "npc_combine_s"
@@ -183,6 +184,7 @@ local rebelmaps = {
 	"poison_puzzle_christmas_beta2",
 	"poison_puzzle_lego_v2",
 	"mph_puzzle_one_v4",
+	"mph_twilight_v3",
 	"dr_puzzle_mario_final",
 	"puzlehl2"
 }

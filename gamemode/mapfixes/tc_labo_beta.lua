@@ -8,3 +8,12 @@ HOOKS["EntityTakeDamage"] = function(target, dmg)
 
 	return dmg
 end
+
+HOOKS["InitPostEntity"] = function()
+	local ge = ents.Create("game_end")
+	ge:SetName("fakegameender")
+	ge:Spawn()
+	for k,v in pairs(ents.FindByName("combinemaker09")) do
+		v:Fire("AddOutput","OnAllSpawnedDead fakegameender,EndGame,,25,-1",0)
+	end
+end
