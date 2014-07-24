@@ -570,16 +570,29 @@ function TryDuplicateWeapon(wep, wepClass)
 	end
 end
 
+local templatemap = {}
+
 function GM:OnEntityCreated( ent )
 		local class = ent:GetClass()
 		if(REPLACE_ENTS[class] && (string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_")) then
 			timer.Simple(0.1,function()
 				if(ent:IsValid()) then
+					local sdg = nil
+					if(templatemap[ent:GetName()]) then
+						sdg = templatemap[ent:GetName()].sdg
+					end
 					ent:SetNoDraw(true)
 					ent:SetSolid(SOLID_NONE)
 					local ne = ents.Create(REPLACE_ENTS[class])
-					ne:SetPos(ent:GetPos())
-					ne:SetAngles(ent:GetAngles())
+					if(sdg && ents.FindByName(sdg)[1]) then --not an empty table
+						local s = table.Random(ents.FindByName(sdg))
+						ne:SetPos(s:GetPos())
+						ne:SetAngles(s:GetAngles())
+					else
+						ne:SetPos(ent:GetPos())
+						ne:SetAngles(ent:GetAngles())
+					end
+					
 					ne:SetName(ent:GetName())
 					
 					for key,value in pairs(ent:GetKeyValues()) do
@@ -606,6 +619,20 @@ function GM:OnEntityCreated( ent )
 						end
 					end
 					ent:Remove()
+				end
+			end)
+		elseif(string.sub(class,1,4) == "npc_") then
+			timer.Simple(0.1,function()
+				if(ent:IsValid()) then
+					if(templatemap[ent:GetName()]) then
+						local sdg = templatemap[ent:GetName()].sdg
+						local st = ents.FindByName(sdg)
+						if(st[1]) then
+							local s = table.Random(st)
+							ent:SetPos(s:GetPos())
+							ent:SetAngles(s:GetAngles())
+						end
+					end
 				end
 			end)
 		end
@@ -636,8 +663,13 @@ function GM:EntityKeyValue(e,k,v)
 		elseif(k == "StartDisabled") then
 			e.dis = v
 		end
-	elseif(e:GetClass() == "npc_template_maker" && k == "DestinationGroup") then
-		return ""
+	elseif(e:GetClass() == "npc_template_maker") then
+		if(k == "DestinationGroup") then
+			e.sdg = v
+			return ""
+		elseif(k == "TemplateName") then
+			templatemap[v] = e
+		end
 	elseif(e:GetClass() == "info_player_coop" && k == "StartDisabled") then
 		if(tonumber(v) == 1) then
 			e.disabled = true
