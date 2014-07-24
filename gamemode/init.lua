@@ -186,6 +186,7 @@ local rebelmaps = {
 	"mph_puzzle_one_v4",
 	"mph_twilight_v3",
 	"dr_puzzle_mario_final",
+	"ow_puzzleoflove_one_v10",
 	"puzlehl2"
 }
 
