@@ -8,4 +8,6 @@ HOOKS["InitPostEntity"] = function(e,k,v)
 	for k,v in pairs(ents.FindByName("cg_shutoff_button")) do
 		v:Fire("AddOutput","OnOpen fakegameender,EndGame,,15,-1",0)
 	end
+	
+	RunConsoleCommand("mp_falldamage", "1")
 end
