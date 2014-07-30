@@ -14,7 +14,7 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 end
 
 HOOKS["InitPostEntity"] = function()
-	for k,v in pairs(ents.FindByClass("rescue_door*")) do
+	for k,v in pairs(ents.FindByName("rescue_door*")) do
 		v:Remove()
 	end
 end
