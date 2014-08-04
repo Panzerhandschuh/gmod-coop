@@ -255,6 +255,15 @@ function GM:PlayerEnteredVehicle(ply,vehicle,role)
 	self.BaseClass:PlayerEnteredVehicle(ply,vehicle,role)
 end
 
+function GM:PlayerLeaveVehicle(ply,vehicle)
+	if(self.RespawnJeep && vehicle:GetClass() == "prop_vehicle_jeep") then
+		vehicle.IsOwned = false
+		ply.CurrentJeep = nil
+	end
+	
+	self.BaseClass:PlayerLeaveVehicle(ply,vehicle)
+end
+
 function GM:PlayerDisconnected(ply)
 	local t = #player.GetAll()
 	for k,v in pairs(ents.FindByClass("trigger_coop")) do
@@ -677,6 +686,8 @@ function GM:EntityKeyValue(e,k,v)
 		end
 	elseif(e:GetClass() == "info_waypoint" && k == "text") then
 		e:SetNetworkedString("text", v)
+	elseif(e:GetClass() == "prop_vehicle_jeep" && k == "model") then
+		return "models/buggy.mdl"
 	end
 	if(k == "NPCType" && REPLACE_ENTS[v]) then
 		return REPLACE_ENTS[v]
