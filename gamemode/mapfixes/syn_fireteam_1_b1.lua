@@ -7,6 +7,8 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 end
 
 HOOKS["InitPostEntity"] = function()
+	ents.FindByName("Elevator_1_Toggle_Top")[1]:Remove()
+
 	for k,v in pairs(ents.FindByClass("prop_vehicle_jeep")) do
 		v:SetSolid(SOLID_NONE)
 		
