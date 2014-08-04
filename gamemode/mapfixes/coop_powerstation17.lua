@@ -28,7 +28,7 @@ end
 
 HOOKS["EntityKeyValue"] = function(e,k,v)
 	if(k == "OnTrigger") then
-		if (v == "door_03,Lock,,0,-1" || v == "door_05,Lock,,0,-1" || v == "garagedoor_01,Close,,0,-1" ) then
+		if (v == "door_03,Lock,,0,-1" || v == "door_05,Lock,,0,-1" || v == "garagedoor_01,Close,,0,-1" || v == "garagedoor_blocker,Enable,,0,-1") then
 			return "!activator,AddOutput,dummykey 0,0,-1"
 		end
 	end
