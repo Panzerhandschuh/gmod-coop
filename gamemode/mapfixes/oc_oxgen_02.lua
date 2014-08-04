@@ -1,3 +1,13 @@
+-- Adjust weapon loadout
+HOOKS["PlayerSpawn"] = function(ply)
+	timer.Simple( 0.1, function()
+		ply:Give("weapon_ar2")
+
+		ply:GiveAmmo(225, "smg1", true)
+		ply:GiveAmmo(60, "ar2", true)
+	end )
+end
+
 HOOKS["InitPostEntity"] = function()
 	local cp = ents.Create("coop_checkpoint")
 	cp:SetPos(Vector(-4323, -2993, 156))
