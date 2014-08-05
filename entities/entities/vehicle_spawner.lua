@@ -36,7 +36,7 @@ function ENT:Think()
 	if(!self.JeepCount || self.JeepCount < #player.GetAll()) then
 		br = false
 		for k,v in pairs(ents.FindInSphere(self:GetPos(),150)) do
-			if(v:GetClass() == "prop_vehicle_jeep" || v:GetClass() == "prop_vehicle_jeep") then
+			if(v:GetClass() == "prop_vehicle_jeep" || v:GetClass() == "prop_vehicle_airboat") then
 				br = true
 				break
 			end
