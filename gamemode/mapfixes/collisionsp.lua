@@ -15,6 +15,7 @@ HOOKS["InitPostEntity"] = function()
 		s:SetAngles(v:GetAngles())
 		s.jmodel = v:GetModel()
 		s.jscript = v.script
+		s.jeep = false
 		s:Spawn()
 		
 		v:Remove()

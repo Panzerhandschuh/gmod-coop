@@ -239,7 +239,7 @@ function GM:PlayerPostThink(ply)
 end
 
 function GM:CanPlayerEnterVehicle(ply,vehicle,role)
-	if(self.RespawnJeep && vehicle:GetClass() == "prop_vehicle_jeep" && vehicle.IsOwned) then
+	if(self.RespawnJeep && (vehicle:GetClass() == "prop_vehicle_jeep" || vehicle:GetClass() == "prop_vehicle_airboat") && vehicle.IsOwned) then
 		return false
 	end
 	
@@ -247,7 +247,7 @@ function GM:CanPlayerEnterVehicle(ply,vehicle,role)
 end
 
 function GM:PlayerEnteredVehicle(ply,vehicle,role)
-	if(self.RespawnJeep && vehicle:GetClass() == "prop_vehicle_jeep") then
+	if(self.RespawnJeep && (vehicle:GetClass() == "prop_vehicle_jeep" || vehicle:GetClass() == "prop_vehicle_airboat")) then
 		vehicle.IsOwned = true
 		ply.CurrentJeep = vehicle
 	end
@@ -256,7 +256,7 @@ function GM:PlayerEnteredVehicle(ply,vehicle,role)
 end
 
 function GM:PlayerLeaveVehicle(ply,vehicle)
-	if(self.RespawnJeep && vehicle:GetClass() == "prop_vehicle_jeep") then
+	if(self.RespawnJeep && (vehicle:GetClass() == "prop_vehicle_jeep" || vehicle:GetClass() == "prop_vehicle_airboat")) then
 		vehicle.IsOwned = false
 	end
 	
