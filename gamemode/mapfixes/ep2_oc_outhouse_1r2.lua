@@ -1,3 +1,13 @@
+-- Adjust weapon loadout
+HOOKS["PlayerSpawn"] = function(ply)
+	timer.Simple( 0.1, function()
+		ply:Give("weapon_shotgun")
+
+		ply:GiveAmmo(45, "smg1", true)
+		ply:GiveAmmo(6, "buckshot", true)
+	end )
+end
+
 HOOKS["EntityKeyValue"] = function(e,k,v)
 	if(k == "OnPass" && v == "startcam_2,Enable,,0.5,1") then
 		return "startcam_1,Disable,,0.5,1"

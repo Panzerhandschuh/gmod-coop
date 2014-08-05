@@ -24,9 +24,10 @@ function StopSpectate(ply)
 end
 
 function GM:PlayerSay(sender, text, teamChat)
-	local cmd = string.lower(text)
-	cmd = string.sub(cmd, 1, 9)
-	if (cmd == "!spectate" || cmd == "/spectate") then
+	local full = string.lower(text)
+	local cmd = string.sub(full, 1, 9)
+	local cmd2 = string.sub(full, 1, 5)
+	if (cmd == "!spectate" || cmd == "/spectate" || cmd2 == "!spec" || cmd2 == "/spec") then
 		if (!IsSpec(sender)) then
 			StartSpectate(sender)
 		else
