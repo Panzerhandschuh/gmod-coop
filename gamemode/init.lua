@@ -325,6 +325,9 @@ function GM:InitPostEntity()
 		ne:Spawn()
 		v:Remove()
 	end
+	for k,v in pairs(ents.FindByClass("player_loadsaved")) do
+		v:Remove()
+	end
 	for ent,replace in pairs(REPLACE_ENTS) do
 		if(string.sub(ent,1,4) == "npc_" || string.sub(ent,1,8) == "monster_") then continue end
 		for k,v in pairs(ents.FindByClass(ent)) do
