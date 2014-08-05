@@ -6,6 +6,5 @@ HOOKS["PlayerSpawn"] = function(ply)
 
 		ply:GiveAmmo(135, "smg1", true)
 		ply:GiveAmmo(12, "buckshot", true)
-		ply:GiveAmmo(30, "ar2", true)
 	end )
 end
