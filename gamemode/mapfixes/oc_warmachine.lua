@@ -12,9 +12,9 @@ end
 HOOKS["EntityKeyValue"] = function(e,k,v)
 	if (e:GetClass() == "npc_template_maker") then
 		if (k == "MaxNPCCount") then
-			if (v >= 40)
+			if (v >= 40) then
 				return math.Round(v * 0.5)
-			elseif (v >= 20)
+			elseif (v >= 20) then
 				return math.Round(v * 0.75)
 			else
 				return v
