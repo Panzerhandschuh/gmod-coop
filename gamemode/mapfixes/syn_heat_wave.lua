@@ -1,4 +1,7 @@
 HOOKS["InitPostEntity"] = function()
-	local ent = ents.FindByName("trigger_once")[1]
-	ent:Fire("AddOutput","OnStartTouch relay_3,Trigger,,10,1",0)
+	for k,v in pairs(ents.FindByClass("trigger_once")) do
+		if(v:GetPos() == Vector(9096.5, -1821, -711)) then
+			v:Fire("AddOutput","OnStartTouch relay_3,Trigger,,10,1",0)
+		end
+	end
 end
