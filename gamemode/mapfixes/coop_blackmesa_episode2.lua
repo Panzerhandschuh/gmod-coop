@@ -1,3 +1,13 @@
+-- Adjust weapon loadout
+HOOKS["PlayerSpawn"] = function(ply)
+	timer.Simple( 0.1, function()
+		ply:Give("weapon_shotgun")
+
+		ply:GiveAmmo(90, "smg1", true)
+		ply:GiveAmmo(12, "buckshot", true)
+	end )
+end
+
 HOOKS["InitPostEntity"] = function()
 	for k,v in pairs(ents.FindByClass("func_button")) do
 		if (v:GetPos() == Vector(956.55, -247, -9)) then
