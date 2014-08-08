@@ -187,7 +187,8 @@ local rebelmaps = {
 	"mph_twilight_v3",
 	"dr_puzzle_mario_final",
 	"ow_puzzleoflove_one_v10",
-	"puzlehl2"
+	"puzlehl2",
+	"coop_port_sg_zb"
 }
 
 function GM:Initialize()
