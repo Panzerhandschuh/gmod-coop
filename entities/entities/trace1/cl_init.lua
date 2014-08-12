@@ -87,7 +87,9 @@ function ENT:Draw()
 		local vm = Owner:GetActiveWeapon()
 		if (!vm || vm == NULL) then return end
 		local attachment = vm:GetAttachment( 1 )
-		StartPos = attachment.Pos
+		if (attachment) then
+			StartPos = attachment.Pos
+		end
 	
 	end
 
