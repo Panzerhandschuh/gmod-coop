@@ -640,11 +640,13 @@ function GM:OnEntityCreated( ent )
 				if(ent:IsValid()) then
 					if(templatemap[ent:GetName()]) then
 						local sdg = templatemap[ent:GetName()].sdg
-						local st = ents.FindByName(sdg)
-						if(st[1]) then
-							local s = table.Random(st)
-							ent:SetPos(s:GetPos())
-							ent:SetAngles(s:GetAngles())
+						if (sdg) then
+							local st = ents.FindByName(sdg)
+							if(st[1]) then
+								local s = table.Random(st)
+								ent:SetPos(s:GetPos())
+								ent:SetAngles(s:GetAngles())
+							end
 						end
 					end
 				end

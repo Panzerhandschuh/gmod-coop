@@ -3,12 +3,14 @@
 ENT.Type 		= "point"
 ENT.Base 		= "base_point"
 
-local keyvalues = {}
-
 function ENT:KeyValue(key, value)
+	if (!self.keyvalues) then
+		self.keyvalues = {}
+	end
+	
 	key = string.lower(key)
 	if (string.find(key, "weapon") || string.find(key, "item") || string.find(key, "ammo")) then
-		keyvalues[key] = value
+		self.keyvalues[key] = value
 	end
 end
 
@@ -18,8 +20,8 @@ function ENT:AcceptInput(inputName, activator, called, data)
 		if (!activator:IsValid()) then
 			return
 		end
-		for k, v in pairs(keyvalues) do
-			for i = 1, v, 1 do
+		for k, v in pairs(self.keyvalues) do -- Loop through the items
+			for i = 1, v, 1 do -- Loop through the number of item to equip
 				local ent = activator:Give(k)
 				timer.Simple(0.1, function()
 					if (IsValid(ent) && !IsValid(ent:GetOwner())) then
