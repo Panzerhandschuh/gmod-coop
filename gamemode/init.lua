@@ -189,7 +189,10 @@ local rebelmaps = {
 	"ow_puzzleoflove_one_v10",
 	"puzlehl2",
 	"coop_port_sg_zb",
-	"mph_crane_hop_v4"
+	"mph_crane_hop_v4",
+	"z_harrier_b",
+	"z_harrier2_f",
+	"coop_citadel_escape_v2fix"
 }
 
 function GM:Initialize()
