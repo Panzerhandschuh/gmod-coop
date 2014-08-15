@@ -13,7 +13,7 @@ HOOKS["InitPostEntity"] = function()
 end
 
 HOOKS["EntityKeyValue"] = function(e,k,v)
-	if (string.StartWith(k, "On") && string.match(v, "level_%d,Display")) then
+	if (string.StartWith(k, "On") && string.match(v, "level_%d+,Display")) then
 		e:Fire("AddOutput", k.." levelCounter,Add,1,0,1", 0)
 	end
 end

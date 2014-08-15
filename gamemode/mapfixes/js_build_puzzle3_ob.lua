@@ -6,14 +6,14 @@ HOOKS["InitPostEntity"] = function()
 	counter:SetKeyValue("StartDisabled", "0")
 	counter:SetKeyValue("startvalue", "0")
 	counter:SetKeyValue("min", "0")
-	counter:SetKeyValue("max", "10")
+	counter:SetKeyValue("max", "9")
 	counter:Fire("AddOutput","OnHitMax gate_door,Kill,,0,-1",0)
-	counter.requiredPuzzles = 10
+	counter.requiredPuzzles = 9
 	counter:Spawn()
 end
 
 HOOKS["EntityKeyValue"] = function(e,k,v)
-	if (string.StartWith(k, "On") && string.match(v, "level_%d,Display")) then
+	if (string.StartWith(k, "On") && string.match(v, "level_%d+,Display")) then
 		e:Fire("AddOutput", k.." levelCounter,Add,1,0,1", 0)
 	end
 end
