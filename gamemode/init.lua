@@ -154,7 +154,6 @@ for k,_ in pairs(REPLACE_ENTS) do
 	end
 end
 
-scripted_ents.Register({Type="point"}, "info_player_equip", false)
 scripted_ents.Register({Type="anim"}, "info_waypoint", false)
 scripted_ents.Register({Type="brush", Base="base_brush"}, "trigger_once_oc", false)
 scripted_ents.Register({Type="brush", Base="base_brush"}, "trigger_multiple_oc", false)
@@ -287,6 +286,13 @@ end
 
 function GM:PlayerSpawn(ply)
 	player_manager.SetPlayerClass(ply, "player_coop")
+	
+	-- Try equipping player
+	timer.Simple(0.1, function()
+		for k,v in pairs(ents.FindByClass("info_player_equip")) do
+			v:Input("equipplayer", ply, nil)
+		end
+	end)
 
 	self.BaseClass:PlayerSpawn(ply)
 	
