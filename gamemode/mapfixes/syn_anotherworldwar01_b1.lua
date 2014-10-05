@@ -4,7 +4,11 @@ HOOKS["InitPostEntity"] = function()
 	RunConsoleCommand("sk_plr_dmg_smg1", "6")
 	RunConsoleCommand("sk_plr_dmg_ar2", "10")
 
+	-- Important npcs
 	for k,v in pairs(ents.FindByClass("npc_barney")) do
+		v:SetHealth(9999999)
+	end
+	for k,v in pairs(ents.FindByName("cit_4")) do
 		v:SetHealth(9999999)
 	end
 	
