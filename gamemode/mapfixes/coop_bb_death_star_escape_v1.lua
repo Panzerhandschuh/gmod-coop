@@ -12,6 +12,12 @@ HOOKS["InitPostEntity"] = function()
 	
 	local e = ents.FindByName("WeaponroomDoor")[1]
 	e:Fire("AddOutput","OnOpen fcp1,SetAsCP,,0,1",0)
+	
+	for k,v in pairs(ents.FindByClass("trigger_hurt")) do
+		if (v:GetPos() == Vector(4224, -6176, -192)) then
+			v:SetKeyValue("spawnflags", "3")
+		end
+	end
 end
 
 -- Adjust spawners to be less boring
