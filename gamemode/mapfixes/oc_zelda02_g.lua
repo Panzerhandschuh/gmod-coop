@@ -17,6 +17,9 @@ HOOKS["InitPostEntity"] = function()
 	for k,v in pairs(ents.FindByName("rescue_door*")) do
 		v:Remove()
 	end
+	
+	ents.FindByName("shutter04_close")[1]:Remove()
+	ents.FindByName("shutter4c_close")[1]:Remove()
 end
 
 HOOKS["OnEntityCreated"] = function(ent)

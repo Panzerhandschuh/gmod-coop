@@ -7,6 +7,10 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 end
 
 HOOKS["InitPostEntity"] = function()
+	local button = ents.FindByName("button1")[1]
+	button:Fire("AddOutput","OnPressed elevator,StartForward,,1,-1",0)
+	button:SetKeyValue("wait", "10")
+
 	for k,v in pairs(ents.FindByClass("prop_vehicle_airboat")) do
 		v:SetSolid(SOLID_NONE)
 		
