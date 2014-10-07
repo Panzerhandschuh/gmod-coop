@@ -15,5 +15,9 @@ end
 HOOKS["EntityKeyValue"] = function(e,k,v)
 	if (string.StartWith(k, "On") && string.match(v, "level_%d+,Display")) then
 		e:Fire("AddOutput", k.." levelCounter,Add,1,0,1", 0)
+	elseif (k == "OnDamaged" && (v == "bridge5,Toggle,,0,-1" || v == "bridge,Toggle,,0,-1")) then
+		return "!activator,AddOutput,dummykey 0,0,-1"
+	elseif ((e:GetName() == "bridge5" || e:GetName() == "bridge") && k == "spawnflags") then -- Enable first 2 platforms on grenade level
+		return "0"
 	end
 end
