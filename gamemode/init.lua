@@ -195,7 +195,8 @@ local rebelmaps = {
 	"z_harrier2_f",
 	"coop_citadel_escape_v2fix",
 	"mph_citadel_escape_z1_test",
-	"js_coop_powerworks_v2"
+	"js_coop_powerworks_v2",
+	"js_coop_monsterkill_reload_b"
 }
 
 function GM:Initialize()
