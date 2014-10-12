@@ -148,6 +148,36 @@ REPLACE_ENTS["item_ammo_tau"] = "item_ammo_smg1_large"
 REPLACE_ENTS["weapon_scripted"] = "WEAPON_RANDOM"
 REPLACE_ENTS["item_custom"] = "ITEM_RANDOM"
 
+local NPC_POINTS = {}
+NPC_POINTS["npc_antlion"] = 2
+NPC_POINTS["npc_antlionguard"] = 8
+NPC_POINTS["npc_barnacle"] = 1
+NPC_POINTS["npc_citizen"] = -5
+NPC_POINTS["npc_manhack"] = 1
+NPC_POINTS["npc_rollermine"] = 2
+NPC_POINTS["npc_stalker"] = 2
+NPC_POINTS["npc_metropolice"] = 2
+NPC_POINTS["npc_combine_s"] = 3
+NPC_POINTS["npc_sniper"] = 4
+NPC_POINTS["npc_hunter"] = 5
+NPC_POINTS["npc_strider"] = 10
+NPC_POINTS["npc_combinegunship"] = 12
+NPC_POINTS["npc_helicopter"] = 15
+NPC_POINTS["npc_headcrab"] = 1
+NPC_POINTS["npc_headcrab_black"] = 1
+NPC_POINTS["npc_headcrab_fast"] = 1
+NPC_POINTS["npc_zombie"] = 2
+NPC_POINTS["npc_zombie_torso"] = 1
+NPC_POINTS["npc_zombine"] = 3
+NPC_POINTS["npc_fastzombie"] = 2
+NPC_POINTS["npc_fastzombie_torso"] = 1
+NPC_POINTS["npc_poisonzombie"] = 3
+NPC_POINTS["npc_ichthyosaur"] = 5
+NPC_POINTS["npc_turret_ceiling"] = 5
+NPC_POINTS["npc_turret_floor"] = 2
+NPC_POINTS["npc_turret_ground"] = 2
+NPC_POINTS["npc_vortigaunt"] = 4
+
 for k,_ in pairs(REPLACE_ENTS) do
 	if(string.sub(k,1,4) != "npc_" && string.sub(k,1,8) != "monster_" && k != "weapon_medkit") then
 		scripted_ents.Register({Type="point"}, k, false)
@@ -812,5 +842,16 @@ function GM:GravGunOnPickedUp(ply, ent)
 		for _, pl in pairs(player.GetAll()) do
 			ent:AddEntityRelationship(pl, D_NU, 99)
 		end
+	end
+end
+
+function GM:OnNPCKilled(npc, attacker, inflictor)
+	if (!attacker:IsValid() || !attacker:IsPlayer()) then
+		return
+	end
+	
+	local points = NPC_POINTS[npc:GetClass()]
+	if (points) then
+		attacker:AddFrags(points)
 	end
 end
