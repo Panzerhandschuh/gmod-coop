@@ -11,4 +11,13 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 	if (k == "OnBreak" && v == "rpg_player_block,Open,,0,-1") then
 		return "!activator,AddOutput,dummykey 0,0,-1"
 	end
+	
+	local ge = ents.Create("game_end")
+	ge:SetName("fakegameender")
+	ge:Spawn()
+	for k,v in pairs(ents.FindByClass("trigger_once")) do
+		if(v:GetPos() == Vector(7616, -2816, -88)) then
+			v:Fire("AddOutput","OnStartTouch fakegameender,EndGame,,10,-1",0)
+		end
+	end
 end

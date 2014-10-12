@@ -26,7 +26,7 @@ HOOKS["InitPostEntity"] = function()
 	ge:Spawn()
 	for k,v in pairs(ents.FindByClass("trigger_once")) do
 		if(v:GetPos() == Vector(-2575.5, 6168.5, -1027)) then
-			v:Fire("AddOutput","OnStartTouch fakegameender,EndGame,,15,-1",0)
+			v:Fire("AddOutput","OnStartTouch fakegameender,EndGame,,10,-1",0)
 		end
 	end
 end

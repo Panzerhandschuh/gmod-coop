@@ -193,6 +193,7 @@ local rebelmaps = {
 	"mph_crane_hop_v4",
 	"z_harrier_b",
 	"z_harrier2_f",
+	"coop_citadel_escape_p6",
 	"coop_citadel_escape_v2fix",
 	"mph_citadel_escape_z1_test",
 	"js_coop_powerworks_v2",
