@@ -26,26 +26,26 @@ HOOKS["InitPostEntity"] = function()
 	
 	local r1 = ents.Create("weapon_rpg")
 	r1:SetPos(Vector(-9320, 4526, 1891))
-	r1:SetAngles(Angle(0 ,90, 0))
+	r1:SetAngles(Angle(0, 0, 0))
 	r1.ei = 0.1
 	r1.oPos = Vector(-9320, 4526, 1891)
-	r1.oAng = Angle(0 ,90, 0)
+	r1.oAng = Angle(0, 0, 0)
 	r1:Spawn()
 
 	local r2 = ents.Create("weapon_rpg")
 	r2:SetPos(Vector(-9280, 4526, 1891))
-	r2:SetAngles(Angle(0 ,90, 0))
+	r2:SetAngles(Angle(0, 0, 0))
 	r2.ei = 0.2
 	r2.oPos = Vector(-9280, 4526, 1891)
-	r2.oAng = Angle(0 ,90, 0)
+	r2.oAng = Angle(0, 0, 0)
 	r2:Spawn()
 	
 	local r3 = ents.Create("weapon_rpg")
 	r3:SetPos(Vector(-9240, 4526, 1891))
-	r3:SetAngles(Angle(0 ,90, 0))
+	r3:SetAngles(Angle(0, 0, 0))
 	r3.ei = 0.3
 	r3.oPos = Vector(-9240, 4526, 1891)
-	r3.oAng = Angle(0 ,90, 0)
+	r3.oAng = Angle(0, 0, 0)
 	r3:Spawn()
 
 end
