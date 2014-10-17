@@ -3,14 +3,14 @@ HOOKS["InitPostEntity"] = function()
 	RunConsoleCommand("sk_plr_dmg_pistol", "10")
 	RunConsoleCommand("sk_plr_dmg_smg1", "6")
 	RunConsoleCommand("sk_plr_dmg_ar2", "10")
-
-	-- Important npcs
-	for k,v in pairs(ents.FindByClass("npc_barney")) do
-		v:SetHealth(9999999)
-	end
-	for k,v in pairs(ents.FindByName("cit_4")) do
-		v:SetHealth(9999999)
-	end
 	
 	ents.FindByName("barn_ship_counter")[1]:Remove()
+end
+
+HOOKS["EntityTakeDamage"] = function(e,dmg)
+	if (e:GetClass() == "npc_barney" || e:GetClass() == "npc_citizen") then
+		dmg:SetDamage(0)
+	end
+	
+	return dmg
 end

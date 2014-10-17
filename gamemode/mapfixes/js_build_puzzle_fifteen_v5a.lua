@@ -14,6 +14,12 @@ HOOKS["InitPostEntity"] = function()
 		end
 	end
 	
+	for k,v in pairs(ents.FindByClass("prop_physics_respawnable")) do
+		if (v:GetModel() == "models/props_junk/wood_crate001a.mdl") then
+			v:SetHealth(99999999)
+		end
+	end
+	
 	local counter = ents.Create("math_counter")
 	counter:SetPos(Vector(0, 0, 0))
 	counter:SetAngles(Angle(0, 0, 0))
