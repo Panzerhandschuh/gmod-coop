@@ -733,7 +733,7 @@ function GM:EntityKeyValue(e,k,v)
 		elseif(k == "TemplateName") then
 			templatemap[v] = e
 		end
-	elseif(e:GetClass() == "info_player_coop" && k == "StartDisabled") then
+	elseif((e:GetClass() == "info_player_coop" || e:GetClass() == "info_player_start") && k == "StartDisabled") then
 		if(tonumber(v) == 1) then
 			e.disabled = true
 		end
@@ -784,10 +784,21 @@ function GM:PlayerSelectSpawn( pl )
 			end
 		end
 		if(table.Count(self.SpawnPoints) == 0) then
-			table.Add(self.SpawnPoints, ents.FindByClass("info_player_start"))
+			for k,v in pairs(ents.FindByClass( "info_player_start" )) do
+				if(!v.disabled) then
+					table.insert(self.SpawnPoints,v)
+				end
+			end
 		end
 	elseif(self.RefreshOCSpawn) then
 		for k,v in pairs(ents.FindByClass("info_player_deathmatch")) do
+			if(v.disabled) then
+				table.RemoveByValue(self.SpawnPoints, v)
+			else
+				table.insert(self.SpawnPoints, v)
+			end
+		end
+		for k,v in pairs(ents.FindByClass("info_player_start")) do
 			if(v.disabled) then
 				table.RemoveByValue(self.SpawnPoints, v)
 			else

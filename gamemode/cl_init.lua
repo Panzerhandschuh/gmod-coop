@@ -31,7 +31,7 @@ function DrawWaypointText()
 		angles:RotateAroundAxis(angles:Up(), 0);
 
 		cam.Start3D2D(position + offset, angles, 0.1);
-			draw.SimpleText(message, "DebugFixed", 80.5, 46, Color(255, 255, 255, 255), 1, 1);
+			draw.SimpleText(message, "CloseCaption_Normal", 80.5, 46, Color(255, 255, 255, 255), 1, 1);
 		cam.End3D2D();
 	end
 end

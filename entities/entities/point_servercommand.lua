@@ -10,7 +10,7 @@ function ENT:AcceptInput(inputName, activator, called, data)
 			if (!next) then
 				RTV.Start()
 			else
-				RunConsoleCommand("changelevel",next)
+				RTV.ChangeMap(next)
 			end
 		elseif (!string.StartWith(data, "sk_") && !string.StartWith(data, "mp_weaponstay")) then
 			game.ConsoleCommand(data.."\n")

@@ -20,18 +20,18 @@ HOOKS["InitPostEntity"] = function()
 	ents.FindByName("weaponbox_template")[1]:Remove()
 	
 	local r1 = ents.Create("weapon_rpg")
-	r1:SetPos(Vector(672, 224, -5888))
+	r1:SetPos(Vector(-95, -3364, -70))
 	r1:SetAngles(Angle(0, 0, 0))
 	r1.ei = 0.1
-	r1.oPos = Vector(672, 224, -5888)
+	r1.oPos = Vector(-95, -3364, -70)
 	r1.oAng = Angle(0, 0, 0)
 	r1:Spawn()
 
 	local r2 = ents.Create("weapon_rpg")
-	r2:SetPos(Vector(672, 224, -5888))
+	r2:SetPos(Vector(-95, -3364, -70))
 	r2:SetAngles(Angle(0, 0, 0))
 	r2.ei = 0.2
-	r2.oPos = Vector(672, 224, -5888)
+	r2.oPos = Vector(-95, -3364, -70)
 	r2.oAng = Angle(0, 0, 0)
 	r2:Spawn()
 end

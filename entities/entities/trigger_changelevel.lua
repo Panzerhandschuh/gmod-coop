@@ -39,6 +39,6 @@ function ChangeLevel()
 	if(!next) then
 		RTV.Start()
 	else
-		RunConsoleCommand("changelevel", next)
+		RTV.ChangeMap(next)
 	end
 end
