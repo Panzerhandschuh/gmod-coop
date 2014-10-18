@@ -3,8 +3,8 @@ HOOKS["PlayerSpawn"] = function(ply)
 	timer.Simple( 0.1, function()
 		ply:Give("weapon_shotgun")
 
-		ply:GiveAmmo(45, "smg1", true)
-		ply:GiveAmmo(6, "buckshot", true)
+		ply:GiveAmmo(90, "smg1", true)
+		ply:GiveAmmo(12, "buckshot", true)
 	end )
 end
 
