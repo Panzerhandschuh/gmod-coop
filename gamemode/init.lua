@@ -229,7 +229,8 @@ local rebelmaps = {
 	"coop_citadel_escape_v2fix",
 	"mph_citadel_escape_z1_test",
 	"js_coop_powerworks_v2",
-	"js_coop_monsterkill_reload_b"
+	"js_coop_monsterkill_reload_b",
+	"poison_coop_re1_beta1"
 }
 
 function GM:Initialize()
@@ -867,4 +868,6 @@ function GM:OnNPCKilled(npc, attacker, inflictor)
 	if (points) then
 		attacker:AddFrags(points)
 	end
+	
+	self.BaseClass:OnNPCKilled(npc, attacker, inflictor)
 end
