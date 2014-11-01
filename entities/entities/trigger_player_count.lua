@@ -12,7 +12,7 @@ function ENT:StartTouch(ent)
 		self:TriggerOutput("OnPlayerEntered",ent)
 		self.playercount = self.playercount + 1
 		
-		if(self.playercount == #player.GetAll() / 2) then
+		if(self.playercount >= #player.GetAll() / 2) then
 			self:TriggerOutput("OnAllPlayersEntered",ent)
 		end
 	end
