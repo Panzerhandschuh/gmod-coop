@@ -18,8 +18,13 @@ end
 
 HOOKS["InitPostEntity"] = function()
 	ents.FindByName("weaponbox_template")[1]:Remove()
-	ents.FindByName("relay_combineshieldwall1_off")[1]:Remove()
+	-- ents.FindByName("relay_combineshieldwall1_off")[1]:Remove()
 	ents.FindByName("turret_1_model")[1]:Remove()
+	-- ents.FindByName("clip_combineshieldwall1")[1]:Remove()
+	-- ents.FindByName("brush_combineshieldwall1")[1]:Remove()
+	-- ents.FindByName("clip_combineshieldwall2")[1]:Remove()
+	-- ents.FindByName("brush_combineshieldwall2")[1]:Remove()
+	ents.FindByName("ballspawner_ballgenerator1")[1]:Remove()
 	
 	local r1 = ents.Create("weapon_rpg")
 	r1:SetPos(Vector(-95, -3364, -70))
