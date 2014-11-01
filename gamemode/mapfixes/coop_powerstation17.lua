@@ -24,6 +24,9 @@ HOOKS["InitPostEntity"] = function()
 		v:Fire("AddOutput","OnPressed elevator_tele,Teleport,,0,1",0)
 		v:Fire("AddOutput","OnPressed fcp1,SetAsCP,,0,1",0)
 	end
+	
+	ents.FindByName("forcefield2_clipbrush")[1]:Remove()
+	ents.FindByName("forcefield2_effectbrush")[1]:Remove()
 end
 
 HOOKS["EntityKeyValue"] = function(e,k,v)

@@ -8,9 +8,6 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 	elseif(k == "OnTrigger" && v == "start_teleport,Disable,,30,-1") then
 		return "!activator,AddOutput,dummykey 0,0,-1"
 	end
-	if(k == "npchealth") then
-		e.health = tonumber(v)
-	end
 end
 
 HOOKS["InitPostEntity"] = function()
