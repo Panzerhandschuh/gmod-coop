@@ -1,3 +1,14 @@
+-- Fix npc not being registered as killed by a npc_maker
+HOOKS["EntityTakeDamage"] = function(target, dmg)
+	if (target:GetClass() == "npc_manhack") then
+		if (dmg:GetInflictor() == target) then
+			dmg:SetDamage(0)
+		end
+	end
+
+	return dmg
+end
+
 HOOKS["InitPostEntity"] = function()
 	timer.Simple(1, function() -- Use timer to get replaced entities
 		for k,v in pairs(ents.FindByClass("item*")) do

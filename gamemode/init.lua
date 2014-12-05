@@ -57,7 +57,7 @@ local ITEM_RESPAWN_TIME = 10
 
 local MAX_AMMO = {}
 MAX_AMMO["pistol"] = 150
-MAX_AMMO["357"] = 12
+MAX_AMMO["357"] = 18
 MAX_AMMO["smg1"] = 225
 MAX_AMMO["smg1_grenade"] = 3
 MAX_AMMO["ar2"] = 60

@@ -3,7 +3,7 @@ HOOKS["InitPostEntity"] = function()
 	ent:SetKeyValue("MaxNPCCount", "35")
 	
 	for k,v in pairs(ents.FindByName("security_camera")) do
-		v:SetKeyValue("minhealthdmg", "0")
+		v:SetKeyValue("minhealthdmg", "1")
 	end
 end
 

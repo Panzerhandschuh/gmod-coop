@@ -65,7 +65,7 @@ function PLAYER:Spawn()
 	BaseClass.Spawn(self)
 	
 	self.Player:SetCrouchedWalkSpeed(0.32)
-	
+	-- self.Player:SetHullDuck(Vector(-16, -16, 0), Vector(16, 16, 36))
 end
 
 --
