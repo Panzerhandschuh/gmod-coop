@@ -349,6 +349,9 @@ function GM:InitPostEntity()
 		if(v.dis) then
 			ne:SetKeyValue("StartDisabled", v.dis)
 		end
+		if (v.filter) then
+			ne:SetKeyValue("filtername", v.filter) -- Currently does not work (can't set filtername key value?)
+		end
 		if(v.oc_out) then
 			for _,o in pairs(v.oc_out) do
 				ne:Fire("AddOutput",o,0)
@@ -366,6 +369,9 @@ function GM:InitPostEntity()
 		ne:SetKeyValue("spawnflags", v.spf)
 		if(v.dis) then
 			ne:SetKeyValue("StartDisabled", v.dis)
+		end
+		if (v.filter) then
+			ne:SetKeyValue("filtername", v.filter)
 		end
 		if(v.oc_out) then
 			for _,o in pairs(v.oc_out) do
@@ -726,6 +732,8 @@ function GM:EntityKeyValue(e,k,v)
 			e.wa = v
 		elseif(k == "StartDisabled") then
 			e.dis = v
+		elseif(k == "filtername") then
+			e.filter = v
 		end
 	elseif(e:GetClass() == "npc_template_maker") then
 		if(k == "DestinationGroup") then

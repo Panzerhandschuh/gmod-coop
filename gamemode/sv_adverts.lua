@@ -2,6 +2,7 @@ local messages = {
 	"Type 'rtv' if you want to change the map.",
 	"Type 'nominate' if you want to choose a map to appear in the next vote.",
 	"Type '!spectate' to spectate other players. You can rejoin the team by typing the command again.",
+	"Teleport to teamates by typing '!tpto <player name>'.",
 	"Join our group at http://steamcommunity.com/groups/gmodcoop to discuss the server, leave suggestions, or report bugs."
 }
 
