@@ -16,6 +16,7 @@ function ENT:StartTouch(ent)
 		
 		if(self.playercount >= self.players) then
 			self:TriggerOutput("OnPlayersIn", ent)
+			self:TriggerOutput("OnAllPlayersIn", ent)
 			self.over = true
 			for k,v in pairs(player.GetAll()) do
 				if(tonumber(v:GetNWInt("InCoopTrigger",0)) == self:EntIndex()) then
@@ -24,6 +25,7 @@ function ENT:StartTouch(ent)
 			end
 		elseif(self.over && self.playercount <= self.players) then
 			self:TriggerOutput("OnPlayersOut", ent)
+			self:TriggerOutput("OnAllPlayersOut", ent)
 			self.over = false
 		end
 	end
@@ -37,9 +39,11 @@ function ENT:EndTouch(ent)
 		
 		if(self.playercount >= self.players) then
 			self:TriggerOutput("OnPlayersIn", ent)
+			self:TriggerOutput("OnAllPlayersIn", ent)
 			self.over = true
 		elseif(self.over && self.playercount <= self.players) then
 			self:TriggerOutput("OnPlayersOut", ent)
+			self:TriggerOutput("OnAllPlayersOut", ent)
 			self.over = false
 		end
 	end
@@ -92,7 +96,7 @@ function ENT:KeyValue(key, value)
 	elseif(key == "StartDisabled" && tonumber(value) == 1) then
 		self.disabled = true
 		return true
-	elseif key == "OnPlayersIn" or key == "OnPlayersOut" then
+	elseif(key == "OnPlayersIn" || key == "OnAllPlayersIn" || key == "OnPlayersOut" || key == "OnAllPlayersOut") then
 		self:StoreOutput(key, value)
 		return true
 	end

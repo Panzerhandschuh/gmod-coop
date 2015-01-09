@@ -20,9 +20,9 @@ function ENT:AcceptInput(inputName, activator, called, data)
 		local t = ents.FindByName(data)[1]
 		if(t) then
 			for k,v in pairs(player.GetAll()) do
-				if(v != activator) then
+				--if(v != activator) then
 					v:SetPos(t:GetPos())
-				end
+				--end
 			end
 		end
 	end

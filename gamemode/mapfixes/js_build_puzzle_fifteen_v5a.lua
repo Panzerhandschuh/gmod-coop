@@ -27,7 +27,7 @@ HOOKS["InitPostEntity"] = function()
 	counter:SetKeyValue("StartDisabled", "0")
 	counter:SetKeyValue("startvalue", "0")
 	counter:SetKeyValue("min", "0")
-	counter:SetKeyValue("max", "9")
+	counter:SetKeyValue("max", "7")
 	counter:Fire("AddOutput","OnHitMax tube_glass1,Break,,0,-1",0)
 	counter.requiredPuzzles = 7
 	counter:Spawn()
