@@ -8,6 +8,7 @@ local br = false
 
 local function SpawnJeep(self)
 	local j = ents.Create("prop_vehicle_jeep_old")
+	j:SetName(self:GetName())
 	j:SetPos(self:GetPos())
 	j:SetAngles(self:GetAngles())
 	j:SetModel(self.jmodel)
@@ -21,6 +22,7 @@ end
 
 local function SpawnAirboat(self)
 	local j = ents.Create("prop_vehicle_airboat")
+	j:SetName(self:GetName())
 	j:SetPos(self:GetPos())
 	j:SetAngles(self:GetAngles())
 	j:SetModel(self.jmodel)

@@ -5,7 +5,7 @@ ENT.Base 		= "base_point"
 
 function ENT:AcceptInput(inputName, activator, called, data)
 	if (inputName == "Command") then
-		if (string.StartWith(data, "disconnect")) then
+		if (string.StartWith(data, "disconnect") || string.StartWith(data, "startupmenu")) then
 			local next = GAMEMODE:GetNextSeriesMap()
 			if (!next) then
 				RTV.Start()

@@ -30,19 +30,18 @@ function ENT:KeyValue(key, value)
 end
 
 function ENT:AcceptInput(inputName, activator, called, data)
-	if (self.disabled) then
-		return
-	end
-
 	inputName = string.lower(inputName)
 	if (inputName == "equipplayer") then
 		if (!activator:IsValid()) then
 			return
 		end
 		for k, v in pairs(self.keyvalues) do -- Loop through the items
-		if (string.StartWith(k, "ammo")) then
-			activator:GiveAmmo(100, AMMO_CONVERT[k])
-		else
+			k = string.lower(k)
+			if (string.StartWith(k, "ammo")) then
+				if (AMMO_CONVERT[k]) then
+					activator:GiveAmmo(100, AMMO_CONVERT[k])
+				end
+			else
 			for i = 1, v, 1 do -- Loop through the number of item to equip
 				local ent = activator:Give(k)
 					timer.Simple(0.1, function()

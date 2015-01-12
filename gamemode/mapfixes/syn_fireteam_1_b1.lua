@@ -19,11 +19,14 @@ end
 
 HOOKS["InitPostEntity"] = function()
 	ents.FindByName("Elevator_1_Toggle_Top")[1]:Remove()
+	ents.FindByName("Elevator_1_Toggle_Bottom")[1]:Remove()
+	ents.FindByName("Elevator_1")[1]:SetKeyValue("speed", "60")
 
 	for k,v in pairs(ents.FindByClass("prop_vehicle_jeep")) do
 		v:SetSolid(SOLID_NONE)
 		
 		local s = ents.Create("vehicle_spawner")
+		s:SetName(v:GetName())
 		s:SetPos(v:GetPos())
 		s:SetAngles(v:GetAngles())
 		s.jmodel = v:GetModel()

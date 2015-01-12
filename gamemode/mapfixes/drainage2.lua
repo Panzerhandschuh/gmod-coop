@@ -15,6 +15,7 @@ HOOKS["InitPostEntity"] = function()
 		v:SetSolid(SOLID_NONE)
 		
 		local s = ents.Create("vehicle_spawner")
+		s:SetName(v:GetName())
 		s:SetPos(v:GetPos())
 		s:SetAngles(v:GetAngles())
 		s.jmodel = v:GetModel()
