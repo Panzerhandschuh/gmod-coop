@@ -1,7 +1,7 @@
 HOOKS["InitPostEntity"] = function()
 	for k,v in pairs(ents.FindByClass("func_breakable")) do
-		if (v:GetPos() == Vector(-7089, 4209, -687)) then
-			v:SetHealth(2500)
+		if (v:GetPos() == Vector(-7089, 4209, -687) || v:GetPos() == Vector(-7082, 4200, -687)) then
+			v:SetHealth(2400)
 		end
 	end
 end

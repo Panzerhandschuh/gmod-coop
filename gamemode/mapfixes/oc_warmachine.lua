@@ -24,6 +24,9 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 end
 
 HOOKS["InitPostEntity"] = function()
+	ents.FindByName("s1")[1]:SetPos(-3680, -368, 64)
+	ents.FindByName("sn2")[1]:SetPos(-3680, 1105, 64)
+
 	local r1 = ents.Create("weapon_rpg")
 	r1:SetPos(Vector(-3453, 378, -91))
 	r1:SetAngles(Angle(0, 0, 0))
