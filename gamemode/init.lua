@@ -13,45 +13,19 @@ include("spectate.lua")
 include("sv_adverts.lua")
 include("rtv/sv_rtv.lua")
 
-resource.AddFile("models/items/ammocrate_buckshot.mdl")
-resource.AddFile("models/items/ammocrate_pistol.mdl")
-resource.AddFile("models/items/ammocrate_smg2.mdl")
-resource.AddFile("models/hunter.mdl")
-resource.AddFile("models/hunter_animations.mdl")
-resource.AddFile("models/weapons/hunter_flechette.mdl")
-resource.AddFile("models/zombie/zombie_soldier.mdl")
-resource.AddFile("models/zombie/zombie_soldier_animations.mdl")
-resource.AddFile("models/zombie/zombie_soldier_legs.mdl")
-resource.AddFile("models/zombie/zombie_soldier_torso.mdl")
-resource.AddFile("models/antlion_worker.mdl")
-resource.AddFile("models/magnusson_device.mdl")
-resource.AddFile("models/antlion_grub.mdl")
-resource.AddFile("models/antlion_grub_squashed.mdl")
-resource.AddFile("models/spitball_large.mdl")
-resource.AddFile("models/spitball_medium.mdl")
-resource.AddFile("models/spitball_small.mdl")
+local function AddContent(dir)
+	local f,d = file.Find("gamemodes/coop/content/"..dir.."*","MOD")
 
-resource.AddFile("materials/models/items/ammocrate_buckshot.vmt")
-resource.AddFile("materials/models/items/ammocrate_pistol.vmt")
-resource.AddFile("materials/models/items/ammocrate_smg2.vmt")
-resource.AddFile("materials/models/weapons/hunter_flechette.vmt")
-resource.AddFile("materials/models/zombie_classic/combinesoldiersheet_zombie.vmt")
-resource.AddFile("materials/models/zombie_classic/combinesoldiersheet_zombie_normal.vtf")
-resource.AddFile("materials/models/zombie_classic/combinesoldiersheet_zombie_phong.vtf")
+	for k,v in pairs(f) do
+		resource.AddSingleFile(dir..v)
+	end
 
-local function AddDir(dir)
-	for k,v in pairs(file.Find(dir.."/*", "GAME")) do
-		resource.AddSingleFile(dir.."/"..v)
+	for k,v in pairs(d) do
+		AddContent(dir..""..v.."/")
 	end
 end
 
-AddDir("sound/npc/ministrider")
-AddDir("sound/npc/zombine")
-AddDir("materials/models/ministrider")
-AddDir("materials/models/antlion")
-AddDir("materials/models/magnusson_device")
-AddDir("materials/models/antlion_grub")
-AddDir("materials/models/spitball")
+AddContent("")
 
 local ITEM_RESPAWN_TIME = 10
 
