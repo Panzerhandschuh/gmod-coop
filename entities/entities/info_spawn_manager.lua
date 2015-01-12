@@ -14,7 +14,7 @@ function ENT:AcceptInput(inputName, activator, called, data)
 	elseif(inputName == "SetCheckPoint") then
 		local t = ents.FindByName(data)[1]
 		if(t) then
-			GAMEMODE.currentspawn = t
+			timer.Simple(0.01,function() GAMEMODE.currentspawn = t end)
 		end
 	elseif(inputName == "TeleportPlayers") then
 		local t = ents.FindByName(data)[1]
