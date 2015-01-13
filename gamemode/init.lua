@@ -106,18 +106,15 @@ REPLACE_ENTS["weapon_uzi"] = "weapon_smg1"
 REPLACE_ENTS["weapon_gauss"] = "weapon_smg1"
 REPLACE_ENTS["weapon_deagle"] = "weapon_357"
 REPLACE_ENTS["weapon_medkit"] = "item_healthkit"
-REPLACE_ENTS["npc_gargantua"] = "npc_antlionguard"
-REPLACE_ENTS["npc_alien_grunt"] = "npc_combine_s"
-REPLACE_ENTS["npc_hassassin"] = "npc_combine_s"
-REPLACE_ENTS["npc_houndeye"] = "npc_headcrab"
-REPLACE_ENTS["npc_bullsquid"] = "npc_headcrab_fast"
+REPLACE_ENTS["npc_gargantua"] = "monster_gargantua"
+REPLACE_ENTS["npc_alien_grunt"] = "monster_alien_grunt"
+REPLACE_ENTS["npc_hassassin"] = "monster_human_assassin"
+REPLACE_ENTS["npc_houndeye"] = "monster_houndeye"
+REPLACE_ENTS["npc_bullsquid"] = "monster_bullchicken"
 REPLACE_ENTS["npc_hgrunt"] = "npc_combine_s"
 REPLACE_ENTS["npc_defender"] = "npc_hunter"
-REPLACE_ENTS["monster_alien_grunt"] = "npc_combine_s"
 REPLACE_ENTS["monster_alien_slave"] = "npc_vortigaunt"
 REPLACE_ENTS["monster_bigmomma"] = "npc_antlionguard"
-REPLACE_ENTS["monster_gargantua"] = "npc_antlionguard"
-REPLACE_ENTS["monster_human_assassin"] = "npc_combine_s"
 REPLACE_ENTS["item_box_sl8_rounds"] = "item_ammo_ar2_large"
 REPLACE_ENTS["item_box_sniper_rounds"] = "item_ammo_crossbow"
 REPLACE_ENTS["item_ammo_tau"] = "item_ammo_smg1_large"
@@ -641,16 +638,6 @@ function GM:OnEntityCreated( ent )
 						if(key != "classname" && string.sub(key,1,2) != "On") then
 							ne:SetKeyValue(key,value)
 						end
-					end
-				
-					if(class == "npc_hassassin") then
-						ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
-					elseif(class == "npc_alien_grunt") then
-						ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
-					elseif(class == "monster_alien_grunt") then
-						ne:SetKeyValue( "additionalequipment", "weapon_ar2" )
-					elseif(class == "monster_human_assassin") then
-						ne:SetKeyValue( "additionalequipment", "weapon_smg1" )
 					end
 				
 					ne:Spawn()

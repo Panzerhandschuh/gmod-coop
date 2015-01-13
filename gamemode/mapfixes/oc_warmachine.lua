@@ -11,11 +11,12 @@ end
 -- Adjust spawners to be less annoying
 HOOKS["EntityKeyValue"] = function(e,k,v)
 	if (e:GetClass() == "npc_template_maker") then
+		local count = tonumber(v)
 		if (k == "MaxNPCCount") then
-			if (v >= 40) then
-				return math.Round(v * 0.5)
-			elseif (v >= 20) then
-				return math.Round(v * 0.75)
+			if (count >= 40) then
+				return math.Round(count * 0.5)
+			elseif (count >= 20) then
+				return math.Round(count * 0.75)
 			else
 				return v
 			end
@@ -24,8 +25,8 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 end
 
 HOOKS["InitPostEntity"] = function()
-	ents.FindByName("s1")[1]:SetPos(-3680, -368, 64)
-	ents.FindByName("sn2")[1]:SetPos(-3680, 1105, 64)
+	ents.FindByName("s1")[1]:SetPos(Vector(-3680, -368, 64))
+	ents.FindByName("sn2")[1]:SetPos(Vector(-3680, 1105, 64))
 
 	local r1 = ents.Create("weapon_rpg")
 	r1:SetPos(Vector(-3453, 378, -91))
