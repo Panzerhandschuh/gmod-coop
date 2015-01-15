@@ -1,5 +1,19 @@
 HOOKS["InitPostEntity"] = function()
 	ents.FindByName("mpc_count")[1]:Fire("add", "2", 0)
+	
+	for k,v in pairs(ents.FindByClass("info_player_deathmatch")) do
+		if(v:GetPos() == Vector(32, -192, -447)) then
+			v:SetKeyValue("targetname", "cp1")
+			break
+		end
+	end
+	
+	for k,v in pairs(ents.FindByClass("trigger_once")) do
+		if(v:GetPos() == Vector(1296, 304, -592)) then
+			v:Fire("AddOutput","OnTrigger cp1,Disable,,0,-1"",0)
+			break
+		end
+	end
 end
 
 HOOKS["EntityKeyValue"] = function(e,k,v)
