@@ -236,14 +236,6 @@ hook.Add( "PlayerDisconnected", "Remove RTV", function( ply )
 		RTV.RemoveVote()
 	end
 
-	timer.Simple( 0.1, function()
-
-		if RTV.ShouldChange() then
-			RTV.Start()
-		end
-
-	end )
-
 end )
 
 function RTV.CanVote( ply )

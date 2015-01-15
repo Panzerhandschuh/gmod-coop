@@ -18,8 +18,6 @@ REPLACE_ENTS["npc_houndeye"] = "monster_houndeye"
 REPLACE_ENTS["npc_bullsquid"] = "monster_bullchicken"
 REPLACE_ENTS["npc_hgrunt"] = "npc_combine_s"
 REPLACE_ENTS["npc_defender"] = "npc_hunter"
-REPLACE_ENTS["monster_alien_slave"] = "npc_metropolice"
-REPLACE_ENTS["monster_bigmomma"] = "npc_antlionguard"
 
 for k,_ in pairs(REPLACE_ENTS) do
 	scripted_ents.Register({Type="ai", Base="base_ai"}, k)
