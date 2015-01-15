@@ -351,6 +351,9 @@ function GM:InitPostEntity()
 			end
 		end
 		ne:Spawn()
+		if(v.filter) then
+			ne:SetSaveValue("m_hFilter",ents.FindByName(v.filter)[1]) -- This really is blatent cheating lmao
+		end
 		v:Remove()
 	end
 	for k,v in pairs(ents.FindByClass("player_loadsaved")) do
