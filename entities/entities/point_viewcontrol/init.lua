@@ -226,7 +226,7 @@ function ENT:DoEnable()
 	for _,p in pairs(self.player) do
 		p:SetViewEntity(self)
 	
-		if(p:GetActiveWeapon()) then
+		if(p:GetActiveWeapon() && p:GetActiveWeapon():IsValid()) then
 			p:GetActiveWeapon():AddEffects(EF_NODRAW)
 		end
 		
@@ -268,7 +268,7 @@ function ENT:DoDisable()
 				p:RemoveFlags(FL_FROZEN)
 			end
 			
-			if(p:GetActiveWeapon()) then
+			if(p:GetActiveWeapon() && p:GetActiveWeapon():IsValid()) then
 				p:GetActiveWeapon():RemoveEffects(EF_NODRAW)
 			end
 		
