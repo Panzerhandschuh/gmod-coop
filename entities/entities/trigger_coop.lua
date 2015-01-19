@@ -52,7 +52,7 @@ end
 function ENT:UpdatePlayerCount(total)
 	if(self.percentage) then
 		local m = self.oplayers/100
-		self.players = math.ceil(total*m)
+		self.players = math.ceil(total*m) / 2
 		SetGlobalInt(self:EntIndex().."_RequiredPlayers",self.players)
 		
 		--[[if(self.playercount >= self.players) then
