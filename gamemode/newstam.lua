@@ -17,7 +17,7 @@ local STAM = {}
 function STAM.Move(ply,data)
 	if(!ply || !ply.GetAux) then return end
 	if(ply:Alive() && ply:GetMoveType() != MOVETYPE_NOCLIP) then
-		local sprinter = ply:OnGround() && data:KeyDown(IN_SPEED) && !ply:Crouching() && ply:GetMoveType() != MOVETYPE_LADDER && (data:GetForwardSpeed() != 0 || data:GetSideSpeed() != 0)
+		local sprinter = data:KeyDown(IN_SPEED) && !ply:Crouching() && ply:GetMoveType() != MOVETYPE_LADDER && (data:GetForwardSpeed() != 0 || data:GetSideSpeed() != 0)
 		local stam = ply:GetAux()
 		if(stam > 0) then
 			if(sprinter) then
@@ -36,7 +36,7 @@ function STAM.Move(ply,data)
 				end
 			end
 		end
-		if(!sprinter && ply:WaterLevel() != 3) then
+		if(!sprinter && ply:WaterLevel() != 3 && !data:KeyDown(IN_SPEED)) then
 			stam = math.min(stam+(23*FrameTime()),100)
 		end
 		ply:SetAux(stam)
@@ -97,10 +97,13 @@ elseif CLIENT then
 		alpha = Lerp(4*FrameTime(), alpha, target)
 	
 		local col = Color(255, 192, 0, alpha)
+		local col2 = Color(105, 42, 0, alpha)
 		
 		local curbar = math.ceil(s/12.5)
 		local d = s-((curbar-1)*12.5)
 		local cbaralpha = d/12.5 --fraction of 1
+		
+		local col3 = Color(col2.r+((col.r-col2.r)*cbaralpha),col2.g+((col.g-col2.g)*cbaralpha),col2.b+((col.b-col2.b)*cbaralpha),alpha)
 		
 		surface.SetDrawColor(col)
 		
@@ -108,11 +111,14 @@ elseif CLIENT then
 			if i < curbar then --these happen first so we dont reset color
 				surface.DrawRect(x+((i-1)*32),y,30,35)
 			elseif i == curbar then --we modify color alpha before we use it
-				col.a = cbaralpha*alpha
-				surface.SetDrawColor(col)
+				surface.SetDrawColor(col3)
 				
 				surface.DrawRect(x+((i-1)*32),y,30,35)
-			end --we don't even need to bother drawing bars with 0 alpha
+				
+				surface.SetDrawColor(col2)
+			elseif i > curbar then
+				surface.DrawRect(x+((i-1)*32),y,30,35)
+			end
 		end
 		
 		surface.SetDrawColor(Color(255,255,255,255))
