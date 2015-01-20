@@ -89,7 +89,7 @@ elseif CLIENT then
 		local x = 576
 		local y = ScrH() - 75
 		
-		local target = 255
+		local target = 160
 		if(s >= 100) then
 			target = 0
 		end
@@ -97,7 +97,7 @@ elseif CLIENT then
 		alpha = Lerp(4*FrameTime(), alpha, target)
 	
 		local col = Color(255, 192, 0, alpha)
-		local col2 = Color(105, 42, 0, alpha)
+		local col2 = Color(64, 48, 0, alpha)
 		
 		local curbar = math.ceil(s/12.5)
 		local d = s-((curbar-1)*12.5)
@@ -105,7 +105,11 @@ elseif CLIENT then
 		
 		local col3 = Color(col2.r+((col.r-col2.r)*cbaralpha),col2.g+((col.g-col2.g)*cbaralpha),col2.b+((col.b-col2.b)*cbaralpha),alpha)
 		
-		surface.SetDrawColor(col)
+		if(s == 0) then
+			surface.SetDrawColor(col2)
+		else
+			surface.SetDrawColor(col)
+		end
 		
 		for i=1,barnum do
 			if i < curbar then --these happen first so we dont reset color
