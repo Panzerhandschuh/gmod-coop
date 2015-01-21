@@ -26,6 +26,8 @@ HOOKS["InitPostEntity"] = function()
 		end
 	end)
 	
+	ents.FindByName("trig_m1_08")[0]:Fire("AddOutput", "OnStartTouch door_end_p1,Open,,40,-1",0)
+	
 	local wep1 = ents.Create("weapon_shotgun")
 	wep1:SetPos(Vector(512, -288, -943))
 	wep1:SetAngles(Angle(0, 0, 0))

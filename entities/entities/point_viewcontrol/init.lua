@@ -129,7 +129,7 @@ function ENT:DoEnable()
 			local view = p:GetViewEntity()
 			if(view && view != p && view.GetClass && view:GetClass() == "point_viewcontrol") then
 				if(view == self) then
-				print("OK WHICH MORON ENABLED THIS TWICE IN A ROW!")
+				print("OK WHICH MORON ENABLED THIS TWICE IN A ROW!") -- XDDD
 				continue
 			else
 				view:DoDisable()
@@ -148,9 +148,9 @@ function ENT:DoEnable()
 			p:SetCollisionGroup(COLLISION_GROUP_IN_VEHICLE)
 		end
 		
-		if(bit.band(self.spawnflags,4)>0) then
-			p:AddFlags(FL_FROZEN)
-		end
+		--if(bit.band(self.spawnflags,4)>0) then
+		--	p:AddFlags(FL_FROZEN) -- freeze player (disabled for now cus it breaks sometimes)
+		--end
 	end
 	
 	self.interpstart = nil
