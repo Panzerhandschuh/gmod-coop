@@ -33,7 +33,9 @@ function GM:PlayerSay(sender, text, teamChat)
 		else
 			StopSpectate(sender)
 		end
+		return ""
 	end
+	return text
 end
 
 concommand.Add("spectate", function(ply)

@@ -63,6 +63,10 @@ function RTV.RemoveVote()
 end
 
 function RTV.Start()
+	if(!RTV.rtved) then
+		TIMER:Finish()
+	end
+	RTV.rtved = true
 
 	local nom = {}
 	
@@ -118,6 +122,10 @@ function RTV.ChangeMap( map )
 
 		PrintMessage( HUD_PRINTTALK, "Changing the map to "..map.." now." )
 
+		if(!RTV.rtved) then
+			TIMER:Finish()
+		end
+		
 		timer.Simple( 5, function()
 
 			RunConsoleCommand( "changelevel", map )
@@ -224,6 +232,7 @@ function RTV.AddVote( ply )
 		PrintMessage( HUD_PRINTTALK, ply:Nick().." has voted to Rock the Vote. ("..RTV.TotalVotes.."/"..math.Round(#player.GetHumans()*0.6)..")" )
 
 		if RTV.ShouldChange() then
+			RTV.rtved = true
 			RTV.Start()
 		end
 	end

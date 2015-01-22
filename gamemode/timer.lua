@@ -38,13 +38,14 @@ else
 		chat.AddText(Color(255,255,255),'[',Color(21,40,132),'Coop',Color(255,255,255),'] The timer display has been '..entext..'!')
 	end
 	
+	local tw,th = surface.GetTextSize("00:00:00")
+	
 	local function TIMER_Draw()
 		if(!showtimer:GetBool()) then return end
 		local f = CurTime()
 		local start = tonumber(GetGlobalFloat("MapTimer_Start",CurTime()))
 		local rt = string.FormattedTime(f-start)
 		local tim = string.format("%02i:%02i:%02i",rt.h,rt.m,rt.s)
-		local tw,th = surface.GetTextSize(tim)
 		
 		surface.SetTextColor(255,192,0,160)
 		surface.SetTextPos(ScrW()/2-(tw/2),10)

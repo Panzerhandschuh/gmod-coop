@@ -2,16 +2,20 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("spectate.lua")
 AddCSLuaFile("newstam.lua")
-AddCSLuaFile("sv_adverts.lua")
 AddCSLuaFile("rtv/config.lua")
 AddCSLuaFile("rtv/cl_rtv.lua")
+AddCSLuaFile("timer.lua")
 
 include("sv_mapseries.lua")
 include("shared.lua")
-include("newstam.lua")
 include("spectate.lua")
 include("sv_adverts.lua")
 include("rtv/sv_rtv.lua")
+
+local isOC = false
+if(string.find(game.GetMap(),"oc_")) then
+	isOC = true
+end
 
 local function AddContent(dir)
 	local f,d = file.Find("gamemodes/coop/content/"..dir.."*","MOD")
@@ -231,6 +235,8 @@ function GM:PlayerInitialSpawn(ply)
 		end
 	end
 	
+	if(!TIMER.start) then TIMER:Start() end
+	
 	self.BaseClass:PlayerInitialSpawn(ply)
 end
 
@@ -391,8 +397,8 @@ function GM:InitPostEntity()
 					
 				ne:Spawn()
 				if(v.out) then
-					for _,o in pairs(v.out) do
-						ne:Fire("AddOutput","OnDeath "..o,0)
+					for key,out in pairs(v.out) do
+						ne:Fire("AddOutput",key.." "..out,0)
 					end
 				end
 				v:Remove()
@@ -637,7 +643,11 @@ function GM:OnEntityCreated( ent )
 						ne:SetAngles(ent:GetAngles())
 					end
 					
-					ne:SetName(ent:GetName())
+					if(game.GetMap() == "oc_zelda02_g") then
+						ne:SetName("replaced_npc")
+					else
+						ne:SetName(ent:GetName())
+					end
 					
 					for key,value in pairs(ent:GetKeyValues()) do
 						if(key != "classname" && string.sub(key,1,2) != "On") then
@@ -647,17 +657,26 @@ function GM:OnEntityCreated( ent )
 				
 					ne:Spawn()
 					
+					if(ent.chealth) then
+						ne:SetHealth(ent.chealth)
+					end
+					
 					if(ent.out) then
 						for k,v in pairs(ent.out) do
-							ne:Fire("AddOutput","OnDeath "..v,0)
+							PrintMessage( HUD_PRINTCONSOLE, "Added Output "..k.." "..v)
+							ne:Fire("AddOutput",k.." "..v,0)
 						end
 					end
+
 					ent:Remove()
 				end
 			end)
-		elseif(string.sub(class,1,4) == "npc_") then
+		elseif(string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_") then
 			timer.Simple(0.1,function()
 				if(ent:IsValid()) then
+					if(ent.chealth) then
+						ent:SetHealth(ent.chealth)
+					end
 					if(templatemap[ent:GetName()]) then
 						local sdg = templatemap[ent:GetName()].sdg
 						if (sdg) then
@@ -682,11 +701,15 @@ local randselect = {
 }
 
 function GM:EntityKeyValue(e,k,v)
-	if(k == "OnDeath") then
+	if(string.sub(k,1,2) == "On") then
 		if(REPLACE_ENTS[e:GetClass()] && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) == "monster_")) then
 			if(!e.out) then e.out = {} end
-			table.insert(e.out,v)
+			PrintMessage( HUD_PRINTCONSOLE, "Found Output "..k.." "..v)
+			e.out[k] = v
 		end
+	end
+	if(isOC && k == "health" && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) == "monster_")) then
+		e.chealth = tonumber(v)
 	end
 	if(e:GetClass() == "trigger_multiple_oc" || e:GetClass() == "trigger_once_oc") then
 		if(string.sub(k,1,2) == "On") then
