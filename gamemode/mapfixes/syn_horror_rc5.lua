@@ -9,8 +9,8 @@ HOOKS["InitPostEntity"] = function()
 	end
 	
 	for k,v in pairs(ents.FindByClass("trigger_once")) do
-		if(v:GetPos() == Vector(1296, 304, -592)) then
-			v:Fire("AddOutput","OnTrigger cp1,Disable,,0,-1"",0)
+		if (v:GetPos() == Vector(1296, 304, -592)) then
+			v:Fire("AddOutput","OnTrigger cp1,Disable,,0,-1",0)
 			break
 		end
 	end
