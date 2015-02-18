@@ -36,3 +36,21 @@ function DrawWaypointText()
 	end
 end
 hook.Add("PostDrawOpaqueRenderables", "DrawWaypointText", DrawWaypointText)
+
+local c = Vector(-23.270752, -70.312988, 83.736328)
+
+hook.Add("CalcView","SYN_V.CV",function (ply, origin, angles, fov, znear, zfar)
+	local v = ply:GetVehicle()
+	if(IsValid(v) && v:GetModel() == "models/vehicles/8seattruck.mdl") then
+		local ang = v:GetAngles()
+		local cor = c.x*ang:Forward()+c.y*ang:Right()+c.z*ang:Up()
+		local view = {}
+		view.origin 		= origin+cor
+		view.angles			= angles
+		view.fov 			= fov
+		view.znear			= znear
+		view.zfar			= zfar
+		view.drawviewer		= false
+		return GAMEMODE:CalcVehicleView( v, ply, view )
+	end
+end)

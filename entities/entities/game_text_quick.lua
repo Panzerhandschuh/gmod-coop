@@ -4,7 +4,7 @@ ENT.Type 		= "point"
 ENT.Base 		= "base_point"
 
 function ENT:Initialize()
-	timer.Simple(0.1,function()
+	timer.Simple(0.5,function()
 		self.text = ents.Create("game_text")
 		self.text:SetKeyValue("spawnflags",self.kv.spawnflags)
 		if(self.kv.message) then
@@ -24,6 +24,7 @@ function ENT:Initialize()
 		self.text:SetKeyValue("channel",self.kv.channel)
 		self.text:SetKeyValue("spawnflags","1")
 		self.text:Spawn()
+		PrintTable(self.text:GetSaveTable())
 	end)
 end
 

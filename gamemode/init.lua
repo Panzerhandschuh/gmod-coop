@@ -11,6 +11,7 @@ include("shared.lua")
 include("spectate.lua")
 include("sv_adverts.lua")
 include("rtv/sv_rtv.lua")
+include("sv_syntruck.lua")
 
 local isOC = false
 if(string.find(game.GetMap(),"oc_")) then

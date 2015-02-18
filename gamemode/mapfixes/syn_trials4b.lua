@@ -6,4 +6,20 @@ HOOKS["InitPostEntity"] = function()
 	coopTrigger:SetKeyValue("PlayerValue", "50")
 	coopTrigger = ents.FindByName("finale_coop")[1]
 	coopTrigger:SetKeyValue("PlayerValue", "50")
+	
+	for k,v in pairs(ents.FindByName("trial_f_move*")) do
+		if(v:GetPos().z == -176) then
+			v:SetPos(v:GetPos()-Vector(0,0,4))
+		else
+			v:SetPos(v:GetPos()+Vector(0,0,4))
+		end
+		v:SetSaveValue("MoveDistance",32)
+		v:SetKeyValue("movedistance",32)
+	end
+	
+	for k,v in pairs(ents.FindByClass("trigger_physics_trap")) do
+		if(v:GetPos().z == -144 && !IsValid(v:GetParent()) then
+			v:SetPos(v:GetPos()+Vector(0,0,4))
+		end
+	end
 end
