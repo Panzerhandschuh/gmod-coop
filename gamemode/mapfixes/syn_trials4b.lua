@@ -8,13 +8,11 @@ HOOKS["InitPostEntity"] = function()
 	coopTrigger:SetKeyValue("PlayerValue", "50")
 	
 	for k,v in pairs(ents.FindByName("trial_f_move*")) do
-		if(v:GetPos().z == -176) then
-			v:SetPos(v:GetPos()-Vector(0,0,4))
-		else
+		if(v:GetPos().z == -144) then
 			v:SetPos(v:GetPos()+Vector(0,0,4))
 		end
-		v:SetSaveValue("MoveDistance",32)
-		v:SetKeyValue("movedistance",32)
+		v:SetSaveValue("MoveDistance",28)
+		v:SetKeyValue("movedistance",28)
 	end
 	
 	for k,v in pairs(ents.FindByClass("trigger_physics_trap")) do
