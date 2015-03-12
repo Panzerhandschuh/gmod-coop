@@ -1,11 +1,11 @@
 local pl = FindMetaTable("Player")
 
 function pl:GetAux()
-	return self:GetDTFloat(47)
+	return self:GetDTFloat(28)
 end
 
 function pl:SetAux(num)
-	self:SetDTFloat(47,num)
+	self:SetDTFloat(28,num)
 end
 
 local restoreto = {}
