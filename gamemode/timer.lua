@@ -44,10 +44,9 @@ else
 		local start = tonumber(GetGlobalFloat("MapTimer_Start",CurTime()))
 		local rt = string.FormattedTime(f-start)
 		local tim = string.format("%02i:%02i:%02i",rt.h,rt.m,rt.s)
-		local tw,th = surface.GetTextSize("00:00:00")
 		
 		surface.SetTextColor(255,192,0,160)
-		surface.SetTextPos(ScrW()/2-(tw/2),10)
+		surface.SetTextPos(ScrW()/2-(96/2),10)
 		surface.SetFont("CloseCaption_Bold")
 	
 		surface.DrawText(tim)
