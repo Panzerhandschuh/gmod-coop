@@ -1,3 +1,12 @@
+-- Adjust weapon loadout
+HOOKS["PlayerSpawn"] = function(ply)
+	timer.Simple( 0.1, function()
+		ply:Give("weapon_357")
+		ply:Give("weapon_shotgun")
+		ply:Give("weapon_ar2")
+	end )
+end
+
 -- Fix npc not being registered as killed by a npc_maker
 HOOKS["EntityTakeDamage"] = function(target, dmg)
 	if (target:GetClass() == "npc_manhack") then
@@ -26,7 +35,7 @@ HOOKS["InitPostEntity"] = function()
 		end
 	end)
 	
-	ents.FindByName("trig_m1_08")[0]:Fire("AddOutput", "OnStartTouch door_end_p1,Open,,40,-1",0)
+	ents.FindByName("trig_m1_08")[1]:Fire("AddOutput", "OnStartTouch door_end_p1,Open,,40,-1",0)
 	
 	local wep1 = ents.Create("weapon_shotgun")
 	wep1:SetPos(Vector(512, -288, -943))
