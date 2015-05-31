@@ -344,7 +344,7 @@ function RTV.NominateMap( ply,cmd,map )
 	local u = ply:UniqueID()
 	if(!RTV.Nominated[u]) then
 		PrintMessage( HUD_PRINTTALK, ply:Nick().." has nominated "..map.."!")
-	else
+	elseif (RTV.Nominated[u] != map) then
 		PrintMessage( HUD_PRINTTALK, ply:Nick().." has changed his nomination from "..RTV.Nominated[u].." to "..map.."!")
 	end
 
