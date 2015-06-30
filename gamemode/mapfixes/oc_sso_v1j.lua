@@ -5,7 +5,7 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 end
 
 HOOKS["InitPostEntity"] = function()
-	local eq1 = ents.FindByClass("eq_spawnLv1")[1]
+	local eq1 = ents.FindByName("eq_spawnLv1")[1]
 	eq1:SetKeyValue("item_ammo_357_large", "1", 0)
 	eq1:SetKeyValue("item_ammo_crossbow", "10", 0)
 	eq1:SetKeyValue("item_box_buckshot", "4", 0)
