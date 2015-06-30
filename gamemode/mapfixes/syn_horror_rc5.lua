@@ -14,6 +14,14 @@ HOOKS["InitPostEntity"] = function()
 			break
 		end
 	end
+	
+	-- Fix a trigger that crashes the server when a prop_physics_respawnable touches it
+	for k,v in pairs(ents.FindByClass("trigger_hurt")) do
+		if (v:GetPos() == Vector(-5016, 232, -936)) then
+			v:SetKeyValue("spawnflags", "1")
+			break
+		end
+	end
 end
 
 HOOKS["EntityKeyValue"] = function(e,k,v)

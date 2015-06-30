@@ -1,8 +1,9 @@
 HOOKS["InitPostEntity"] = function()
-	ents.FindByName("b2")[1]:Remove()
-	ents.FindByName("b3zombie")[1]:Remove()
-	ents.FindByName("b3ittybuttontopit_2")[1]:Remove()
-	ents.FindByName("b3ittybuttontopit_3")[1]:Remove()
+	ents.FindByName("b2")[1]:SetKeyValue("wait", "30")
+	ents.FindByName("b3zombie")[1]:SetKeyValue("wait", "30")
+	ents.FindByName("button_pits_a")[1]:SetKeyValue("wait", "30")
+	ents.FindByName("b3ittybuttontopit_2")[1]:SetKeyValue("wait", "30")
+	ents.FindByName("b3ittybuttontopit_3")[1]:SetKeyValue("wait", "30")
 end
 
 HOOKS["EntityKeyValue"] = function(e,k,v)
