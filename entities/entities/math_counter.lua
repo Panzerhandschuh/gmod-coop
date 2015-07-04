@@ -35,10 +35,10 @@ function ENT:KeyValue( key, value )
 		self.m_flMax = tonumber(value)
 	elseif key == "StartDisabled" then
 		self.m_bDisabled = (tonumber(value) == 1)
+	elseif key != "origin" && key != "targetname" && key != "classname" then
+		self:StoreOutput( key, value )
 	end
-
-	self:StoreOutput( key, value )
-
+	
 end
 
 function ENT:AcceptInput( name, activator, caller, data )
@@ -54,12 +54,12 @@ function ENT:AcceptInput( name, activator, caller, data )
 	
 	local flData = tonumber(data)
 	
-	--[[Msg("MATH COUNTER INPUT:\n")
-	Msg("\tSelf: " .. tostring(self) .. "\n")
-	Msg("\tName: " .. tostring(name) .. "\n")
-	Msg("\tActivator: " .. tostring(activator) .. "\n")
-	Msg("\tCaller: " .. tostring(caller) .. "\n")
-	Msg("\tData: " .. tostring(data) .. "\n")]]
+	-- Msg("MATH COUNTER INPUT:\n")
+	-- Msg("\tSelf: " .. tostring(self) .. "\n")
+	-- Msg("\tName: " .. tostring(name) .. "\n")
+	-- Msg("\tActivator: " .. tostring(activator) .. "\n")
+	-- Msg("\tCaller: " .. tostring(caller) .. "\n")
+	-- Msg("\tData: " .. tostring(data) .. "\n")
 
 	if name == "add" then
 	
@@ -141,13 +141,13 @@ function ENT:AcceptInput( name, activator, caller, data )
 	
 	self.m_LastValue = self:GetOutValue()
 	
-	/*if !self.m_InitialValue || self.m_InitialValue < self:GetOutValue() then -- starting health
-		self.m_InitialValue = self:GetOutValue()
-		hook.Call("MathCounterUpdate", GAMEMODE, self, activator)
-	elseif self.m_LastValue < self:GetOutValue() then -- health was added
-		self.m_InitialValue = self:GetOutValue()
-		hook.Call("MathCounterUpdate", GAMEMODE, self, activator)
-	end*/
+	-- if !self.m_InitialValue || self.m_InitialValue < self:GetOutValue() then -- starting health
+		-- self.m_InitialValue = self:GetOutValue()
+		-- hook.Call("MathCounterUpdate", GAMEMODE, self, activator)
+	-- elseif self.m_LastValue < self:GetOutValue() then -- health was added
+		-- self.m_InitialValue = self:GetOutValue()
+		-- hook.Call("MathCounterUpdate", GAMEMODE, self, activator)
+	-- end
 
 	return true
 	
@@ -206,18 +206,18 @@ function ENT:UpdateTransmitState()
 	return TRANSMIT_NEVER
 end
 
-/*function ENT:StoreOutput(name, info)
-	local rawData = string.Explode(",",info);
+-- function ENT:StoreOutput(name, info)
+	-- local rawData = string.Explode(",",info);
 	
-	local Output = {}
-	Output.entities = rawData[1] or ""
-	Output.input = rawData[2] or ""
-	Output.param = rawData[3] or ""
-	Output.delay = tonumber(rawData[4]) or 0
-	Output.times = tonumber(rawData[5]) or -1
+	-- local Output = {}
+	-- Output.entities = rawData[1] or ""
+	-- Output.input = rawData[2] or ""
+	-- Output.param = rawData[3] or ""
+	-- Output.delay = tonumber(rawData[4]) or 0
+	-- Output.times = tonumber(rawData[5]) or -1
 	
-	self.Outputs = self.Outputs or {}
-	self.Outputs[name] = self.Outputs[name] or {}
+	-- self.Outputs = self.Outputs or {}
+	-- self.Outputs[name] = self.Outputs[name] or {}
 	
-	table.insert(self.Outputs[name], 1, Output);
-end*/
+	-- table.insert(self.Outputs[name], 1, Output);
+-- end

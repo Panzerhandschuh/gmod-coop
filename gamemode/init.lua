@@ -412,6 +412,9 @@ function GM:InitPostEntity()
 			v:Respawn() --hopefully refreshes point_template?
 		end
 	end
+	for k,v in pairs(ents.FindByClass("npc_turret_ceiling")) do
+		v:SetHealth(300)
+	end
 	for k,v in pairs(ents.FindByClass("weapon_*")) do
 		if(v:CreatedByMap()) then
 			v:Spawn()
