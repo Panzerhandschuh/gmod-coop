@@ -42,7 +42,7 @@ function ENT:KeyValue( key, value )
 end
 
 function ENT:AcceptInput( name, activator, caller, data )
-
+	-- Note: There may be a bug with setvaluenofire where data is always the current value of the counter instead of the value of the input string
 	if !self.m_OutValue then self.m_OutValue = 0 end
 	if !self.m_flMin then self.m_flMin = 0 end
 	if !self.m_flMax then self.m_flMax = 0 end

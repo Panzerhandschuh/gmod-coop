@@ -679,6 +679,8 @@ function GM:OnEntityCreated( ent )
 		elseif(string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_") then
 			timer.Simple(0.1,function()
 				if(ent:IsValid()) then
+					--ent:SetNPCState(NPC_STATE_ALERT)
+					--ent:SetMovementActivity(ACT_WALK)
 					if(ent.chealth) then
 						ent:SetHealth(ent.chealth)
 					end

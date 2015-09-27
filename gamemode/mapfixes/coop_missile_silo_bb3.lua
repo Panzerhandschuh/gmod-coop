@@ -8,8 +8,13 @@ HOOKS["InitPostEntity"] = function()
 		pos.z = pos.z - 16
 		v:SetPos(pos)
 	end
-	
-	for k,v in pairs(ents.FindByName("2knopftuercounte*")) do -- attempt to fix doors getting stuck by only requiring one button to be pressed
-		v:SetKeyValue("max", "1")
+end
+
+HOOKS["EntityKeyValue"] = function(e,k,v)
+	if (string.find(e:GetName(), "2knopftuercounte")) then
+		if (k == "OnHitMax") then
+			e:Fire("AddOutput","OutValue "..v, 0)
+			return "!activator,AddOutput,dummykey 0,0,-1"
+		end
 	end
 end
