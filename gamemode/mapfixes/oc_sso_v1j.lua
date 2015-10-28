@@ -9,4 +9,8 @@ HOOKS["InitPostEntity"] = function()
 	eq1:SetKeyValue("item_ammo_357_large", "1", 0)
 	eq1:SetKeyValue("item_ammo_crossbow", "10", 0)
 	eq1:SetKeyValue("item_box_buckshot", "4", 0)
+	
+	ents.FindByName("cnt_z01_003A")[1]:Fire("add", "2")
+	ents.FindByName("mak_z01_npc_014A")[1]:Fire("AddOutput","OnAllSpawnedDead cnt_z01_007A,Add,1,,-1",0)
+	ents.FindByName("mak_z01_npc_015A")[1]:Fire("AddOutput","OnAllSpawnedDead cnt_z01_007A,Add,1,,-1",0)
 end

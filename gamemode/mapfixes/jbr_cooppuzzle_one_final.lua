@@ -12,9 +12,9 @@ HOOKS["InitPostEntity"] = function()
 	counter:SetKeyValue("StartDisabled", "0")
 	counter:SetKeyValue("startvalue", "0")
 	counter:SetKeyValue("min", "0")
-	counter:SetKeyValue("max", "6")
+	counter:SetKeyValue("max", "5")
 	counter:Fire("AddOutput","OnHitMax Level1door,Kill,,0,-1",0)
-	counter.requiredPuzzles = 6
+	counter.requiredPuzzles = 5
 	counter:Spawn()
 end
 
