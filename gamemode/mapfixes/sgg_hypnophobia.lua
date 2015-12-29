@@ -5,8 +5,10 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 end
 
 HOOKS["InitPostEntity"] = function()
-	ents.FindByName("razor_beam_door")[1]:SetKeyValue("wait", "5")
+	local beamDoor = ents.FindByName("razor_beam_door")[1]
+	beamDoor:SetKeyValue("wait", "5")
+	beamDoor:SetKeyValue("spawnflags", "1280")
 	local elevator = ents.FindByName("elevator")[1]
-	elevator:Fire("AddOutput","OnNext elevator,StartBackward,,15,-1",0)
-	elevator:Fire("AddOutput","OnStart elevator,StartForward,,15,-1",0)
+	elevator:Fire("AddOutput","OnNext elevator,StartForward,,45,-1",0)
+	elevator:Fire("AddOutput","OnStart elevator,StartBackward,,45,-1",0)
 end

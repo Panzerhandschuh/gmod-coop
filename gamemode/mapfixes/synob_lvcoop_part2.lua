@@ -33,4 +33,6 @@ HOOKS["InitPostEntity"] = function()
 			v:Fire("AddOutput","OnStartTouch fcp2,SetAsCP,,0,-1",0)
 		end
 	end
+	
+	ents.FindByName("end_antlion_maker")[1]:SetPos(Vector(-11912, -7616, 664))
 end

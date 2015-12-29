@@ -224,6 +224,7 @@ function ENT:DoEnable()
 	end
 	
 	for _,p in pairs(self.player) do
+		if(!p:IsValid()) then continue end
 		p:SetViewEntity(self)
 	
 		if(p:GetActiveWeapon() && p:GetActiveWeapon():IsValid()) then
@@ -247,6 +248,10 @@ function ENT:DoEnable()
 	
 	self.movedistance = 0
 	self:DoMove()
+end
+
+function ENT:OnRemove()
+	self:DoDisable() -- This is necessary to prevent a glitch with removing camera entities
 end
 
 function ENT:DoDisable()

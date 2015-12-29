@@ -24,7 +24,6 @@ function ENT:Initialize()
 		self.text:SetKeyValue("channel",self.kv.channel)
 		self.text:SetKeyValue("spawnflags","1")
 		self.text:Spawn()
-		PrintTable(self.text:GetSaveTable())
 	end)
 end
 

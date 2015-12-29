@@ -17,4 +17,6 @@ HOOKS["InitPostEntity"] = function()
 	s.jscript = "scripts/vehicles/jeep_test.txt"
 	s.jeep = true
 	s:Spawn()
+	
+	ents.FindByName("Trigger_CL")[1]:Remove()
 end
