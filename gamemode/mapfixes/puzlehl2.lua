@@ -13,7 +13,8 @@ HOOKS["InitPostEntity"] = function()
 	
 	for k,v in pairs(ents.FindByClass("trigger_teleport")) do
 		if(v:GetPos() == Vector(-11853, 6754, -33)) then
-			v:Fire("AddOutput","OnStartTouch level7_completed_light,ShowSprite,,0,-1",0)
+			v:Fire("AddOutput","OnStartTouch level7_completed_light,ShowSprite,,0,-1", 0)
+			v:Fire("AddOutput","OnStartTouch levelCounter,Add,1,0,1", 0)
 		end
 	end
 	

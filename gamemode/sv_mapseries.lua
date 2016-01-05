@@ -26,6 +26,7 @@ function GM:LoadMapsConfig()
 	end
 end
 
+-- Only get the first maps from map groups
 function GM:GetRTVMaps()
 	local t = table.Copy(SingleMaps)
 	for k,v in pairs(MapGroups) do

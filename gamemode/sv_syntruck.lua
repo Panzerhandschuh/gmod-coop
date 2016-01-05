@@ -114,8 +114,8 @@
 	end)
 	
 	hook.Add("CanExitVehicle", "SYN_V.CANLEAVE", function(v,ply)
-		if(ply.NextUse > CurTime()) then return false end
 		if(v.synv) then
+			if(ply.NextUse > CurTime()) then return false end
 			ply.leavepos = nil
 			local et = {}
 			if(v.isfront) then

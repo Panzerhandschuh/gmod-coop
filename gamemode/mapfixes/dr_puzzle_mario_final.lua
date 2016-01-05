@@ -6,5 +6,5 @@ HOOKS["InitPostEntity"] = function()
 	end
 	
 	local box = ents.FindByName("puzzle4_box")[1]
-	box:SetHealth(120)
+	box:SetHealth(250)
 end

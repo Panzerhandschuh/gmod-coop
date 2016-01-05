@@ -27,7 +27,7 @@ for k,v in pairs(GM:GetAllMaps()) do
 	RTV.NominateList[#RTV.NominateList+1] = v
 end
 
-for k, v in RandomPairs(GM:GetRTVMaps()) do
+for k, v in RandomPairs(GM:GetAllMaps()) do
 	if v == game.GetMap() then continue end
 	if get > RTV.Limit then break end
 	RTV.Maps[#RTV.Maps+1] = v
