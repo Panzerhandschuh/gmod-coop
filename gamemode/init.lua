@@ -711,7 +711,7 @@ function GM:EntityKeyValue(e,k,v)
 	if(string.sub(k,1,2) == "On") then
 		if(REPLACE_ENTS[e:GetClass()] && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) == "monster_")) then
 			if(!e.out) then e.out = {} end
-			PrintMessage( HUD_PRINTCONSOLE, "Found Output "..k.." "..v)
+			--PrintMessage( HUD_PRINTCONSOLE, "Found Output "..k.." "..v)
 			e.out[k] = v
 		end
 	end
