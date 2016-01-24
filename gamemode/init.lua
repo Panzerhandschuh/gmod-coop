@@ -413,7 +413,7 @@ function GM:InitPostEntity()
 		end
 	end
 	for k,v in pairs(ents.FindByClass("npc_turret_ceiling")) do
-		v:SetHealth(300)
+		v:SetHealth(350)
 	end
 	for k,v in pairs(ents.FindByClass("weapon_*")) do
 		if(v:CreatedByMap()) then
@@ -668,7 +668,7 @@ function GM:OnEntityCreated( ent )
 					
 					if(ent.out) then
 						for k,v in pairs(ent.out) do
-							PrintMessage( HUD_PRINTCONSOLE, "Added Output "..k.." "..v)
+							--PrintMessage( HUD_PRINTCONSOLE, "Added Output "..k.." "..v)
 							ne:Fire("AddOutput",k.." "..v,0)
 						end
 					end
@@ -679,8 +679,6 @@ function GM:OnEntityCreated( ent )
 		elseif(string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_") then
 			timer.Simple(0.1,function()
 				if(ent:IsValid()) then
-					--ent:SetNPCState(NPC_STATE_ALERT)
-					--ent:SetMovementActivity(ACT_WALK)
 					if(ent.chealth) then
 						ent:SetHealth(ent.chealth)
 					end
