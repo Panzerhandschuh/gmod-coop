@@ -1,8 +1,9 @@
 ENT.Base = "base_brush"
 ENT.Type = "brush"
 
-function ENT:StartTouch(ent)
-	if(ent:IsPlayer() && ent:IsValid() && !self.disabled) then
+function ENT:Touch(ent)
+	if(ent:IsPlayer() && ent:IsValid() && !self.disabled && !self.ChangeLevel) then
+		self.ChangeLevel = true
 		ChangeLevel()
 	end
 end

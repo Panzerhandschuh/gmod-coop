@@ -21,6 +21,10 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 				return v
 			end
 		end
+	elseif (e:GetClass() == "npc_maker") then
+		if (k == "NPCType" && v == "npc_antlionworker") then
+			return "npc_antlion"
+		end
 	end
 end
 
