@@ -12,3 +12,8 @@ HOOKS["PlayerSpawn"] = function(ply)
 		ply:GiveAmmo(10, "xbowbolt", true)
 	end )
 end
+
+HOOKS["InitPostEntity"] = function()
+	ents.FindByName("as1count")[1]:SetKeyValue("max", "9")
+	ents.FindByName("as2count")[1]:SetKeyValue("max", "6")
+end

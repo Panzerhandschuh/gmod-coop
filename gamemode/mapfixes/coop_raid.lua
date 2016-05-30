@@ -1,4 +1,6 @@
 HOOKS["InitPostEntity"] = function()
+	ents.FindByName("music_button")[1]:Remove()
+
 	local ge = ents.Create("game_end")
 	ge:SetName("fakegameender")
 	ge:Spawn()
