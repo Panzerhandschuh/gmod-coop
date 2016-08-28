@@ -8,7 +8,9 @@ HOOKS["InitPostEntity"] = function()
 	local beamDoor = ents.FindByName("razor_beam_door")[1]
 	beamDoor:SetKeyValue("wait", "5")
 	beamDoor:SetKeyValue("spawnflags", "1280")
+	
 	local elevator = ents.FindByName("elevator")[1]
-	elevator:Fire("AddOutput","OnNext elevator,StartForward,,45,-1",0)
-	elevator:Fire("AddOutput","OnStart elevator,StartBackward,,45,-1",0)
+	elevator:SetKeyValue("startspeed", "250")
+	elevator:Fire("AddOutput","OnStart elevator,StartForward,,40,-1",0)
+	elevator:Fire("AddOutput","OnStart elevator,TeleportToPathTrack,elevator_track_1,20,-1",0)
 end

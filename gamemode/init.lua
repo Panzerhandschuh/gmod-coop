@@ -33,6 +33,7 @@ end
 AddContent("")
 
 local ITEM_RESPAWN_TIME = 10
+local WEAPON_RESPAWN_TIME = 6
 
 local MAX_AMMO = {}
 MAX_AMMO["pistol"] = 150
@@ -620,7 +621,7 @@ function TryDuplicateWeapon(wep, wepClass)
 		local pos = wep.oPos
 		local ang = wep.oAng
 		if(!timer.Exists("respawn_"..ei)) then
-			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(wep,wepClass,ei,pos,ang) end)
+			timer.Create("respawn_"..ei, WEAPON_RESPAWN_TIME, 1, function() RespawnEnt(wep,wepClass,ei,pos,ang) end)
 		end
 	end
 end
