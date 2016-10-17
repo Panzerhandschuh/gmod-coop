@@ -683,6 +683,19 @@ local randselect = {
 	"weapon_pistol"
 }
 
+local puzzleCount = 0
+
+function GM:AcceptInput(ent, input, activator, caller, value)
+	-- Puzzle manager
+	if (ent.requiredPuzzles && string.lower(input) == "add") then
+		puzzleCount = puzzleCount + 1
+		PrintMessage(HUD_PRINTTALK, "[Puzzle Manager] Completed " .. puzzleCount .. "/" .. ent.requiredPuzzles .. " required puzzles.")
+		if (puzzleCount == ent.requiredPuzzles) then
+			PrintMessage(HUD_PRINTTALK, "[Puzzle Manager] All required puzzles have been completed!")
+		end
+	end
+end
+
 function GM:EntityKeyValue(e,k,v)
 	if(string.sub(k,1,2) == "On") then
 		if(REPLACE_ENTS[e:GetClass()] && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) == "monster_")) then
