@@ -631,7 +631,6 @@ function GM:OnEntityCreated( ent )
 		if(REPLACE_ENTS[class] && (string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_")) then
 			timer.Simple(0.1,function()
 				if(ent:IsValid()) then
-					ent:SetNoDraw(true)
 					ent:SetSolid(SOLID_NONE)
 					local ne = ents.Create(REPLACE_ENTS[class])
 					ne:SetPos(ent:GetPos())
