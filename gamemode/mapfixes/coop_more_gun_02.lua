@@ -14,6 +14,16 @@ HOOKS["PlayerSpawn"] = function(ply)
 end
 
 HOOKS["InitPostEntity"] = function()
-	ents.FindByName("as1count")[1]:SetKeyValue("max", "9")
-	ents.FindByName("as2count")[1]:SetKeyValue("max", "6")
+	ents.FindByName("as1count")[1]:Remove()
+	ents.FindByName("as2count")[1]:Remove()
+	for k,v in pairs(ents.FindByClass("trigger_once")) do
+		if(v:GetPos() == Vector(1720, 0, 544)) then
+			v:Fire("AddOutput","OnStartTouch as1,ForceSpawn,,10,-1",0)
+			v:Fire("AddOutput","OnStartTouch as2,ForceSpawn,,10,-1",0)
+			v:Fire("AddOutput","OnStartTouch as1,ForceSpawn,,20,-1",0)
+			v:Fire("AddOutput","OnStartTouch as2,ForceSpawn,,20,-1",0)
+			v:Fire("AddOutput","OnStartTouch as1,ForceSpawn,,30,-1",0)
+			v:Fire("AddOutput","OnStartTouch as2,ForceSpawn,,30,-1",0)
+		end
+	end
 end

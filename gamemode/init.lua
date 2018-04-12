@@ -33,6 +33,7 @@ end
 AddContent("")
 
 local ITEM_RESPAWN_TIME = 10
+local WEAPON_RESPAWN_TIME = 6
 
 local MAX_AMMO = {}
 MAX_AMMO["pistol"] = 150
@@ -620,7 +621,7 @@ function TryDuplicateWeapon(wep, wepClass)
 		local pos = wep.oPos
 		local ang = wep.oAng
 		if(!timer.Exists("respawn_"..ei)) then
-			timer.Create("respawn_"..ei, ITEM_RESPAWN_TIME, 1, function() RespawnEnt(wep,wepClass,ei,pos,ang) end)
+			timer.Create("respawn_"..ei, WEAPON_RESPAWN_TIME, 1, function() RespawnEnt(wep,wepClass,ei,pos,ang) end)
 		end
 	end
 end
@@ -630,7 +631,6 @@ function GM:OnEntityCreated( ent )
 		if(REPLACE_ENTS[class] && (string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_")) then
 			timer.Simple(0.1,function()
 				if(ent:IsValid()) then
-					ent:SetNoDraw(true)
 					ent:SetSolid(SOLID_NONE)
 					local ne = ents.Create(REPLACE_ENTS[class])
 					ne:SetPos(ent:GetPos())
@@ -681,6 +681,19 @@ local randselect = {
 	"weapon_smg1",
 	"weapon_pistol"
 }
+
+local puzzleCount = 0
+
+function GM:AcceptInput(ent, input, activator, caller, value)
+	-- Puzzle manager
+	if (ent.requiredPuzzles && string.lower(input) == "add") then
+		puzzleCount = puzzleCount + 1
+		PrintMessage(HUD_PRINTTALK, "[Puzzle Manager] Completed " .. puzzleCount .. "/" .. ent.requiredPuzzles .. " required puzzles.")
+		if (puzzleCount == ent.requiredPuzzles) then
+			PrintMessage(HUD_PRINTTALK, "[Puzzle Manager] All required puzzles have been completed!")
+		end
+	end
+end
 
 function GM:EntityKeyValue(e,k,v)
 	if(string.sub(k,1,2) == "On") then

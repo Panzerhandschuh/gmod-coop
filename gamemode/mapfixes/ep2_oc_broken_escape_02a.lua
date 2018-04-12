@@ -13,6 +13,12 @@ end
 HOOKS["EntityKeyValue"] = function(e,k,v)
 	if (e:GetName() == "weaponbox_template" && k == "spawnflags") then
 		return "3"
+	--elseif (e:GetName() == "superstrider_template" || e:GetName() == "gunships_template") then -- Remove crash entities
+	--	e:Remove()
+	--elseif (e:GetName() == "sniper2" && k == "rendermode") then
+	--	return "0"
+	elseif (e:GetName() == "security_button_counter" && k == "OnHitMax" && string.match(v, "security_relay")) then
+		return "!activator,AddOutput,dummykey 0,0,-1"
 	end
 end
 
@@ -41,4 +47,32 @@ HOOKS["InitPostEntity"] = function()
 	r2.oPos = Vector(-95, -3364, -70)
 	r2.oAng = Angle(0, 0, 0)
 	r2:Spawn()
+	
+	-- Fix sniper crash
+	--ents.FindByName("sniper2_kill_relay")[1]:Remove()
+	--ents.FindByName("fakesniper2_model")[1]:Remove()
+	
+	-- Remove crash button (for some reason this button crashes even when it does nothing)
+	-- for k,v in pairs(ents.FindByClass("func_button")) do
+		-- if (v:GetPos() == Vector(-8003.5, 10216, 233.5)) then
+			-- v:Remove()
+		-- end
+	-- end
+	
+	-- Fix crash (decrease math_counter value)
+	--ents.FindByName("topside_defense_counter")[1]:SetKeyValue("max", "3")
+	--ents.FindByName("security_button_counter")[1]:Remove()
+	
+	-- Set end game trigger
+	-- local ge = ents.Create("game_end")
+	-- ge:SetName("fakegameender")
+	-- ge:Spawn()
+	-- for k,v in pairs(ents.FindByClass("func_button")) do
+		-- if (v:GetPos() == Vector(-8003.5, 10118, 233.5)) then
+			-- -- for x,y in pairs(storage) do
+				-- -- v:Fire("AddOutput", "OnPressed "..y, 0)
+			-- -- end
+			-- v:Fire("AddOutput", "OnPressed fakegameender,EndGame,,20,-1",0)
+		-- end
+	-- end
 end

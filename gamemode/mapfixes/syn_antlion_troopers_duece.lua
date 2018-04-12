@@ -73,10 +73,12 @@ HOOKS["InitPostEntity"] = function()
 	ents.FindByName("intro_commander")[1]:Fire("SetRelationship", "player D_LI 99", 0)
 	
 	ents.FindByName("insideWaves_servercommand")[1]:Remove()
-end
-
-HOOKS["OnEntityCreated"] = function(ent)
-	if (ent:GetClass() == "grenade_helicopter") then
-		ent:Remove()
+	
+	-- Remove crashing entities
+	for k,v in pairs(ents.FindByName("ntemp_heli_0*")) do
+		v:Remove()
 	end
+	
+	-- Add new game end trigger
+	ents.FindByName("finale_elevator_path3")[1]:Fire("AddOutput", "OnPass game_ender,EndGame,,24,1", 0)
 end

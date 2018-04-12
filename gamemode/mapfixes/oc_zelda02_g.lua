@@ -17,6 +17,26 @@ HOOKS["InitPostEntity"] = function()
 	
 	ents.FindByName("shutter04_close")[1]:Remove()
 	ents.FindByName("shutter4c_close")[1]:Remove()
+	
+	for k,v in pairs(ents.FindByName("door07")) do
+		v:Remove()
+	end
+	ents.FindByName("door07_hole")[1]:Remove()
+	ents.FindByName("door07_trigger")[1]:Remove()
+	
+	for k,v in pairs(ents.FindByName("door02")) do
+		v:Remove()
+	end
+	ents.FindByName("door02_hole")[1]:Remove()
+	ents.FindByName("door02_trigger")[1]:Remove()
+	
+	for k,v in pairs(ents.FindByName("door06")) do
+		v:Remove()
+	end
+	ents.FindByName("door06_hole")[1]:Remove()
+	ents.FindByName("door06_trigger")[1]:Remove()
+	
+	ents.FindByName("bossdoor_saku")[1]:Fire("Open")
 end
 
 HOOKS["OnEntityCreated"] = function(ent)
