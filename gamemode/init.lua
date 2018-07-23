@@ -203,6 +203,7 @@ local rebelmaps = {
 	"z_harrier2_f",
 	"coop_citadel_escape_p6",
 	"coop_citadel_escape_v2fix",
+	"coop_mushroomcaves_v1",
 	"mph_citadel_escape_z1_test",
 	"js_coop_powerworks_v2",
 	"js_coop_monsterkill_reload_b",
