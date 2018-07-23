@@ -644,7 +644,7 @@ function GM:OnEntityCreated( ent )
 					end
 					
 					for key,value in pairs(ent:GetKeyValues()) do
-						if(key != "classname" && string.sub(key,1,2) != "On") then
+						if(key != "classname" && string.sub(key,1,2) != "On" && type(value) == "string") then
 							ne:SetKeyValue(key,value)
 						end
 					end
