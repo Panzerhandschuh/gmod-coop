@@ -489,6 +489,13 @@ function GM:PlayerShouldTakeDamage(ply, attacker)
 	return true
 end
 
+function GM:ScalePlayerDamage(ply, hitgroup, dmginfo)
+	local attacker = dmginfo:GetAttacker()
+	if (attacker:GetClass() == "npc_monk") then
+		dmginfo:ScaleDamage(0.25)
+	end
+end
+
 function GM:Think()
 	-- Limit player ammmo
 	for _, ply in pairs(player.GetAll()) do
