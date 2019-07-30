@@ -115,7 +115,7 @@ REPLACE_ENTS["weapon_medkit"] = "item_healthkit"
 REPLACE_ENTS["npc_gargantua"] = "monster_gargantua"
 REPLACE_ENTS["npc_alien_grunt"] = "monster_alien_grunt"
 REPLACE_ENTS["npc_hassassin"] = "monster_human_assassin"
-REPLACE_ENTS["npc_houndeye"] = "npc_headcrab"
+REPLACE_ENTS["npc_houndeye"] = "monster_houndeye"
 REPLACE_ENTS["npc_bullsquid"] = "monster_bullchicken"
 REPLACE_ENTS["npc_hgrunt"] = "npc_combine_s"
 REPLACE_ENTS["npc_defender"] = "npc_hunter"
@@ -155,6 +155,11 @@ NPC_POINTS["npc_turret_ceiling"] = 5
 NPC_POINTS["npc_turret_floor"] = 2
 NPC_POINTS["npc_turret_ground"] = 2
 NPC_POINTS["npc_vortigaunt"] = 4
+NPC_POINTS["monster_gargantua"] = 10
+NPC_POINTS["monster_alien_grunt"] = 3
+NPC_POINTS["monster_human_assassin"] = 3
+NPC_POINTS["monster_houndeye"] = 1
+NPC_POINTS["monster_bullchicken"] = 2
 
 for k,_ in pairs(REPLACE_ENTS) do
 	if(string.sub(k,1,4) != "npc_" && string.sub(k,1,8) != "monster_" && k != "weapon_medkit") then
