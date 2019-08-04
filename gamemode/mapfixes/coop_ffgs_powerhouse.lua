@@ -106,8 +106,10 @@ HOOKS["InitPostEntity"] = function()
 
 	ents.FindByName("template_helicopter_maker")[1]:SetKeyValue("SpawnFrequency", "20")
 	ents.FindByName("template_helicopter_maker")[1]:SetKeyValue("MaxLiveChildren", "2")
+	ents.FindByName("template_helicopter_maker")[1]:SetKeyValue("MaxNPCCount", "2")
 	ents.FindByName("template_helicopter_maker_w4")[1]:SetKeyValue("SpawnFrequency", "15")
 	ents.FindByName("template_helicopter_maker_w4")[1]:SetKeyValue("MaxLiveChildren", "2")
+	ents.FindByName("template_helicopter_maker_w4")[1]:SetKeyValue("MaxNPCCount", "3")
 
 	ents.FindByName("template_gunner_maker")[1]:SetKeyValue("SpawnFrequency", "20")
 	ents.FindByName("template_gunner_maker")[1]:SetKeyValue("MaxLiveChildren", "2")
