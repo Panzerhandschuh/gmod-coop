@@ -49,6 +49,24 @@ MAX_AMMO["rpg_round"] = 3
 MAX_AMMO["grenade"] = 5
 MAX_AMMO["slam"] = 5
 
+local MAX_TF_WEAPON_AMMO = {}
+MAX_TF_WEAPON_AMMO["tf_weapon_flamethrower"] = 200
+MAX_TF_WEAPON_AMMO["tf_weapon_grenadelauncher"] = 16
+MAX_TF_WEAPON_AMMO["tf_weapon_minigun"] = 200
+MAX_TF_WEAPON_AMMO["tf_weapon_pipebomblauncher"] = 24
+MAX_TF_WEAPON_AMMO["tf_weapon_pistol"] = 200
+MAX_TF_WEAPON_AMMO["tf_weapon_pistol_scout"] = 36
+MAX_TF_WEAPON_AMMO["tf_weapon_revolver"] = 24
+MAX_TF_WEAPON_AMMO["tf_weapon_rocketlauncher"] = 20
+MAX_TF_WEAPON_AMMO["tf_weapon_scattergun"] = 32
+MAX_TF_WEAPON_AMMO["tf_weapon_shotgun_hwg"] = 32
+MAX_TF_WEAPON_AMMO["tf_weapon_shotgun_primary"] = 64
+MAX_TF_WEAPON_AMMO["tf_weapon_shotgun_pyro"] = 32
+MAX_TF_WEAPON_AMMO["tf_weapon_shotgun_soldier"] = 32
+MAX_TF_WEAPON_AMMO["tf_weapon_smg"] = 75
+MAX_TF_WEAPON_AMMO["tf_weapon_sniperrifle"] = 25
+MAX_TF_WEAPON_AMMO["tf_weapon_syringegun_medic"] = 150
+
 local ITEM_TO_AMMO = {}
 ITEM_TO_AMMO["item_ammo_357"] = "357"
 ITEM_TO_AMMO["item_ammo_357_large"] = "357"
@@ -74,6 +92,22 @@ WEP_TO_AMMO["weapon_shotgun"] = "buckshot"
 WEP_TO_AMMO["weapon_smg1"] = "smg1"
 WEP_TO_AMMO["weapon_frag"] = "grenade"
 WEP_TO_AMMO["weapon_slam"] = "slam"
+WEP_TO_AMMO["tf_weapon_flamethrower"] = "ar2"
+WEP_TO_AMMO["tf_weapon_grenadelauncher"] = "smg1_grenade"
+WEP_TO_AMMO["tf_weapon_minigun"] = "smg1"
+WEP_TO_AMMO["tf_weapon_pipebomblauncher"] = "grenade"
+WEP_TO_AMMO["tf_weapon_pistol"] = "pistol"
+WEP_TO_AMMO["tf_weapon_pistol_scout"] = "pistol"
+WEP_TO_AMMO["tf_weapon_revolver"] = "357"
+WEP_TO_AMMO["tf_weapon_rocketlauncher"] = "rpg_round"
+WEP_TO_AMMO["tf_weapon_scattergun"] = "buckshot"
+WEP_TO_AMMO["tf_weapon_shotgun_hwg"] = "buckshot"
+WEP_TO_AMMO["tf_weapon_shotgun_primary"] = "buckshot"
+WEP_TO_AMMO["tf_weapon_shotgun_pyro"] = "buckshot"
+WEP_TO_AMMO["tf_weapon_shotgun_soldier"] = "buckshot"
+WEP_TO_AMMO["tf_weapon_smg"] = "smg1"
+WEP_TO_AMMO["tf_weapon_sniperrifle"] = "xbowbolt"
+WEP_TO_AMMO["tf_weapon_syringegun_medic"] = "xbowbolt"
 
 local AMMONUM_TO_STRING = {}
 AMMONUM_TO_STRING[1] = "ar2"
@@ -528,11 +562,15 @@ function CheckMaxAmmo(ply, wep, ammoNum)
 	if (ammoNum == -1) then
 		return
 	end
+
+	if (string.match(wep:GetClass(), "tf_")) then
+		return
+	end
 	
 	local ammo = AMMONUM_TO_STRING[ammoNum]
 	local maxAmmo = MAX_AMMO[ammo]
 	local currentAmmo = ply:GetAmmoCount(ammo)
-	if currentAmmo >= maxAmmo then
+	if currentAmmo > maxAmmo then
 		ply:SetAmmo(maxAmmo, ammo)
 	end
 end
@@ -569,7 +607,7 @@ function GM:PlayerCanPickupItem(ply, item)
 	-- Limit max ammo
 	if (ITEM_TO_AMMO[itemClass] ~= nil) then -- Item exists in conversion table
 		local ammo = ITEM_TO_AMMO[itemClass]
-		local maxAmmo = MAX_AMMO[ammo]
+		local maxAmmo = GetMaxAmmo(ply, ammo)
 		local currentAmmo = ply:GetAmmoCount(ammo)
 		if currentAmmo >= maxAmmo then
 			return false
@@ -578,6 +616,44 @@ function GM:PlayerCanPickupItem(ply, item)
 		
 	TryDuplicateItem(item, itemClass)
 	return true
+end
+
+function GetMaxAmmo(ply, ammo)
+	if (ply:HasWeapon("tf_weapon_flamethrower") && ammo == "ar2") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_flamethrower"]
+	elseif (ply:HasWeapon("tf_weapon_grenadelauncher") && ammo == "smg1_grenade") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_grenadelauncher"]
+	elseif (ply:HasWeapon("tf_weapon_minigun") && ammo == "smg1") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_minigun"]
+	elseif (ply:HasWeapon("tf_weapon_pipebomblauncher") && ammo == "ar2altfire") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_pipebomblauncher"]
+	elseif (ply:HasWeapon("tf_weapon_pistol") && ammo == "pistol") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_pistol"]
+	elseif (ply:HasWeapon("tf_weapon_pistol_scout") && ammo == "pistol") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_pistol_scout"]
+	elseif (ply:HasWeapon("tf_weapon_revolver") && ammo == "357") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_revolver"]
+	elseif (ply:HasWeapon("tf_weapon_rocketlauncher") && ammo == "rpg_round") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_rocketlauncher"]
+	elseif (ply:HasWeapon("tf_weapon_scattergun") && ammo == "buckshot") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_scattergun"]
+	elseif (ply:HasWeapon("tf_weapon_shotgun_hwg") && ammo == "buckshot") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_shotgun_hwg"]
+	elseif (ply:HasWeapon("tf_weapon_shotgun_primary") && ammo == "buckshot") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_shotgun_primary"]
+	elseif (ply:HasWeapon("tf_weapon_shotgun_pyro") && ammo == "buckshot") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_shotgun_pyro"]
+	elseif (ply:HasWeapon("tf_weapon_shotgun_soldier") && ammo == "buckshot") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_shotgun_soldier"]
+	elseif (ply:HasWeapon("tf_weapon_smg") && ammo == "smg1") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_smg"]
+	elseif (ply:HasWeapon("tf_weapon_sniperrifle") && ammo == "xbowbolt") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_sniperrifle"]
+	elseif (ply:HasWeapon("tf_weapon_syringegun_medic") && ammo == "xbowbolt") then
+		return MAX_TF_WEAPON_AMMO["tf_weapon_syringegun_medic"]
+	end
+
+	return MAX_AMMO[ammo]
 end
 
 function TryDuplicateItem(item, itemClass)
@@ -599,6 +675,10 @@ end
 
 function GM:PlayerCanPickupWeapon(ply, wep)
 	local wepClass = wep:GetClass()
+	if (!IsWeaponAllowedForClass(ply, wepClass)) then
+		return false
+	end
+
 	local ammo = WEP_TO_AMMO[wepClass]
 	if !ammo then -- Weapon type does not have ammo (crowbar, grav gun, etc)
 		if ply:HasWeapon(wepClass) then -- Do not pickup the item if the player already has it
@@ -626,6 +706,30 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 	end
 	
 	TryDuplicateWeapon(wep, wepClass)
+	return true
+end
+
+function IsWeaponAllowedForClass(ply, wepClass)
+	if (ply:HasWeapon("tf_weapon_scattergun")) then -- Scout
+		return (wepClass != "weapon_shotgun" && wepClass != "weapon_pistol")
+	elseif (ply:HasWeapon("tf_weapon_rocketlauncher")) then -- Solider
+		return (wepClass != "weapon_rpg" && wepClass != "weapon_shotgun")
+	elseif (ply:HasWeapon("tf_weapon_flamethrower")) then -- Pyro
+		return (wepClass != "weapon_ar2" && wepClass != "weapon_shotgun")
+	elseif (ply:HasWeapon("tf_weapon_grenadelauncher")) then -- Demoman
+		return (wepClass != "weapon_smg1" && wepClass != "weapon_ar2")
+	elseif (ply:HasWeapon("tf_weapon_minigun")) then -- Heavy
+		return (wepClass != "weapon_smg1" && wepClass != "weapon_shotgun")
+	elseif (ply:HasWeapon("tf_weapon_shotgun_primary")) then -- Engineer
+		return (wepClass != "weapon_shotgun" && wepClass != "weapon_pistol")
+	elseif (ply:HasWeapon("tf_weapon_medigun")) then -- Medic
+		return (wepClass != "weapon_crossbow")
+	elseif (ply:HasWeapon("tf_weapon_sniperrifle")) then -- Sniper
+		return (wepClass != "weapon_crossbow" && wepClass != "weapon_smg1")
+	elseif (ply:HasWeapon("tf_weapon_revolver")) then -- Spy
+		return (wepClass != "weapon_357")
+	end
+
 	return true
 end
 
