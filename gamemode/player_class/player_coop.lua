@@ -25,18 +25,64 @@ function PLAYER:Loadout()
 	self.Player:RemoveAllAmmo()
 
 	self.Player:StripWeapons()
+
+	if (self.Player._Class == "terrorist") then
+		self.Player:Give("weapon_knife")
+		self.Player:Give("weapon_glock")
+		self.Player:Give("weapon_ak47")
+		self.Player:Give("weapon_hegrenade")
+	elseif (self.Player._Class == "counterterrorist") then
+		self.Player:Give("weapon_knife")
+		self.Player:Give("weapon_usp")
+		self.Player:Give("weapon_m4a1")
+		self.Player:Give("weapon_hegrenade")
+	elseif (self.Player._Class == "scout") then
+		self.Player:Give("tf_weapon_bat")
+		self.Player:Give("tf_weapon_pistol_scout")
+		self.Player:Give("tf_weapon_scattergun")
+	elseif (self.Player._Class == "soldier") then
+		self.Player:Give("tf_weapon_shovel")
+		self.Player:Give("tf_weapon_shotgun_soldier")
+		self.Player:Give("tf_weapon_rocketlauncher")
+	elseif (self.Player._Class == "pyro") then
+		self.Player:Give("tf_weapon_fireaxe")
+		self.Player:Give("tf_weapon_shotgun_pyro")
+		self.Player:Give("tf_weapon_flamethrower")
+	elseif (self.Player._Class == "demoman") then
+		self.Player:Give("tf_weapon_bottle")
+		self.Player:Give("tf_weapon_pipebomblauncher")
+		self.Player:Give("tf_weapon_grenadelauncher")
+	elseif (self.Player._Class == "heavy") then
+		self.Player:Give("tf_weapon_fists")
+		self.Player:Give("tf_weapon_shotgun_hwg")
+		self.Player:Give("tf_weapon_minigun")
+	elseif (self.Player._Class == "engineer") then
+		self.Player:Give("tf_weapon_wrench")
+		self.Player:Give("tf_weapon_pistol")
+		self.Player:Give("tf_weapon_shotgun_primary")
+	elseif (self.Player._Class == "medic") then
+		self.Player:Give("tf_weapon_bonesaw")
+		self.Player:Give("tf_weapon_syringegun_medic")
+		self.Player:Give("tf_weapon_medigun")
+	elseif (self.Player._Class == "sniper") then
+		self.Player:Give("tf_weapon_club")
+		self.Player:Give("tf_weapon_smg")
+		self.Player:Give("tf_weapon_sniperrifle")
+	elseif (self.Player._Class == "spy") then
+		self.Player:Give("tf_weapon_knife")
+		self.Player:Give("tf_weapon_revolver")
+	else
+		self.Player:Give("weapon_crowbar")
+		self.Player:Give("weapon_pistol")
+		self.Player:Give("weapon_smg1")
+		self.Player:Give("weapon_frag")
+
+		self.Player:GiveAmmo(150, "Pistol", true)
+		self.Player:GiveAmmo(45, "SMG1", true)
+		self.Player:GiveAmmo(1, "grenade", true)
+	end
 	
-	-- Start weapons
-	self.Player:Give("weapon_crowbar")
 	self.Player:Give("weapon_physcannon")
-	self.Player:Give("weapon_pistol")
-	self.Player:Give("weapon_smg1")
-	self.Player:Give("weapon_frag")
-	
-	-- Start ammo
-	self.Player:GiveAmmo(150, "Pistol", true)
-	self.Player:GiveAmmo(45, "SMG1", true)
-	self.Player:GiveAmmo(1, "grenade", true)
 
 	self.Player:SwitchToDefaultWeapon()
 
