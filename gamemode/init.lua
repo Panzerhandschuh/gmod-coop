@@ -34,7 +34,7 @@ end
 AddContent("")
 
 local ITEM_RESPAWN_TIME = 10
-local WEAPON_RESPAWN_TIME = 5
+local WEAPON_RESPAWN_TIME = 3
 
 local MAX_AMMO = {}
 
@@ -104,19 +104,19 @@ local CLASS_MAX_AMMO = {}
 CLASS_MAX_AMMO["terrorist"] = {}
 CLASS_MAX_AMMO["terrorist"]["pistol"] = 120 -- glock
 CLASS_MAX_AMMO["terrorist"]["357"] = 120 -- elite
-CLASS_MAX_AMMO["terrorist"]["smg1"] = 90 -- ak47
+CLASS_MAX_AMMO["terrorist"]["smg1"] = 120 -- ak47
 CLASS_MAX_AMMO["terrorist"]["ar2"] = 90 -- g3sg1
 CLASS_MAX_AMMO["terrorist"]["buckshot"] = 32 -- m3
 CLASS_MAX_AMMO["terrorist"]["xbowbolt"] = 30 -- awp
 CLASS_MAX_AMMO["terrorist"]["grenade"] = 1 -- he grenade
 
 CLASS_MAX_AMMO["counterterrorist"] = {}
-CLASS_MAX_AMMO["counterterrorist"]["pistol"] = 120 -- glock
-CLASS_MAX_AMMO["counterterrorist"]["357"] = 120 -- elite
-CLASS_MAX_AMMO["counterterrorist"]["smg1"] = 90 -- ak47
+CLASS_MAX_AMMO["counterterrorist"]["pistol"] = 120 -- usp
+CLASS_MAX_AMMO["counterterrorist"]["357"] = 120 -- deagle
+CLASS_MAX_AMMO["counterterrorist"]["smg1"] = 120 -- m4a1
 CLASS_MAX_AMMO["counterterrorist"]["ar2"] = 90 -- sg550
-CLASS_MAX_AMMO["counterterrorist"]["buckshot"] = 32 -- m3
-CLASS_MAX_AMMO["counterterrorist"]["xbowbolt"] = 30 -- awp
+CLASS_MAX_AMMO["counterterrorist"]["buckshot"] = 32 -- xm1014
+CLASS_MAX_AMMO["counterterrorist"]["xbowbolt"] = 30 -- scout
 CLASS_MAX_AMMO["counterterrorist"]["grenade"] = 1 -- he grenade
 
 CLASS_MAX_AMMO["scout"] = {}
