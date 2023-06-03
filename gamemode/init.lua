@@ -99,175 +99,256 @@ WEAPON_AMMO_COUNT["tf_weapon_smg"] = 25
 WEAPON_AMMO_COUNT["tf_weapon_sniperrifle"] = 5
 WEAPON_AMMO_COUNT["tf_weapon_syringegun_medic"] = 40
 
-local CLASS_MAX_AMMO = {}
+WEAPON_AMMO_COUNT["weapon_hl1_glock"] = 36
+WEAPON_AMMO_COUNT["weapon_hl1_357"] = 6
+WEAPON_AMMO_COUNT["weapon_hl1_mp5"] = 50
+WEAPON_AMMO_COUNT["weapon_hl1_egon"] = 25
+WEAPON_AMMO_COUNT["weapon_hl1_gauss"] = 25
+WEAPON_AMMO_COUNT["weapon_hl1_hornetgun"] = 4
+WEAPON_AMMO_COUNT["weapon_hl1_shotgun"] = 16
+WEAPON_AMMO_COUNT["weapon_hl1_crossbow"] = 5
+WEAPON_AMMO_COUNT["weapon_hl1_handgrenade"] = 1
+WEAPON_AMMO_COUNT["weapon_hl1_satchel"] = 1
+WEAPON_AMMO_COUNT["weapon_hl1_snark"] = 1
+WEAPON_AMMO_COUNT["weapon_hl1_rpg"] = 1
+WEAPON_AMMO_COUNT["weapon_hl1_tripmine"] = 1
 
-CLASS_MAX_AMMO["terrorist"] = {}
-CLASS_MAX_AMMO["terrorist"]["pistol"] = 120 -- glock
-CLASS_MAX_AMMO["terrorist"]["357"] = 120 -- elite
-CLASS_MAX_AMMO["terrorist"]["smg1"] = 120 -- ak47
-CLASS_MAX_AMMO["terrorist"]["ar2"] = 90 -- g3sg1
-CLASS_MAX_AMMO["terrorist"]["buckshot"] = 32 -- m3
-CLASS_MAX_AMMO["terrorist"]["xbowbolt"] = 30 -- awp
-CLASS_MAX_AMMO["terrorist"]["grenade"] = 1 -- he grenade
+local CLASS_CONFIG = {}
 
-CLASS_MAX_AMMO["counterterrorist"] = {}
-CLASS_MAX_AMMO["counterterrorist"]["pistol"] = 120 -- usp
-CLASS_MAX_AMMO["counterterrorist"]["357"] = 120 -- deagle
-CLASS_MAX_AMMO["counterterrorist"]["smg1"] = 120 -- m4a1
-CLASS_MAX_AMMO["counterterrorist"]["ar2"] = 90 -- sg550
-CLASS_MAX_AMMO["counterterrorist"]["buckshot"] = 32 -- xm1014
-CLASS_MAX_AMMO["counterterrorist"]["xbowbolt"] = 30 -- scout
-CLASS_MAX_AMMO["counterterrorist"]["grenade"] = 1 -- he grenade
+CLASS_CONFIG["terrorist"] = {}
+CLASS_CONFIG["terrorist"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["terrorist"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_knife"
+CLASS_CONFIG["terrorist"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_glock"
+CLASS_CONFIG["terrorist"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_elite"
+CLASS_CONFIG["terrorist"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_ak47"
+CLASS_CONFIG["terrorist"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_g3sg1"
+CLASS_CONFIG["terrorist"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_m3"
+CLASS_CONFIG["terrorist"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_awp"
+CLASS_CONFIG["terrorist"].REPLACEMENT_WEAPONS["weapon_frag"] = "weapon_hegrenade"
+CLASS_CONFIG["terrorist"].MAX_AMMO = {}
+CLASS_CONFIG["terrorist"].MAX_AMMO["pistol"] = 120 -- glock
+CLASS_CONFIG["terrorist"].MAX_AMMO["357"] = 120 -- elite
+CLASS_CONFIG["terrorist"].MAX_AMMO["smg1"] = 120 -- ak47
+CLASS_CONFIG["terrorist"].MAX_AMMO["ar2"] = 90 -- g3sg1
+CLASS_CONFIG["terrorist"].MAX_AMMO["buckshot"] = 32 -- m3
+CLASS_CONFIG["terrorist"].MAX_AMMO["xbowbolt"] = 30 -- awp
+CLASS_CONFIG["terrorist"].MAX_AMMO["grenade"] = 1 -- he grenade
 
-CLASS_MAX_AMMO["scout"] = {}
-CLASS_MAX_AMMO["scout"]["pistol"] = 100 -- pistol
-CLASS_MAX_AMMO["scout"]["smg1"] = 32 -- scattergun
+CLASS_CONFIG["counterterrorist"] = {}
+CLASS_CONFIG["counterterrorist"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["counterterrorist"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_knife"
+CLASS_CONFIG["counterterrorist"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_usp"
+CLASS_CONFIG["counterterrorist"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_deagle"
+CLASS_CONFIG["counterterrorist"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_m4a1"
+CLASS_CONFIG["counterterrorist"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_sg550"
+CLASS_CONFIG["counterterrorist"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_xm1014"
+CLASS_CONFIG["counterterrorist"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_scout"
+CLASS_CONFIG["counterterrorist"].REPLACEMENT_WEAPONS["weapon_frag"] = "weapon_hegrenade"
+CLASS_CONFIG["counterterrorist"].MAX_AMMO = {}
+CLASS_CONFIG["counterterrorist"].MAX_AMMO["pistol"] = 120 -- usp
+CLASS_CONFIG["counterterrorist"].MAX_AMMO["357"] = 120 -- deagle
+CLASS_CONFIG["counterterrorist"].MAX_AMMO["smg1"] = 120 -- m4a1
+CLASS_CONFIG["counterterrorist"].MAX_AMMO["ar2"] = 90 -- sg550
+CLASS_CONFIG["counterterrorist"].MAX_AMMO["buckshot"] = 32 -- xm1014
+CLASS_CONFIG["counterterrorist"].MAX_AMMO["xbowbolt"] = 30 -- scout
+CLASS_CONFIG["counterterrorist"].MAX_AMMO["grenade"] = 1 -- he grenade
 
-CLASS_MAX_AMMO["soldier"] = {}
-CLASS_MAX_AMMO["soldier"]["pistol"] = 32 -- shotgun
-CLASS_MAX_AMMO["soldier"]["smg1"] = 20 -- rocket launcher
+CLASS_CONFIG["scout"] = {}
+CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "tf_weapon_bat"
+CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_pistol_scout"
+CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_pistol_scout"
+CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_smg1"] = "tf_weapon_scattergun"
+CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_ar2"] = "tf_weapon_scattergun"
+CLASS_CONFIG["scout"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["scout"].REPLACEMENT_AMMO["357"] = "pistol"
+CLASS_CONFIG["scout"].REPLACEMENT_AMMO["ar2"] = "smg1"
+CLASS_CONFIG["scout"].MAX_AMMO = {}
+CLASS_CONFIG["scout"].MAX_AMMO["pistol"] = 100 -- pistol
+CLASS_CONFIG["scout"].MAX_AMMO["smg1"] = 32 -- scattergun
 
-CLASS_MAX_AMMO["pyro"] = {}
-CLASS_MAX_AMMO["pyro"]["pistol"] = 32 -- shotgun
-CLASS_MAX_AMMO["pyro"]["smg1"] = 200 -- flamethrower
+CLASS_CONFIG["soldier"] = {}
+CLASS_CONFIG["soldier"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["soldier"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "tf_weapon_shovel"
+CLASS_CONFIG["soldier"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_shotgun_soldier"
+CLASS_CONFIG["soldier"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_shotgun_soldier"
+CLASS_CONFIG["soldier"].REPLACEMENT_WEAPONS["weapon_smg1"] = "tf_weapon_rocketlauncher"
+CLASS_CONFIG["soldier"].REPLACEMENT_WEAPONS["weapon_ar2"] = "tf_weapon_rocketlauncher"
+CLASS_CONFIG["soldier"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["soldier"].REPLACEMENT_AMMO["357"] = "pistol"
+CLASS_CONFIG["soldier"].REPLACEMENT_AMMO["ar2"] = "smg1"
+CLASS_CONFIG["soldier"].MAX_AMMO = {}
+CLASS_CONFIG["soldier"].MAX_AMMO["pistol"] = 32 -- shotgun
+CLASS_CONFIG["soldier"].MAX_AMMO["smg1"] = 20 -- rocket launcher
 
-CLASS_MAX_AMMO["demoman"] = {}
-CLASS_MAX_AMMO["demoman"]["pistol"] = 16 -- sticky launcher
-CLASS_MAX_AMMO["demoman"]["smg1"] = 24 -- pipe launcher
+CLASS_CONFIG["pyro"] = {}
+CLASS_CONFIG["pyro"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["pyro"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "tf_weapon_fireaxe"
+CLASS_CONFIG["pyro"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_shotgun_pyro"
+CLASS_CONFIG["pyro"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_shotgun_pyro"
+CLASS_CONFIG["pyro"].REPLACEMENT_WEAPONS["weapon_smg1"] = "tf_weapon_flamethrower"
+CLASS_CONFIG["pyro"].REPLACEMENT_WEAPONS["weapon_ar2"] = "tf_weapon_flamethrower"
+CLASS_CONFIG["pyro"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["pyro"].REPLACEMENT_AMMO["357"] = "pistol"
+CLASS_CONFIG["pyro"].REPLACEMENT_AMMO["ar2"] = "smg1"
+CLASS_CONFIG["pyro"].MAX_AMMO = {}
+CLASS_CONFIG["pyro"].MAX_AMMO["pistol"] = 32 -- shotgun
+CLASS_CONFIG["pyro"].MAX_AMMO["smg1"] = 200 -- flamethrower
 
-CLASS_MAX_AMMO["heavy"] = {}
-CLASS_MAX_AMMO["heavy"]["pistol"] = 32 -- shotgun
-CLASS_MAX_AMMO["heavy"]["smg1"] = 200 -- minigun
+CLASS_CONFIG["demoman"] = {}
+CLASS_CONFIG["demoman"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["demoman"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "tf_weapon_bottle"
+CLASS_CONFIG["demoman"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_grenadelauncher"
+CLASS_CONFIG["demoman"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_grenadelauncher"
+CLASS_CONFIG["demoman"].REPLACEMENT_WEAPONS["weapon_smg1"] = "tf_weapon_pipebomblauncher"
+CLASS_CONFIG["demoman"].REPLACEMENT_WEAPONS["weapon_ar2"] = "tf_weapon_pipebomblauncher"
+CLASS_CONFIG["demoman"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["demoman"].REPLACEMENT_AMMO["357"] = "pistol"
+CLASS_CONFIG["demoman"].REPLACEMENT_AMMO["ar2"] = "smg1"
+CLASS_CONFIG["demoman"].MAX_AMMO = {}
+CLASS_CONFIG["demoman"].MAX_AMMO["pistol"] = 16 -- sticky launcher
+CLASS_CONFIG["demoman"].MAX_AMMO["smg1"] = 24 -- pipe launcher
 
-CLASS_MAX_AMMO["engineer"] = {}
-CLASS_MAX_AMMO["engineer"]["pistol"] = 200 -- pistol
-CLASS_MAX_AMMO["engineer"]["smg1"] = 64 -- shotgun
+CLASS_CONFIG["heavy"] = {}
+CLASS_CONFIG["heavy"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["heavy"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "tf_weapon_fists"
+CLASS_CONFIG["heavy"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_shotgun_hwg"
+CLASS_CONFIG["heavy"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_shotgun_hwg"
+CLASS_CONFIG["heavy"].REPLACEMENT_WEAPONS["weapon_smg1"] = "tf_weapon_minigun"
+CLASS_CONFIG["heavy"].REPLACEMENT_WEAPONS["weapon_ar2"] = "tf_weapon_minigun"
+CLASS_CONFIG["heavy"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["heavy"].REPLACEMENT_AMMO["357"] = "pistol"
+CLASS_CONFIG["heavy"].REPLACEMENT_AMMO["ar2"] = "smg1"
+CLASS_CONFIG["heavy"].MAX_AMMO = {}
+CLASS_CONFIG["heavy"].MAX_AMMO["pistol"] = 32 -- shotgun
+CLASS_CONFIG["heavy"].MAX_AMMO["smg1"] = 200 -- minigun
 
-CLASS_MAX_AMMO["medic"] = {}
-CLASS_MAX_AMMO["medic"]["smg1"] = 150 -- syringe gun
+CLASS_CONFIG["engineer"] = {}
+CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "tf_weapon_wrench"
+CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_pistol"
+CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_pistol"
+CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_smg1"] = "tf_weapon_shotgun_primary"
+CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_ar2"] = "tf_weapon_shotgun_primary"
+CLASS_CONFIG["engineer"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["engineer"].REPLACEMENT_AMMO["357"] = "pistol"
+CLASS_CONFIG["engineer"].REPLACEMENT_AMMO["ar2"] = "smg1"
+CLASS_CONFIG["engineer"].MAX_AMMO = {}
+CLASS_CONFIG["engineer"].MAX_AMMO["pistol"] = 200 -- pistol
+CLASS_CONFIG["engineer"].MAX_AMMO["smg1"] = 64 -- shotgun
 
-CLASS_MAX_AMMO["sniper"] = {}
-CLASS_MAX_AMMO["sniper"]["pistol"] = 75 -- smg
-CLASS_MAX_AMMO["sniper"]["smg1"] = 25 -- sniper rifle
+CLASS_CONFIG["medic"] = {}
+CLASS_CONFIG["medic"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["medic"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "tf_weapon_bonesaw"
+CLASS_CONFIG["medic"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_medigun"
+CLASS_CONFIG["medic"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_medigun"
+CLASS_CONFIG["medic"].REPLACEMENT_WEAPONS["weapon_smg1"] = "tf_weapon_syringegun_medic"
+CLASS_CONFIG["medic"].REPLACEMENT_WEAPONS["weapon_ar2"] = "tf_weapon_syringegun_medic"
+CLASS_CONFIG["medic"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["medic"].REPLACEMENT_AMMO["ar2"] = "smg1"
+CLASS_CONFIG["medic"].MAX_AMMO = {}
+CLASS_CONFIG["medic"].MAX_AMMO["smg1"] = 150 -- syringe gun
 
-CLASS_MAX_AMMO["spy"] = {}
-CLASS_MAX_AMMO["spy"]["pistol"] = 36 -- revolver
+CLASS_CONFIG["sniper"] = {}
+CLASS_CONFIG["sniper"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["sniper"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "tf_weapon_club"
+CLASS_CONFIG["sniper"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_smg"
+CLASS_CONFIG["sniper"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_smg"
+CLASS_CONFIG["sniper"].REPLACEMENT_WEAPONS["weapon_smg1"] = "tf_weapon_sniperrifle"
+CLASS_CONFIG["sniper"].REPLACEMENT_WEAPONS["weapon_ar2"] = "tf_weapon_sniperrifle"
+CLASS_CONFIG["sniper"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["sniper"].REPLACEMENT_AMMO["357"] = "pistol"
+CLASS_CONFIG["sniper"].REPLACEMENT_AMMO["ar2"] = "smg1"
+CLASS_CONFIG["sniper"].MAX_AMMO = {}
+CLASS_CONFIG["sniper"].MAX_AMMO["pistol"] = 75 -- smg
+CLASS_CONFIG["sniper"].MAX_AMMO["smg1"] = 25 -- sniper rifle
 
-local CLASS_AMMO_REPLACEMENT = {}
+CLASS_CONFIG["spy"] = {}
+CLASS_CONFIG["spy"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["spy"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "tf_weapon_knife"
+CLASS_CONFIG["spy"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_revolver"
+CLASS_CONFIG["spy"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_revolver"
+CLASS_CONFIG["spy"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["spy"].REPLACEMENT_AMMO["357"] = "pistol"
+CLASS_CONFIG["spy"].MAX_AMMO = {}
+CLASS_CONFIG["spy"].MAX_AMMO["pistol"] = 36 -- revolver
 
-CLASS_AMMO_REPLACEMENT["scout"] = {}
-CLASS_AMMO_REPLACEMENT["scout"]["357"] = "pistol"
-CLASS_AMMO_REPLACEMENT["scout"]["ar2"] = "smg1"
-CLASS_AMMO_REPLACEMENT["soldier"] = {}
-CLASS_AMMO_REPLACEMENT["soldier"]["357"] = "pistol"
-CLASS_AMMO_REPLACEMENT["soldier"]["ar2"] = "smg1"
-CLASS_AMMO_REPLACEMENT["pyro"] = {}
-CLASS_AMMO_REPLACEMENT["pyro"]["357"] = "pistol"
-CLASS_AMMO_REPLACEMENT["pyro"]["ar2"] = "smg1"
-CLASS_AMMO_REPLACEMENT["demoman"] = {}
-CLASS_AMMO_REPLACEMENT["demoman"]["357"] = "pistol"
-CLASS_AMMO_REPLACEMENT["demoman"]["ar2"] = "smg1"
-CLASS_AMMO_REPLACEMENT["heavy"] = {}
-CLASS_AMMO_REPLACEMENT["heavy"]["357"] = "pistol"
-CLASS_AMMO_REPLACEMENT["heavy"]["ar2"] = "smg1"
-CLASS_AMMO_REPLACEMENT["engineer"] = {}
-CLASS_AMMO_REPLACEMENT["engineer"]["357"] = "pistol"
-CLASS_AMMO_REPLACEMENT["engineer"]["ar2"] = "smg1"
-CLASS_AMMO_REPLACEMENT["medic"] = {}
-CLASS_AMMO_REPLACEMENT["medic"]["ar2"] = "smg1"
-CLASS_AMMO_REPLACEMENT["sniper"] = {}
-CLASS_AMMO_REPLACEMENT["sniper"]["357"] = "pistol"
-CLASS_AMMO_REPLACEMENT["sniper"]["ar2"] = "smg1"
-CLASS_AMMO_REPLACEMENT["spy"] = {}
-CLASS_AMMO_REPLACEMENT["spy"]["357"] = "pistol"
+CLASS_CONFIG["hl1_gordon"] = {}
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_hl1_crowbar"
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_hl1_glock"
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_hl1_357"
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_hl1_mp5"
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_hl1_gauss"
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_hl1_shotgun"
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_hl1_crossbow"
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS["weapon_rpg"] = "weapon_hl1_rpg"
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS["weapon_frag"] = "weapon_hl1_handgrenade"
+CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS["weapon_slam"] = "weapon_hl1_tripmine"
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO = {}
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["pistol"] = 250 -- glock
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["357"] = 36 -- 357
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["smg1"] = 250 -- mp5
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["smg1_grenade"] = 5 -- mp5
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["ar2"] = 100 -- gauss
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["buckshot"] = 125 -- shotgun
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["xbowbolt"] = 50 -- crossbow
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["rpg_round"] = 5 -- hand grenade
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["grenade"] = 10 -- hand grenade
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["slam"] = 5 -- tripmine
 
-local REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["hl1_scientist"] = {}
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_hl1_crowbar"
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_hl1_glock"
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_hl1_357"
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_hl1_mp5"
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_hl1_egon"
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_hl1_shotgun"
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_hl1_crossbow"
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS["weapon_rpg"] = "weapon_hl1_rpg"
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS["weapon_frag"] = "weapon_hl1_snark"
+CLASS_CONFIG["hl1_scientist"].REPLACEMENT_WEAPONS["weapon_slam"] = "weapon_hl1_tripmine"
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO = {}
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["pistol"] = 250 -- glock
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["357"] = 36 -- 357
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["smg1"] = 250 -- mp5
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["smg1_grenade"] = 5 -- mp5
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["ar2"] = 100 -- egon
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["buckshot"] = 125 -- shotgun
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["xbowbolt"] = 50 -- crossbow
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["rpg_round"] = 5 -- rpg
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["grenade"] = 5 -- snark
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["slam"] = 5 -- tripmine
 
-REPLACEMENT_WEAPONS["terrorist"] = {}
-REPLACEMENT_WEAPONS["terrorist"]["weapon_crowbar"] = "weapon_knife"
-REPLACEMENT_WEAPONS["terrorist"]["weapon_pistol"] = "weapon_glock"
-REPLACEMENT_WEAPONS["terrorist"]["weapon_357"] = "weapon_elite"
-REPLACEMENT_WEAPONS["terrorist"]["weapon_smg1"] = "weapon_ak47"
-REPLACEMENT_WEAPONS["terrorist"]["weapon_ar2"] = "weapon_g3sg1"
-REPLACEMENT_WEAPONS["terrorist"]["weapon_shotgun"] = "weapon_m3"
-REPLACEMENT_WEAPONS["terrorist"]["weapon_crossbow"] = "weapon_awp"
-REPLACEMENT_WEAPONS["terrorist"]["weapon_frag"] = "weapon_hegrenade"
-
-REPLACEMENT_WEAPONS["counterterrorist"] = {}
-REPLACEMENT_WEAPONS["counterterrorist"]["weapon_crowbar"] = "weapon_knife"
-REPLACEMENT_WEAPONS["counterterrorist"]["weapon_pistol"] = "weapon_usp"
-REPLACEMENT_WEAPONS["counterterrorist"]["weapon_357"] = "weapon_deagle"
-REPLACEMENT_WEAPONS["counterterrorist"]["weapon_smg1"] = "weapon_m4a1"
-REPLACEMENT_WEAPONS["counterterrorist"]["weapon_ar2"] = "weapon_sg550"
-REPLACEMENT_WEAPONS["counterterrorist"]["weapon_shotgun"] = "weapon_xm1014"
-REPLACEMENT_WEAPONS["counterterrorist"]["weapon_crossbow"] = "weapon_scout"
-REPLACEMENT_WEAPONS["counterterrorist"]["weapon_frag"] = "weapon_hegrenade"
-
-REPLACEMENT_WEAPONS["scout"] = {}
-REPLACEMENT_WEAPONS["scout"]["weapon_crowbar"] = "tf_weapon_bat"
-REPLACEMENT_WEAPONS["scout"]["weapon_pistol"] = "tf_weapon_pistol_scout"
-REPLACEMENT_WEAPONS["scout"]["weapon_357"] = "tf_weapon_pistol_scout"
-REPLACEMENT_WEAPONS["scout"]["weapon_smg1"] = "tf_weapon_scattergun"
-REPLACEMENT_WEAPONS["scout"]["weapon_ar2"] = "tf_weapon_scattergun"
-
-REPLACEMENT_WEAPONS["soldier"] = {}
-REPLACEMENT_WEAPONS["soldier"]["weapon_crowbar"] = "tf_weapon_shovel"
-REPLACEMENT_WEAPONS["soldier"]["weapon_pistol"] = "tf_weapon_shotgun_soldier"
-REPLACEMENT_WEAPONS["soldier"]["weapon_357"] = "tf_weapon_shotgun_soldier"
-REPLACEMENT_WEAPONS["soldier"]["weapon_smg1"] = "tf_weapon_rocketlauncher"
-REPLACEMENT_WEAPONS["soldier"]["weapon_ar2"] = "tf_weapon_rocketlauncher"
-
-REPLACEMENT_WEAPONS["pyro"] = {}
-REPLACEMENT_WEAPONS["pyro"]["weapon_crowbar"] = "tf_weapon_fireaxe"
-REPLACEMENT_WEAPONS["pyro"]["weapon_pistol"] = "tf_weapon_shotgun_pyro"
-REPLACEMENT_WEAPONS["pyro"]["weapon_357"] = "tf_weapon_shotgun_pyro"
-REPLACEMENT_WEAPONS["pyro"]["weapon_smg1"] = "tf_weapon_flamethrower"
-REPLACEMENT_WEAPONS["pyro"]["weapon_ar2"] = "tf_weapon_flamethrower"
-
-REPLACEMENT_WEAPONS["demoman"] = {}
-REPLACEMENT_WEAPONS["demoman"]["weapon_crowbar"] = "tf_weapon_bottle"
-REPLACEMENT_WEAPONS["demoman"]["weapon_pistol"] = "tf_weapon_grenadelauncher"
-REPLACEMENT_WEAPONS["demoman"]["weapon_357"] = "tf_weapon_grenadelauncher"
-REPLACEMENT_WEAPONS["demoman"]["weapon_smg1"] = "tf_weapon_pipebomblauncher"
-REPLACEMENT_WEAPONS["demoman"]["weapon_ar2"] = "tf_weapon_pipebomblauncher"
-
-REPLACEMENT_WEAPONS["heavy"] = {}
-REPLACEMENT_WEAPONS["heavy"]["weapon_crowbar"] = "tf_weapon_fists"
-REPLACEMENT_WEAPONS["heavy"]["weapon_pistol"] = "tf_weapon_shotgun_hwg"
-REPLACEMENT_WEAPONS["heavy"]["weapon_357"] = "tf_weapon_shotgun_hwg"
-REPLACEMENT_WEAPONS["heavy"]["weapon_smg1"] = "tf_weapon_minigun"
-REPLACEMENT_WEAPONS["heavy"]["weapon_ar2"] = "tf_weapon_minigun"
-
-REPLACEMENT_WEAPONS["engineer"] = {}
-REPLACEMENT_WEAPONS["engineer"]["weapon_crowbar"] = "tf_weapon_wrench"
-REPLACEMENT_WEAPONS["engineer"]["weapon_pistol"] = "tf_weapon_pistol"
-REPLACEMENT_WEAPONS["engineer"]["weapon_357"] = "tf_weapon_pistol"
-REPLACEMENT_WEAPONS["engineer"]["weapon_smg1"] = "tf_weapon_shotgun_primary"
-REPLACEMENT_WEAPONS["engineer"]["weapon_ar2"] = "tf_weapon_shotgun_primary"
-
-REPLACEMENT_WEAPONS["medic"] = {}
-REPLACEMENT_WEAPONS["medic"]["weapon_crowbar"] = "tf_weapon_bonesaw"
-REPLACEMENT_WEAPONS["medic"]["weapon_pistol"] = "tf_weapon_medigun"
-REPLACEMENT_WEAPONS["medic"]["weapon_357"] = "tf_weapon_medigun"
-REPLACEMENT_WEAPONS["medic"]["weapon_smg1"] = "tf_weapon_syringegun_medic"
-REPLACEMENT_WEAPONS["medic"]["weapon_ar2"] = "tf_weapon_syringegun_medic"
-
-REPLACEMENT_WEAPONS["sniper"] = {}
-REPLACEMENT_WEAPONS["sniper"]["weapon_crowbar"] = "tf_weapon_club"
-REPLACEMENT_WEAPONS["sniper"]["weapon_pistol"] = "tf_weapon_smg"
-REPLACEMENT_WEAPONS["sniper"]["weapon_357"] = "tf_weapon_smg"
-REPLACEMENT_WEAPONS["sniper"]["weapon_smg1"] = "tf_weapon_sniperrifle"
-REPLACEMENT_WEAPONS["sniper"]["weapon_ar2"] = "tf_weapon_sniperrifle"
-
-REPLACEMENT_WEAPONS["spy"] = {}
-REPLACEMENT_WEAPONS["spy"]["weapon_crowbar"] = "tf_weapon_knife"
-REPLACEMENT_WEAPONS["spy"]["weapon_pistol"] = "tf_weapon_revolver"
-REPLACEMENT_WEAPONS["spy"]["weapon_357"] = "tf_weapon_revolver"
+CLASS_CONFIG["hl1_barney"] = {}
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_hl1_crowbar"
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_hl1_glock"
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_hl1_357"
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_hl1_mp5"
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_hl1_hornetgun"
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_hl1_shotgun"
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_hl1_crossbow"
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS["weapon_rpg"] = "weapon_hl1_rpg"
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS["weapon_frag"] = "weapon_hl1_satchel"
+CLASS_CONFIG["hl1_barney"].REPLACEMENT_WEAPONS["weapon_slam"] = "weapon_hl1_tripmine"
+CLASS_CONFIG["hl1_barney"].MAX_AMMO = {}
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["pistol"] = 250 -- glock
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["357"] = 36 -- 357
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["smg1"] = 250 -- mp5
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["smg1_grenade"] = 5 -- mp5
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["ar2"] = 16 -- hornet gun
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["buckshot"] = 125 -- shotgun
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["xbowbolt"] = 50 -- crossbow
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["rpg_round"] = 5 -- hand grenade
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["grenade"] = 5 -- satchel
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["slam"] = 5 -- tripmine
 
 local IS_CUSTOM_WEAPON = {}
 
-for k1,v1 in pairs(REPLACEMENT_WEAPONS) do
-	for k2,v2 in pairs(v1) do
+for k1,v1 in pairs(CLASS_CONFIG) do
+	for k2,v2 in pairs(v1.REPLACEMENT_WEAPONS) do
 		IS_CUSTOM_WEAPON[v2] = true
 	end
 end
@@ -330,6 +411,20 @@ WEP_TO_AMMO["tf_weapon_shotgun_soldier"] = "pistol"
 WEP_TO_AMMO["tf_weapon_smg"] = "pistol"
 WEP_TO_AMMO["tf_weapon_sniperrifle"] = "smg1"
 WEP_TO_AMMO["tf_weapon_syringegun_medic"] = "smg1"
+
+WEP_TO_AMMO["weapon_hl1_glock"] = "pistol"
+WEP_TO_AMMO["weapon_hl1_357"] = "357"
+WEP_TO_AMMO["weapon_hl1_mp5"] = "smg1"
+WEP_TO_AMMO["weapon_hl1_egon"] = "ar2"
+WEP_TO_AMMO["weapon_hl1_gauss"] = "ar2"
+WEP_TO_AMMO["weapon_hl1_hornetgun"] = "ar2"
+WEP_TO_AMMO["weapon_hl1_shotgun"] = "buckshot"
+WEP_TO_AMMO["weapon_hl1_crossbow"] = "xbowbolt"
+WEP_TO_AMMO["weapon_hl1_rpg"] = "rpg_round"
+WEP_TO_AMMO["weapon_hl1_handgrenade"] = "grenade"
+WEP_TO_AMMO["weapon_hl1_satchel"] = "grenade"
+WEP_TO_AMMO["weapon_hl1_snark"] = "grenade"
+WEP_TO_AMMO["weapon_hl1_tripmine"] = "slam"
 
 local AMMONUM_TO_STRING = {}
 AMMONUM_TO_STRING[1] = "ar2"
@@ -785,13 +880,18 @@ function CheckMaxAmmo(ply, wep, ammoNum)
 		return
 	end
 
-	-- Ignore custom weapons
-	if (IS_CUSTOM_WEAPON[wep:GetClass()]) then
+	local ammo = AMMONUM_TO_STRING[ammoNum]
+	if (!ammo) then
 		return
 	end
+
+	local maxAmmo = 999
+	if (IS_CUSTOM_WEAPON[wep:GetClass()] && CLASS_CONFIG[ply._Class]) then
+		maxAmmo = CLASS_CONFIG[ply._Class].MAX_AMMO[ammo]
+	else
+		maxAmmo = MAX_AMMO[ammo]
+	end
 	
-	local ammo = AMMONUM_TO_STRING[ammoNum]
-	local maxAmmo = MAX_AMMO[ammo]
 	local currentAmmo = ply:GetAmmoCount(ammo)
 	if currentAmmo > maxAmmo then
 		ply:SetAmmo(maxAmmo, ammo)
@@ -859,16 +959,16 @@ function IsAmmoValid(ply, ammo)
 end
 
 function GetReplacementAmmoType(ply, ammo)
-	if (ply._Class && CLASS_AMMO_REPLACEMENT[ply._Class] && CLASS_AMMO_REPLACEMENT[ply._Class][ammo]) then
-		return CLASS_AMMO_REPLACEMENT[ply._Class][ammo]
+	if (ply._Class && CLASS_CONFIG[ply._Class] && CLASS_CONFIG[ply._Class].REPLACEMENT_AMMO[ammo]) then
+		return CLASS_CONFIG[ply._Class].REPLACEMENT_AMMO[ammo]
 	end
 
 	return ammo
 end
 
 function GetMaxAmmo(ply, ammo)
-	if (ply._Class && CLASS_MAX_AMMO[ply._Class] && CLASS_MAX_AMMO[ply._Class][ammo]) then
-		return CLASS_MAX_AMMO[ply._Class][ammo]
+	if (ply._Class && CLASS_CONFIG[ply._Class] && CLASS_CONFIG[ply._Class].MAX_AMMO[ammo]) then
+		return CLASS_CONFIG[ply._Class].MAX_AMMO[ammo]
 	end
 
 	return MAX_AMMO[ammo]
@@ -901,8 +1001,8 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 
 	-- If the player is a custom class, look for a replacement weapon
 	local wepClassOverride = nil
-	if (REPLACEMENT_WEAPONS[ply._Class]) then
-		local repWep = REPLACEMENT_WEAPONS[ply._Class][wepClass]
+	if (CLASS_CONFIG[ply._Class]) then
+		local repWep = CLASS_CONFIG[ply._Class].REPLACEMENT_WEAPONS[wepClass]
 		if (repWep) then
 			wepClassOverride = repWep
 		end
@@ -924,7 +1024,7 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 		end
 
 		local ammo = WEP_TO_AMMO[wepClassOverride]
-		local maxAmmo = CLASS_MAX_AMMO[ply._Class][ammo]
+		local maxAmmo = CLASS_CONFIG[ply._Class].MAX_AMMO[ammo]
 		local currentAmmo = ply:GetAmmoCount(ammo)
 
 		-- Pickup new weapon

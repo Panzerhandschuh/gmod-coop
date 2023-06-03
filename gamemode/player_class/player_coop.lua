@@ -71,6 +71,21 @@ function PLAYER:Loadout()
 	elseif (self.Player._Class == "spy") then
 		self.Player:Give("tf_weapon_knife")
 		self.Player:Give("tf_weapon_revolver")
+	elseif (self.Player._Class == "hl1_gordon") then
+		self.Player:Give("weapon_hl1_crowbar")
+		self.Player:Give("weapon_hl1_glock")
+		self.Player:Give("weapon_hl1_mp5")
+		self.Player:Give("weapon_hl1_handgrenade")
+	elseif (self.Player._Class == "hl1_scientist") then
+		self.Player:Give("weapon_hl1_crowbar")
+		self.Player:Give("weapon_hl1_glock")
+		self.Player:Give("weapon_hl1_mp5")
+		self.Player:Give("weapon_hl1_snark")
+	elseif (self.Player._Class == "hl1_barney") then
+		self.Player:Give("weapon_hl1_crowbar")
+		self.Player:Give("weapon_hl1_glock")
+		self.Player:Give("weapon_hl1_mp5")
+		self.Player:Give("weapon_hl1_satchel")
 	else
 		self.Player:Give("weapon_crowbar")
 		self.Player:Give("weapon_pistol")
