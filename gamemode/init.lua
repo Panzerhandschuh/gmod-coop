@@ -113,6 +113,16 @@ WEAPON_AMMO_COUNT["weapon_hl1_snark"] = 1
 WEAPON_AMMO_COUNT["weapon_hl1_rpg"] = 1
 WEAPON_AMMO_COUNT["weapon_hl1_tripmine"] = 1
 
+WEAPON_AMMO_COUNT["weapon_q3_bfg10k"] = 25
+WEAPON_AMMO_COUNT["weapon_q3_chaingun"] = 25
+WEAPON_AMMO_COUNT["weapon_q3_machinegun"] = 25
+WEAPON_AMMO_COUNT["weapon_q3_shotgun"] = 25
+WEAPON_AMMO_COUNT["weapon_q3_rocketlauncher"] = 5
+WEAPON_AMMO_COUNT["weapon_q3_grenadelauncher"] = 5
+WEAPON_AMMO_COUNT["weapon_q3_plasmagun"] = 25
+WEAPON_AMMO_COUNT["weapon_q3_lightninggun"] = 25
+WEAPON_AMMO_COUNT["weapon_q3_railgun"] = 25
+
 local CLASS_CONFIG = {}
 
 CLASS_CONFIG["terrorist"] = {}
@@ -345,6 +355,29 @@ CLASS_CONFIG["hl1_barney"].MAX_AMMO["rpg_round"] = 5 -- hand grenade
 CLASS_CONFIG["hl1_barney"].MAX_AMMO["grenade"] = 5 -- satchel
 CLASS_CONFIG["hl1_barney"].MAX_AMMO["slam"] = 5 -- tripmine
 
+CLASS_CONFIG["quake3"] = {}
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_q3_gauntlet"
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_q3_machinegun"
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_q3_shotgun"
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_q3_rocketlauncher"
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_q3_grenadelauncher"
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_q3_plasmagun"
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_q3_lightninggun"
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_rpg"] = "weapon_q3_railgun"
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_frag"] = "weapon_q3_railgun"
+CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_slam"] = "weapon_q3_bfg10k"
+CLASS_CONFIG["quake3"].MAX_AMMO = {}
+CLASS_CONFIG["quake3"].MAX_AMMO["pistol"] = 200 -- machine gun
+CLASS_CONFIG["quake3"].MAX_AMMO["357"] = 200 -- shotgun
+CLASS_CONFIG["quake3"].MAX_AMMO["smg1"] = 200 -- rocket launcher
+CLASS_CONFIG["quake3"].MAX_AMMO["ar2"] = 200 -- grenade launcher
+CLASS_CONFIG["quake3"].MAX_AMMO["buckshot"] = 200 -- plasma gun
+CLASS_CONFIG["quake3"].MAX_AMMO["xbowbolt"] = 200 -- lightning gun
+CLASS_CONFIG["quake3"].MAX_AMMO["rpg_round"] = 200 -- rail gun
+CLASS_CONFIG["quake3"].MAX_AMMO["grenade"] = 200 -- rail gun
+CLASS_CONFIG["quake3"].MAX_AMMO["slam"] = 200 -- bfg
+
 local IS_CUSTOM_WEAPON = {}
 
 for k1,v1 in pairs(CLASS_CONFIG) do
@@ -425,6 +458,16 @@ WEP_TO_AMMO["weapon_hl1_handgrenade"] = "grenade"
 WEP_TO_AMMO["weapon_hl1_satchel"] = "grenade"
 WEP_TO_AMMO["weapon_hl1_snark"] = "grenade"
 WEP_TO_AMMO["weapon_hl1_tripmine"] = "slam"
+
+WEP_TO_AMMO["weapon_q3_machinegun"] = "pistol"
+WEP_TO_AMMO["weapon_q3_chaingun"] = "pistol"
+WEP_TO_AMMO["weapon_q3_shotgun"] = "357"
+WEP_TO_AMMO["weapon_q3_rocketlauncher"] = "smg1"
+WEP_TO_AMMO["weapon_q3_grenadelauncher"] = "ar2"
+WEP_TO_AMMO["weapon_q3_plasmagun"] = "buckshot"
+WEP_TO_AMMO["weapon_q3_lightninggun"] = "xbowbolt"
+WEP_TO_AMMO["weapon_q3_railgun"] = "rpg_round"
+WEP_TO_AMMO["weapon_q3_bfg10k"] = "slam"
 
 local AMMONUM_TO_STRING = {}
 AMMONUM_TO_STRING[1] = "ar2"

@@ -86,6 +86,10 @@ function PLAYER:Loadout()
 		self.Player:Give("weapon_hl1_glock")
 		self.Player:Give("weapon_hl1_mp5")
 		self.Player:Give("weapon_hl1_satchel")
+	elseif (self.Player._Class == "quake3") then
+		self.Player:Give("weapon_q3_gauntlet")
+		self.Player:Give("weapon_q3_machinegun")
+		self.Player:Give("weapon_q3_shotgun")
 	else
 		self.Player:Give("weapon_crowbar")
 		self.Player:Give("weapon_pistol")
