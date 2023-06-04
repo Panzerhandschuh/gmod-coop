@@ -54,3 +54,11 @@ hook.Add("CalcView","SYN_V.CV",function (ply, origin, angles, fov, znear, zfar)
 		return GAMEMODE:CalcVehicleView( v, ply, view )
 	end
 end)
+
+function GM:StartCommand(ply, cmd)
+	if bit.band(cmd:GetButtons(), IN_JUMP) ~= 0 then -- Actual bunnyhop movement, credit to Jordan for making this script
+		if !ply:IsOnGround() && ply:GetMoveType() != MOVETYPE_LADDER then
+			cmd:SetButtons(bit.band(cmd:GetButtons(), bit.bnot(IN_JUMP)))
+		end
+	end
+end
