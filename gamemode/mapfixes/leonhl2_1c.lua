@@ -1,5 +1,5 @@
 HOOKS["EntityKeyValue"] = function(e,k,v)
-	if (e:GetClass() == "trigger_changelevel" && k == "map" && v == "drob1") then
+	if (e:GetClass() == "trigger_changelevel" && k == "map" && v == "leonhl2_1b") then
 		e:Remove()
 	elseif (e:GetClass() == "npc_template_maker" || e:GetClass() == "npc_maker") then
 		if (k == "MaxNPCCount") then

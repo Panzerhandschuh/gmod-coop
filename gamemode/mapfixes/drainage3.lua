@@ -5,6 +5,14 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 		e:Remove()
 	end
 
+	if (e:GetClass() == "npc_template_maker" || e:GetClass() == "npc_maker") then
+		if (k == "MaxNPCCount") then
+			return math.Round(v * 4)
+		elseif (k == "MaxLiveChildren") then
+			return math.Round(v * 2)
+		end
+	end
+
 	if(e:GetClass() == "prop_vehicle_airboat") then
 		if(k == "vehiclescript") then
 			e.script = v
