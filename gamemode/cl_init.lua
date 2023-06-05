@@ -57,7 +57,7 @@ end)
 
 function GM:StartCommand(ply, cmd)
 	if bit.band(cmd:GetButtons(), IN_JUMP) ~= 0 then -- Actual bunnyhop movement, credit to Jordan for making this script
-		if !ply:IsOnGround() && ply:GetMoveType() != MOVETYPE_LADDER then
+		if !ply:IsOnGround() && ply:GetMoveType() != MOVETYPE_LADDER && ply:WaterLevel() < 2 then
 			cmd:SetButtons(bit.band(cmd:GetButtons(), bit.bnot(IN_JUMP)))
 		end
 	end
