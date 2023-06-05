@@ -90,6 +90,9 @@ function PLAYER:Loadout()
 		self.Player:Give("weapon_q3_gauntlet")
 		self.Player:Give("weapon_q3_machinegun")
 		self.Player:Give("weapon_q3_shotgun")
+
+		self.Player:GiveAmmo(200, "Pistol", true)
+		self.Player:GiveAmmo(90, "357", true)
 	else
 		self.Player:Give("weapon_crowbar")
 		self.Player:Give("weapon_pistol")
