@@ -175,7 +175,7 @@ CLASS_CONFIG["scout"].REPLACEMENT_AMMO["357"] = "pistol"
 CLASS_CONFIG["scout"].REPLACEMENT_AMMO["ar2"] = "smg1"
 CLASS_CONFIG["scout"].MAX_AMMO = {}
 CLASS_CONFIG["scout"].MAX_AMMO["pistol"] = 100 -- pistol
-CLASS_CONFIG["scout"].MAX_AMMO["smg1"] = 32 -- scattergun
+CLASS_CONFIG["scout"].MAX_AMMO["smg1"] = 64 -- scattergun
 
 CLASS_CONFIG["soldier"] = {}
 CLASS_CONFIG["soldier"].REPLACEMENT_WEAPONS = {}
@@ -189,7 +189,7 @@ CLASS_CONFIG["soldier"].REPLACEMENT_AMMO["357"] = "pistol"
 CLASS_CONFIG["soldier"].REPLACEMENT_AMMO["ar2"] = "smg1"
 CLASS_CONFIG["soldier"].MAX_AMMO = {}
 CLASS_CONFIG["soldier"].MAX_AMMO["pistol"] = 32 -- shotgun
-CLASS_CONFIG["soldier"].MAX_AMMO["smg1"] = 20 -- rocket launcher
+CLASS_CONFIG["soldier"].MAX_AMMO["smg1"] = 24 -- rocket launcher
 
 CLASS_CONFIG["pyro"] = {}
 CLASS_CONFIG["pyro"].REPLACEMENT_WEAPONS = {}
@@ -216,8 +216,8 @@ CLASS_CONFIG["demoman"].REPLACEMENT_AMMO = {}
 CLASS_CONFIG["demoman"].REPLACEMENT_AMMO["357"] = "pistol"
 CLASS_CONFIG["demoman"].REPLACEMENT_AMMO["ar2"] = "smg1"
 CLASS_CONFIG["demoman"].MAX_AMMO = {}
-CLASS_CONFIG["demoman"].MAX_AMMO["pistol"] = 16 -- sticky launcher
-CLASS_CONFIG["demoman"].MAX_AMMO["smg1"] = 24 -- pipe launcher
+CLASS_CONFIG["demoman"].MAX_AMMO["pistol"] = 32 -- sticky launcher
+CLASS_CONFIG["demoman"].MAX_AMMO["smg1"] = 20 -- pipe launcher
 
 CLASS_CONFIG["heavy"] = {}
 CLASS_CONFIG["heavy"].REPLACEMENT_WEAPONS = {}
@@ -245,7 +245,7 @@ CLASS_CONFIG["engineer"].REPLACEMENT_AMMO["357"] = "pistol"
 CLASS_CONFIG["engineer"].REPLACEMENT_AMMO["ar2"] = "smg1"
 CLASS_CONFIG["engineer"].MAX_AMMO = {}
 CLASS_CONFIG["engineer"].MAX_AMMO["pistol"] = 200 -- pistol
-CLASS_CONFIG["engineer"].MAX_AMMO["smg1"] = 64 -- shotgun
+CLASS_CONFIG["engineer"].MAX_AMMO["smg1"] = 128 -- shotgun
 
 CLASS_CONFIG["medic"] = {}
 CLASS_CONFIG["medic"].REPLACEMENT_WEAPONS = {}
@@ -270,7 +270,7 @@ CLASS_CONFIG["sniper"].REPLACEMENT_AMMO = {}
 CLASS_CONFIG["sniper"].REPLACEMENT_AMMO["357"] = "pistol"
 CLASS_CONFIG["sniper"].REPLACEMENT_AMMO["ar2"] = "smg1"
 CLASS_CONFIG["sniper"].MAX_AMMO = {}
-CLASS_CONFIG["sniper"].MAX_AMMO["pistol"] = 75 -- smg
+CLASS_CONFIG["sniper"].MAX_AMMO["pistol"] = 150 -- smg
 CLASS_CONFIG["sniper"].MAX_AMMO["smg1"] = 25 -- sniper rifle
 
 CLASS_CONFIG["spy"] = {}
@@ -364,19 +364,19 @@ CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_q3_rocketlau
 CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_q3_grenadelauncher"
 CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_q3_plasmagun"
 CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_q3_lightninggun"
-CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_rpg"] = "weapon_q3_railgun"
+--CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_rpg"] = "weapon_q3_railgun"
 CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_frag"] = "weapon_q3_railgun"
 CLASS_CONFIG["quake3"].REPLACEMENT_WEAPONS["weapon_slam"] = "weapon_q3_bfg10k"
 CLASS_CONFIG["quake3"].MAX_AMMO = {}
 CLASS_CONFIG["quake3"].MAX_AMMO["pistol"] = 200 -- machine gun
-CLASS_CONFIG["quake3"].MAX_AMMO["357"] = 200 -- shotgun
-CLASS_CONFIG["quake3"].MAX_AMMO["smg1"] = 200 -- rocket launcher
-CLASS_CONFIG["quake3"].MAX_AMMO["ar2"] = 200 -- grenade launcher
+CLASS_CONFIG["quake3"].MAX_AMMO["357"] = 25 -- shotgun
+CLASS_CONFIG["quake3"].MAX_AMMO["smg1"] = 25 -- rocket launcher
+CLASS_CONFIG["quake3"].MAX_AMMO["ar2"] = 25 -- grenade launcher
 CLASS_CONFIG["quake3"].MAX_AMMO["buckshot"] = 200 -- plasma gun
 CLASS_CONFIG["quake3"].MAX_AMMO["xbowbolt"] = 200 -- lightning gun
-CLASS_CONFIG["quake3"].MAX_AMMO["rpg_round"] = 200 -- rail gun
-CLASS_CONFIG["quake3"].MAX_AMMO["grenade"] = 200 -- rail gun
-CLASS_CONFIG["quake3"].MAX_AMMO["slam"] = 200 -- bfg
+--CLASS_CONFIG["quake3"].MAX_AMMO["rpg_round"] = 25 -- rail gun
+CLASS_CONFIG["quake3"].MAX_AMMO["grenade"] = 25 -- rail gun
+CLASS_CONFIG["quake3"].MAX_AMMO["slam"] = 25 -- bfg
 
 local IS_CUSTOM_WEAPON = {}
 
@@ -466,7 +466,7 @@ WEP_TO_AMMO["weapon_q3_rocketlauncher"] = "smg1"
 WEP_TO_AMMO["weapon_q3_grenadelauncher"] = "ar2"
 WEP_TO_AMMO["weapon_q3_plasmagun"] = "buckshot"
 WEP_TO_AMMO["weapon_q3_lightninggun"] = "xbowbolt"
-WEP_TO_AMMO["weapon_q3_railgun"] = "rpg_round"
+WEP_TO_AMMO["weapon_q3_railgun"] = "grenade"
 WEP_TO_AMMO["weapon_q3_bfg10k"] = "slam"
 
 local AMMONUM_TO_STRING = {}
