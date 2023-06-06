@@ -945,6 +945,19 @@ function GM:Think()
 			CheckMaxAmmo(ply, wep, ammoNum)
 		end
 	end
+
+	-- Improve npc aggression
+	for _,npc in pairs(ents.FindByClass("npc_*")) do
+		if (npc:IsNPC() && CheckCanPatrol(npc) && !string.match(npc:GetClass(), "npc_headcrab") && !npc:GetClass() == "npc_manhack") then
+			if (CheckCanPatrol(npc)) then
+				npc:SetSchedule(SCHED_PATROL_WALK)
+			end
+		end
+	end
+end
+
+function CheckCanPatrol(npc)
+	return (IsValid(npc) && npc:GetEnemy() == nil && npc:GetTarget() == nil && !npc:IsMoving() && npc:GetNPCState() == NPC_STATE_IDLE)
 end
 
 function CheckMaxAmmo(ply, wep, ammoNum)
@@ -1160,52 +1173,91 @@ function TryDuplicateWeapon(wep, wepClass)
 end
 
 function GM:OnEntityCreated( ent )
-		local class = ent:GetClass()
-		if(REPLACE_ENTS[class] && (string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_")) then
-			timer.Simple(0.1,function()
-				if(ent:IsValid()) then
-					ent:SetSolid(SOLID_NONE)
-					local ne = ents.Create(REPLACE_ENTS[class])
-					ne:SetPos(ent:GetPos())
-					ne:SetAngles(ent:GetAngles())
-					
-					if(game.GetMap() == "oc_zelda02_g") then
-						ne:SetName("replaced_npc")
-					else
-						ne:SetName(ent:GetName())
-					end
-					
-					for key,value in pairs(ent:GetKeyValues()) do
-						if(key != "classname" && string.sub(key,1,2) != "On" && type(value) == "string") then
-							ne:SetKeyValue(key,value)
-						end
-					end
-				
-					ne:Spawn()
-					
-					if(ent.chealth) then
-						ne:SetHealth(ent.chealth)
-					end
-					
-					if(ent.out) then
-						for k,v in pairs(ent.out) do
-							--PrintMessage( HUD_PRINTCONSOLE, "Added Output "..k.." "..v)
-							ne:Fire("AddOutput",k.." "..v,0)
-						end
-					end
+	local class = ent:GetClass()
+	if (string.sub(class,1,4) != "npc_" && string.sub(class,1,8) != "monster_") then
+		return
+	end
 
-					ent:Remove()
+	if (REPLACE_ENTS[class]) then
+		timer.Simple(0.1,function()
+			if (ent:IsValid() && ent:IsNPC()) then
+				ent:SetSolid(SOLID_NONE)
+				local ne = ents.Create(REPLACE_ENTS[class])
+				ne:SetPos(ent:GetPos())
+				ne:SetAngles(ent:GetAngles())
+				
+				if(game.GetMap() == "oc_zelda02_g") then
+					ne:SetName("replaced_npc")
+				else
+					ne:SetName(ent:GetName())
 				end
-			end)
-		elseif(string.sub(class,1,4) == "npc_" || string.sub(class,1,8) == "monster_") then
-			timer.Simple(0.1,function()
-				if(ent:IsValid()) then
-					if(ent.chealth) then
-						ent:SetHealth(ent.chealth)
+				
+				for key,value in pairs(ent:GetKeyValues()) do
+					if(key != "classname" && string.sub(key,1,2) != "On" && type(value) == "string") then
+						ne:SetKeyValue(key,value)
 					end
 				end
-			end)
+			
+				ne:Spawn()
+				
+				if(ent.chealth) then
+					ne:SetHealth(ent.chealth)
+				end
+				
+				if(ent.out) then
+					for k,v in pairs(ent.out) do
+						--PrintMessage( HUD_PRINTCONSOLE, "Added Output "..k.." "..v)
+						ne:Fire("AddOutput",k.." "..v,0)
+					end
+				end
+
+				ent:Remove()
+			end
+		end)
+	else
+		timer.Simple(0.1,function()
+			if (ent:IsValid() && ent:IsNPC()) then
+				if(ent.chealth) then
+					ent:SetHealth(ent.chealth)
+				end
+			end
+		end)
+	end
+
+	-- NPC Improvements
+	timer.Simple(0.1,function()
+		if (!ent:IsValid() || !ent:IsNPC()) then
+			return
 		end
+
+		ent:SetLagCompensated(true)
+
+		-- Improve NPC accuracy
+		ent:SetCurrentWeaponProficiency(WEAPON_PROFICIENCY_VERY_GOOD)
+
+		-- Increase player detection range
+		ent:Fire("SetMaxLookDistance", "2000")
+		ent:Fire("WakeRadius", "2000")
+		
+		-- Immediately alert the NPC
+		-- ent:SetNPCState(NPC_STATE_ALERT)
+		-- ent:SetSchedule(SCHED_PATROL_WALK)
+
+		-- Enable jumping
+		--if (ent:SelectWeightedSequence(ACT_JUMP) != -1) then
+		--	ent:CapabilitiesAdd(CAP_MOVE_JUMP)
+		--end
+
+		-- local players = player.GetAll()
+		-- for k, v in pairs(players) do
+		-- 	ent:AddEntityRelationship(v, D_HT)
+		-- end
+
+		if (class == "npc_stalker") then
+			-- Increase aggression
+			ent:SetSaveValue("m_iPlayerAggression", 1)
+		end
+	end)
 end
 
 local randselect = {
