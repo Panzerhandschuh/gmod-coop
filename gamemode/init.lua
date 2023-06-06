@@ -611,6 +611,9 @@ local rebelmaps = {
 	"tbr_coop_red_keops_v4"
 }
 
+CreateConVar('coop_npc_dmg_scale', 1, {FCVAR_NOTIFY, FCVAR_REPLICATED, FCVAR_ARCHIVE} )
+CreateConVar('coop_plr_dmg_scale', 1, {FCVAR_NOTIFY, FCVAR_REPLICATED, FCVAR_ARCHIVE} )
+
 function GM:Initialize()
 	local s = scripted_ents.Get("info_player_deathmatch")
 	s.KeyValue = function(self, key, value)
@@ -880,6 +883,32 @@ local function RespawnEnt(ent,class,index,pos,ang,cmodel,amount,atype)
 	end
 	e:Spawn()
 	e:EmitSound("weapons/stunstick/alyx_stunner2.wav")
+end
+
+function GM:EntityTakeDamage(target, dmginfo)
+	if (target:IsPlayer()) then
+		local inflictor = dmginfo:GetInflictor():GetClass()
+		if (inflictor == "q3_rocket" || inflictor == "q3_grenade" || inflictor == "q3_bfg") then
+			dmginfo:ScaleDamage(2)
+		elseif (inflictor == "q3_plasma") then
+			dmginfo:ScaleDamage(1.25)
+		elseif (dmginfo:GetAttacker():IsNPC()) then
+			if (dmginfo:GetAttacker():GetClass() == "npc_headcrab_black" || dmginfo:GetAttacker():GetClass() == "npc_headcrab_poison") then
+				return
+			end
+
+			local dmgScale = GetConVar('coop_plr_dmg_scale'):GetFloat()
+			dmginfo:ScaleDamage(dmgScale)
+		end
+	elseif (target:IsNPC() && dmginfo:GetAttacker():IsPlayer()) then
+		local targetClass = target:GetClass()
+		if ((targetClass == "npc_antlionguard" || targetClass == "npc_hunter") && dmginfo:IsExplosionDamage()) then
+			dmginfo:SetDamageType(DMG_BULLET)
+		end
+
+		local dmgScale = GetConVar('coop_npc_dmg_scale'):GetFloat()
+		dmginfo:ScaleDamage(dmgScale)
+	end
 end
 
 function GM:PlayerShouldTakeDamage(ply, attacker)
