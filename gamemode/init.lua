@@ -985,7 +985,7 @@ function GM:Think()
 
 	-- Improve npc aggression
 	for _,npc in pairs(ents.FindByClass("npc_*")) do
-		if (npc:IsNPC() && CheckCanPatrol(npc) && !string.match(npc:GetClass(), "npc_headcrab") && !npc:GetClass() == "npc_manhack") then
+		if (npc:IsNPC() && CheckCanPatrol(npc) && !string.match(npc:GetClass(), "npc_headcrab") && npc:GetClass() != "npc_manhack" && npc:GetClass() != "npc_barnacle") then
 			if (CheckCanPatrol(npc)) then
 				npc:SetSchedule(SCHED_PATROL_WALK)
 			end
@@ -1284,8 +1284,8 @@ function GM:OnEntityCreated( ent )
 		ent:SetCurrentWeaponProficiency(WEAPON_PROFICIENCY_VERY_GOOD)
 
 		-- Increase player detection range
-		ent:Fire("SetMaxLookDistance", "2000")
-		ent:Fire("WakeRadius", "2000")
+		ent:Fire("SetMaxLookDistance", "99999")
+		ent:Fire("WakeRadius", "99999")
 		
 		-- Immediately alert the NPC
 		-- ent:SetNPCState(NPC_STATE_ALERT)
