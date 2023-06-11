@@ -412,7 +412,7 @@ CLASS_CONFIG["quake3"].PICKUP_AMMO["ar2"] = 5 -- grenade launcher
 CLASS_CONFIG["quake3"].PICKUP_AMMO["buckshot"] = 25 -- plasma gun
 CLASS_CONFIG["quake3"].PICKUP_AMMO["xbowbolt"] = 25 -- lightning gun
 CLASS_CONFIG["quake3"].PICKUP_AMMO["grenade"] = 5 -- rail gun
-CLASS_CONFIG["quake3"].PICKUP_AMMO["slam"] = 5 -- bfg
+CLASS_CONFIG["quake3"].PICKUP_AMMO["slam"] = 25 -- bfg
 
 local IS_CUSTOM_WEAPON = {}
 
@@ -592,6 +592,16 @@ NPC_POINTS["monster_alien_grunt"] = 3
 NPC_POINTS["monster_human_assassin"] = 3
 NPC_POINTS["monster_houndeye"] = 1
 NPC_POINTS["monster_bullchicken"] = 2
+
+local PATROL_BLACKLIST = {}
+PATROL_BLACKLIST["npc_headcrab"] = true
+PATROL_BLACKLIST["npc_headcrab_fast"] = true
+PATROL_BLACKLIST["npc_headcrab_poison"] = true
+PATROL_BLACKLIST["npc_headcrab_black"] = true
+PATROL_BLACKLIST["npc_manhack"] = true
+PATROL_BLACKLIST["npc_barnacle"] = true
+PATROL_BLACKLIST["npc_helicopter"] = true
+PATROL_BLACKLIST["npc_gunship"] = true
 
 for k,_ in pairs(REPLACE_ENTS) do
 	if(string.sub(k,1,4) != "npc_" && string.sub(k,1,8) != "monster_" && k != "weapon_medkit") then
@@ -985,16 +995,14 @@ function GM:Think()
 
 	-- Improve npc aggression
 	for _,npc in pairs(ents.FindByClass("npc_*")) do
-		if (npc:IsNPC() && CheckCanPatrol(npc) && !string.match(npc:GetClass(), "npc_headcrab") && npc:GetClass() != "npc_manhack" && npc:GetClass() != "npc_barnacle") then
-			if (CheckCanPatrol(npc)) then
-				npc:SetSchedule(SCHED_PATROL_WALK)
-			end
+		if (npc:IsNPC() && CheckCanPatrol(npc)) then
+			npc:SetSchedule(SCHED_PATROL_WALK)
 		end
 	end
 end
 
 function CheckCanPatrol(npc)
-	return (IsValid(npc) && npc:GetEnemy() == nil && npc:GetTarget() == nil && !npc:IsMoving() && npc:GetNPCState() == NPC_STATE_IDLE)
+	return (IsValid(npc) && npc:GetEnemy() == nil && npc:GetTarget() == nil && !npc:IsMoving() && npc:GetNPCState() == NPC_STATE_IDLE && !PATROL_BLACKLIST[npc:GetClass()])
 end
 
 function CheckMaxAmmo(ply, wep, ammoNum)
