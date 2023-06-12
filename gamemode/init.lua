@@ -990,6 +990,8 @@ function GM:EntityTakeDamage(target, dmginfo)
 			dmginfo:ScaleDamage(1.25)
 		elseif (inflictor == "concussiveblast") then
 			dmginfo:ScaleDamage(0.6)
+		elseif (inflictor == "func_tank") then
+			dmginfo:ScaleDamage(0.4)
 		elseif (dmginfo:GetAttacker():IsNPC()) then
 			local attackerClass = dmginfo:GetAttacker():GetClass()
 			if (attackerClass == "npc_headcrab_black" || attackerClass == "npc_headcrab_poison") then
@@ -1004,7 +1006,9 @@ function GM:EntityTakeDamage(target, dmginfo)
 		end
 	elseif (target:IsNPC() && dmginfo:GetAttacker():IsPlayer()) then
 		local targetClass = target:GetClass()
-		if ((targetClass == "npc_antlionguard" || targetClass == "npc_hunter") && dmginfo:IsExplosionDamage()) then
+		if (targetClass == "npc_helicopter" || targetClass == "npc_gunship" || targetClass == "npc_strider") then
+			return
+		elseif ((targetClass == "npc_antlionguard" || targetClass == "npc_hunter") && dmginfo:IsExplosionDamage()) then
 			dmginfo:SetDamageType(DMG_BULLET)
 		end
 		
