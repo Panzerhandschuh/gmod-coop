@@ -14,6 +14,8 @@ local restoretime = {}
 
 local STAM = {}
 
+local minWalkSpeed = 100
+
 function STAM.Move(ply,data)
 	if(!ply || !ply.GetAux) then return end
 	if(ply:Alive() && ply:GetMoveType() != MOVETYPE_NOCLIP) then
@@ -26,7 +28,7 @@ function STAM.Move(ply,data)
 			if(ply:WaterLevel() == 3) then
 				stam = math.max(stam-(5*FrameTime()),0)
 			end
-			if(stam != 0) then
+			if(stam != 0 && ply:GetWalkSpeed() > minWalkSpeed) then
 				ply:SetRunSpeed(320)
 			else
 				ply:SetRunSpeed(ply:GetWalkSpeed())
