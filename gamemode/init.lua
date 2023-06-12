@@ -692,6 +692,53 @@ function GM:PlayerInitialSpawn(ply)
 	if(!TIMER.start) then TIMER:Start() end
 	
 	self.BaseClass:PlayerInitialSpawn(ply)
+
+	UpdateDifficulty()
+end
+
+function UpdateDifficulty()
+	timer.Simple(1, function()
+		local t = #player.GetAll()
+		local plrDmgScale = GetConVar("coop_plr_dmg_scale")
+		local npcDmgScale = GetConVar("coop_npc_dmg_scale")
+		if (t == 1) then
+			plrDmgScale:SetFloat(1)
+			npcDmgScale:SetFloat(1)
+		elseif (t == 2) then
+			plrDmgScale:SetFloat(0.85)
+			npcDmgScale:SetFloat(1.05)
+		elseif (t == 3) then
+			plrDmgScale:SetFloat(0.72)
+			npcDmgScale:SetFloat(1.1)
+		elseif (t == 4) then
+			plrDmgScale:SetFloat(0.61)
+			npcDmgScale:SetFloat(1.15)
+		elseif (t == 5) then
+			plrDmgScale:SetFloat(0.52)
+			npcDmgScale:SetFloat(1.2)
+		elseif (t == 6) then
+			plrDmgScale:SetFloat(0.44)
+			npcDmgScale:SetFloat(1.25)
+		elseif (t == 7) then
+			plrDmgScale:SetFloat(0.38)
+			npcDmgScale:SetFloat(1.3)
+		elseif (t == 8) then
+			plrDmgScale:SetFloat(0.32)
+			npcDmgScale:SetFloat(1.35)
+		elseif (t == 9) then
+			plrDmgScale:SetFloat(0.27)
+			npcDmgScale:SetFloat(1.4)
+		elseif (t == 10) then
+			plrDmgScale:SetFloat(0.23)
+			npcDmgScale:SetFloat(1.45)
+		elseif (t == 11) then
+			plrDmgScale:SetFloat(0.2)
+			npcDmgScale:SetFloat(1.5)
+		elseif (t == 12) then
+			plrDmgScale:SetFloat(0.17)
+			npcDmgScale:SetFloat(1.55)
+		end
+	end)
 end
 
 function GM:PlayerPostThink(ply)
@@ -746,6 +793,8 @@ function GM:PlayerDisconnected(ply)
 	for k,v in pairs(ents.FindByClass("trigger_player_count")) do --it wont affect if it is a connect
 		v:UpdatePlayerCount(t)
 	end
+
+	UpdateDifficulty()
 	
 	self.BaseClass:PlayerDisconnected(ply)
 end
