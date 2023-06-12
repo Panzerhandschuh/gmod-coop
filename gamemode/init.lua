@@ -1072,6 +1072,10 @@ function CheckMaxAmmo(ply, wep, ammoNum)
 	end
 	
 	local currentAmmo = ply:GetAmmoCount(ammo)
+	if (!currentAmmo || !maxAmmo) then
+		return
+	end
+
 	if currentAmmo > maxAmmo then
 		ply:SetAmmo(maxAmmo, ammo)
 	end
