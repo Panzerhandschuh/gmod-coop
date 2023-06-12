@@ -1356,7 +1356,6 @@ function GM:OnEntityCreated( ent )
 
 		-- Increase player detection range
 		ent:Fire("SetMaxLookDistance", "99999")
-		ent:Fire("WakeRadius", "99999")
 		
 		-- Immediately alert the NPC
 		-- ent:SetNPCState(NPC_STATE_ALERT)
