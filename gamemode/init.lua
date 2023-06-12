@@ -988,12 +988,18 @@ function GM:EntityTakeDamage(target, dmginfo)
 			dmginfo:ScaleDamage(2)
 		elseif (inflictor == "q3_plasma") then
 			dmginfo:ScaleDamage(1.25)
+		elseif (inflictor == "concussiveblast") then
+			dmginfo:ScaleDamage(0.6)
 		elseif (dmginfo:GetAttacker():IsNPC()) then
-			if (dmginfo:GetAttacker():GetClass() == "npc_headcrab_black" || dmginfo:GetAttacker():GetClass() == "npc_headcrab_poison") then
+			local attackerClass = dmginfo:GetAttacker():GetClass()
+			if (attackerClass == "npc_headcrab_black" || attackerClass == "npc_headcrab_poison") then
+				return
+			elseif (attackerClass == "npc_strider" && dmginfo:GetDamageType() == DMG_GENERIC) then
+				dmginfo:ScaleDamage(0.6)
 				return
 			end
-
-			local dmgScale = GetConVar('coop_plr_dmg_scale'):GetFloat()
+			
+			local dmgScale = GetConVar('coop_npc_dmg_scale'):GetFloat()
 			dmginfo:ScaleDamage(dmgScale)
 		end
 	elseif (target:IsNPC() && dmginfo:GetAttacker():IsPlayer()) then
@@ -1001,8 +1007,8 @@ function GM:EntityTakeDamage(target, dmginfo)
 		if ((targetClass == "npc_antlionguard" || targetClass == "npc_hunter") && dmginfo:IsExplosionDamage()) then
 			dmginfo:SetDamageType(DMG_BULLET)
 		end
-
-		local dmgScale = GetConVar('coop_npc_dmg_scale'):GetFloat()
+		
+		local dmgScale = GetConVar('coop_plr_dmg_scale'):GetFloat()
 		dmginfo:ScaleDamage(dmgScale)
 	end
 end
