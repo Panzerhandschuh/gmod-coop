@@ -9,6 +9,7 @@ AddCSLuaFile("timer.lua")
 include("sv_mapseries.lua")
 include("shared.lua")
 include("spectate.lua")
+include("sv_afk.lua")
 include("sv_adverts.lua")
 include("rtv/sv_rtv.lua")
 include("sv_syntruck.lua")
@@ -658,6 +659,8 @@ local rebelmaps = {
 	"tbr_coop_red_keops_v4"
 }
 
+local activePlayerCount = 0
+
 CreateConVar('coop_npc_dmg_scale', 1, {FCVAR_NOTIFY, FCVAR_REPLICATED, FCVAR_ARCHIVE} )
 CreateConVar('coop_plr_dmg_scale', 1, {FCVAR_NOTIFY, FCVAR_REPLICATED, FCVAR_ARCHIVE} )
 
@@ -692,53 +695,6 @@ function GM:PlayerInitialSpawn(ply)
 	if(!TIMER.start) then TIMER:Start() end
 	
 	self.BaseClass:PlayerInitialSpawn(ply)
-
-	UpdateDifficulty()
-end
-
-function UpdateDifficulty()
-	timer.Simple(1, function()
-		local t = #player.GetAll()
-		local plrDmgScale = GetConVar("coop_plr_dmg_scale")
-		local npcDmgScale = GetConVar("coop_npc_dmg_scale")
-		if (t == 1) then
-			plrDmgScale:SetFloat(1)
-			npcDmgScale:SetFloat(1)
-		elseif (t == 2) then
-			plrDmgScale:SetFloat(0.85)
-			npcDmgScale:SetFloat(1.05)
-		elseif (t == 3) then
-			plrDmgScale:SetFloat(0.72)
-			npcDmgScale:SetFloat(1.1)
-		elseif (t == 4) then
-			plrDmgScale:SetFloat(0.61)
-			npcDmgScale:SetFloat(1.15)
-		elseif (t == 5) then
-			plrDmgScale:SetFloat(0.52)
-			npcDmgScale:SetFloat(1.2)
-		elseif (t == 6) then
-			plrDmgScale:SetFloat(0.44)
-			npcDmgScale:SetFloat(1.25)
-		elseif (t == 7) then
-			plrDmgScale:SetFloat(0.38)
-			npcDmgScale:SetFloat(1.3)
-		elseif (t == 8) then
-			plrDmgScale:SetFloat(0.32)
-			npcDmgScale:SetFloat(1.35)
-		elseif (t == 9) then
-			plrDmgScale:SetFloat(0.27)
-			npcDmgScale:SetFloat(1.4)
-		elseif (t == 10) then
-			plrDmgScale:SetFloat(0.23)
-			npcDmgScale:SetFloat(1.45)
-		elseif (t == 11) then
-			plrDmgScale:SetFloat(0.2)
-			npcDmgScale:SetFloat(1.5)
-		elseif (t == 12) then
-			plrDmgScale:SetFloat(0.17)
-			npcDmgScale:SetFloat(1.55)
-		end
-	end)
 end
 
 function GM:PlayerPostThink(ply)
@@ -794,8 +750,6 @@ function GM:PlayerDisconnected(ply)
 		v:UpdatePlayerCount(t)
 	end
 
-	UpdateDifficulty()
-	
 	self.BaseClass:PlayerDisconnected(ply)
 end
 
@@ -1058,6 +1012,64 @@ function GM:Think()
 			npc:SetSchedule(SCHED_PATROL_WALK)
 		end
 	end
+
+	-- Update active players
+	local prevPlayerCount = activePlayerCount
+	activePlayerCount = 0
+	for _, ply in pairs(player.GetAll()) do
+		if (!ply.IsAFK && (!ply.spec_mode || ply.spec_mode == OBS_MODE_NONE)) then
+			activePlayerCount = activePlayerCount + 1
+		end
+	end
+
+	if (prevPlayerCount != activePlayerCount) then
+		UpdateDifficulty()
+	end
+end
+
+function UpdateDifficulty()
+	timer.Simple(1, function()
+		local count = activePlayerCount
+		local plrDmgScale = GetConVar("coop_plr_dmg_scale")
+		local npcDmgScale = GetConVar("coop_npc_dmg_scale")
+		if (count <= 1) then
+			plrDmgScale:SetFloat(1)
+			npcDmgScale:SetFloat(1)
+		elseif (count == 2) then
+			plrDmgScale:SetFloat(0.85)
+			npcDmgScale:SetFloat(1.05)
+		elseif (count == 3) then
+			plrDmgScale:SetFloat(0.72)
+			npcDmgScale:SetFloat(1.1)
+		elseif (count == 4) then
+			plrDmgScale:SetFloat(0.61)
+			npcDmgScale:SetFloat(1.15)
+		elseif (count == 5) then
+			plrDmgScale:SetFloat(0.52)
+			npcDmgScale:SetFloat(1.2)
+		elseif (count == 6) then
+			plrDmgScale:SetFloat(0.44)
+			npcDmgScale:SetFloat(1.25)
+		elseif (count == 7) then
+			plrDmgScale:SetFloat(0.38)
+			npcDmgScale:SetFloat(1.3)
+		elseif (count == 8) then
+			plrDmgScale:SetFloat(0.32)
+			npcDmgScale:SetFloat(1.35)
+		elseif (count == 9) then
+			plrDmgScale:SetFloat(0.27)
+			npcDmgScale:SetFloat(1.4)
+		elseif (count == 10) then
+			plrDmgScale:SetFloat(0.23)
+			npcDmgScale:SetFloat(1.45)
+		elseif (count == 11) then
+			plrDmgScale:SetFloat(0.2)
+			npcDmgScale:SetFloat(1.5)
+		elseif (count == 12) then
+			plrDmgScale:SetFloat(0.17)
+			npcDmgScale:SetFloat(1.55)
+		end
+	end)
 end
 
 function CheckCanPatrol(npc)
