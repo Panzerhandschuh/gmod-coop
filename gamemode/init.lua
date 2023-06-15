@@ -99,6 +99,7 @@ CLASS_CONFIG["terrorist"].PICKUP_AMMO["buckshot"] = 8 -- m3
 CLASS_CONFIG["terrorist"].PICKUP_AMMO["xbowbolt"] = 5 -- awp
 CLASS_CONFIG["terrorist"].PICKUP_AMMO["grenade"] = 1 -- he grenade
 CLASS_CONFIG["terrorist"].PICKUP_AMMO["slam"] = 50 -- m249
+CLASS_CONFIG["terrorist"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["counterterrorist"] = {}
 CLASS_CONFIG["counterterrorist"].REPLACEMENT_WEAPONS = {}
@@ -130,6 +131,7 @@ CLASS_CONFIG["counterterrorist"].PICKUP_AMMO["buckshot"] = 7 -- xm1014
 CLASS_CONFIG["counterterrorist"].PICKUP_AMMO["xbowbolt"] = 5 -- scout
 CLASS_CONFIG["counterterrorist"].PICKUP_AMMO["grenade"] = 1 -- he grenade
 CLASS_CONFIG["counterterrorist"].PICKUP_AMMO["slam"] = 50 -- m249
+CLASS_CONFIG["counterterrorist"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["scout"] = {}
 CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS = {}
@@ -147,6 +149,7 @@ CLASS_CONFIG["scout"].MAX_AMMO["smg1"] = 64 -- scattergun
 CLASS_CONFIG["scout"].PICKUP_AMMO = {}
 CLASS_CONFIG["scout"].PICKUP_AMMO["pistol"] = 12 -- pistol
 CLASS_CONFIG["scout"].PICKUP_AMMO["smg1"] = 6 -- scattergun
+CLASS_CONFIG["scout"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["soldier"] = {}
 CLASS_CONFIG["soldier"].REPLACEMENT_WEAPONS = {}
@@ -164,6 +167,7 @@ CLASS_CONFIG["soldier"].MAX_AMMO["smg1"] = 24 -- rocket launcher
 CLASS_CONFIG["soldier"].PICKUP_AMMO = {}
 CLASS_CONFIG["soldier"].PICKUP_AMMO["pistol"] = 6 -- shotgun
 CLASS_CONFIG["soldier"].PICKUP_AMMO["smg1"] = 4 -- rocket launcher
+CLASS_CONFIG["soldier"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["pyro"] = {}
 CLASS_CONFIG["pyro"].REPLACEMENT_WEAPONS = {}
@@ -181,6 +185,7 @@ CLASS_CONFIG["pyro"].MAX_AMMO["smg1"] = 200 -- flamethrower
 CLASS_CONFIG["pyro"].PICKUP_AMMO = {}
 CLASS_CONFIG["pyro"].PICKUP_AMMO["pistol"] = 6 -- shotgun
 CLASS_CONFIG["pyro"].PICKUP_AMMO["smg1"] = 50 -- flamethrower
+CLASS_CONFIG["pyro"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["demoman"] = {}
 CLASS_CONFIG["demoman"].REPLACEMENT_WEAPONS = {}
@@ -198,6 +203,7 @@ CLASS_CONFIG["demoman"].MAX_AMMO["smg1"] = 20 -- pipe launcher
 CLASS_CONFIG["demoman"].PICKUP_AMMO = {}
 CLASS_CONFIG["demoman"].PICKUP_AMMO["pistol"] = 4 -- sticky launcher
 CLASS_CONFIG["demoman"].PICKUP_AMMO["smg1"] = 4 -- pipe launcher
+CLASS_CONFIG["demoman"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["heavy"] = {}
 CLASS_CONFIG["heavy"].REPLACEMENT_WEAPONS = {}
@@ -215,6 +221,7 @@ CLASS_CONFIG["heavy"].MAX_AMMO["smg1"] = 200 -- minigun
 CLASS_CONFIG["heavy"].PICKUP_AMMO = {}
 CLASS_CONFIG["heavy"].PICKUP_AMMO["pistol"] = 6 -- shotgun
 CLASS_CONFIG["heavy"].PICKUP_AMMO["smg1"] = 50 -- minigun
+CLASS_CONFIG["heavy"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["engineer"] = {}
 CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS = {}
@@ -232,6 +239,7 @@ CLASS_CONFIG["engineer"].MAX_AMMO["smg1"] = 128 -- shotgun
 CLASS_CONFIG["engineer"].PICKUP_AMMO = {}
 CLASS_CONFIG["engineer"].PICKUP_AMMO["pistol"] = 24 -- pistol
 CLASS_CONFIG["engineer"].PICKUP_AMMO["smg1"] = 12 -- shotgun
+CLASS_CONFIG["engineer"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["medic"] = {}
 CLASS_CONFIG["medic"].REPLACEMENT_WEAPONS = {}
@@ -246,6 +254,7 @@ CLASS_CONFIG["medic"].MAX_AMMO = {}
 CLASS_CONFIG["medic"].MAX_AMMO["smg1"] = 150 -- syringe gun
 CLASS_CONFIG["medic"].PICKUP_AMMO = {}
 CLASS_CONFIG["medic"].PICKUP_AMMO["smg1"] = 40 -- syringe gun
+CLASS_CONFIG["medic"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["sniper"] = {}
 CLASS_CONFIG["sniper"].REPLACEMENT_WEAPONS = {}
@@ -263,6 +272,7 @@ CLASS_CONFIG["sniper"].MAX_AMMO["smg1"] = 50 -- sniper rifle
 CLASS_CONFIG["sniper"].PICKUP_AMMO = {}
 CLASS_CONFIG["sniper"].PICKUP_AMMO["pistol"] = 25 -- smg
 CLASS_CONFIG["sniper"].PICKUP_AMMO["smg1"] = 5 -- sniper rifle
+CLASS_CONFIG["sniper"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["spy"] = {}
 CLASS_CONFIG["spy"].REPLACEMENT_WEAPONS = {}
@@ -275,6 +285,7 @@ CLASS_CONFIG["spy"].MAX_AMMO = {}
 CLASS_CONFIG["spy"].MAX_AMMO["pistol"] = 36 -- revolver
 CLASS_CONFIG["spy"].PICKUP_AMMO = {}
 CLASS_CONFIG["spy"].PICKUP_AMMO["pistol"] = 6 -- revolver
+CLASS_CONFIG["spy"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 CLASS_CONFIG["hl1_gordon"] = {}
 CLASS_CONFIG["hl1_gordon"].REPLACEMENT_WEAPONS = {}
@@ -295,7 +306,7 @@ CLASS_CONFIG["hl1_gordon"].MAX_AMMO["357"] = 36 -- 357
 CLASS_CONFIG["hl1_gordon"].MAX_AMMO["smg1"] = 250 -- mp5
 CLASS_CONFIG["hl1_gordon"].MAX_AMMO["smg1_grenade"] = 5 -- mp5
 CLASS_CONFIG["hl1_gordon"].MAX_AMMO["ar2"] = 100 -- gauss
-CLASS_CONFIG["hl1_gordon"].MAX_AMMO["buckshot"] = 125 -- shotgun
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["buckshot"] = 32 -- shotgun
 CLASS_CONFIG["hl1_gordon"].MAX_AMMO["xbowbolt"] = 50 -- crossbow
 CLASS_CONFIG["hl1_gordon"].MAX_AMMO["rpg_round"] = 5 -- rpg
 CLASS_CONFIG["hl1_gordon"].MAX_AMMO["grenade"] = 10 -- hand grenade
@@ -331,7 +342,7 @@ CLASS_CONFIG["hl1_scientist"].MAX_AMMO["357"] = 36 -- 357
 CLASS_CONFIG["hl1_scientist"].MAX_AMMO["smg1"] = 250 -- mp5
 CLASS_CONFIG["hl1_scientist"].MAX_AMMO["smg1_grenade"] = 5 -- mp5
 CLASS_CONFIG["hl1_scientist"].MAX_AMMO["ar2"] = 100 -- egon
-CLASS_CONFIG["hl1_scientist"].MAX_AMMO["buckshot"] = 125 -- shotgun
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["buckshot"] = 32 -- shotgun
 CLASS_CONFIG["hl1_scientist"].MAX_AMMO["xbowbolt"] = 50 -- crossbow
 CLASS_CONFIG["hl1_scientist"].MAX_AMMO["rpg_round"] = 5 -- rpg
 CLASS_CONFIG["hl1_scientist"].MAX_AMMO["grenade"] = 5 -- snark
@@ -367,7 +378,7 @@ CLASS_CONFIG["hl1_barney"].MAX_AMMO["357"] = 36 -- 357
 CLASS_CONFIG["hl1_barney"].MAX_AMMO["smg1"] = 250 -- mp5
 CLASS_CONFIG["hl1_barney"].MAX_AMMO["smg1_grenade"] = 5 -- mp5
 CLASS_CONFIG["hl1_barney"].MAX_AMMO["ar2"] = 16 -- hornet gun
-CLASS_CONFIG["hl1_barney"].MAX_AMMO["buckshot"] = 125 -- shotgun
+CLASS_CONFIG["hl1_barney"].MAX_AMMO["buckshot"] = 32 -- shotgun
 CLASS_CONFIG["hl1_barney"].MAX_AMMO["xbowbolt"] = 50 -- crossbow
 CLASS_CONFIG["hl1_barney"].MAX_AMMO["rpg_round"] = 5 -- rpg
 CLASS_CONFIG["hl1_barney"].MAX_AMMO["grenade"] = 5 -- satchel
@@ -414,6 +425,7 @@ CLASS_CONFIG["quake3"].PICKUP_AMMO["buckshot"] = 25 -- plasma gun
 CLASS_CONFIG["quake3"].PICKUP_AMMO["xbowbolt"] = 25 -- lightning gun
 CLASS_CONFIG["quake3"].PICKUP_AMMO["grenade"] = 5 -- rail gun
 CLASS_CONFIG["quake3"].PICKUP_AMMO["slam"] = 25 -- bfg
+CLASS_CONFIG["quake3"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
 local IS_CUSTOM_WEAPON = {}
 
@@ -601,6 +613,7 @@ PATROL_BLACKLIST["npc_headcrab_poison"] = true
 PATROL_BLACKLIST["npc_headcrab_black"] = true
 PATROL_BLACKLIST["npc_manhack"] = true
 PATROL_BLACKLIST["npc_barnacle"] = true
+PATROL_BLACKLIST["npc_antlion"] = true
 PATROL_BLACKLIST["npc_helicopter"] = true
 PATROL_BLACKLIST["npc_gunship"] = true
 
