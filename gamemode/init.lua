@@ -952,7 +952,7 @@ function GM:EntityTakeDamage(target, dmginfo)
 	if (target:IsPlayer()) then
 		local inflictor = dmginfo:GetInflictor():GetClass()
 		if (inflictor == "q3_rocket" || inflictor == "q3_grenade" || inflictor == "q3_bfg") then
-			dmginfo:ScaleDamage(2)
+			dmginfo:ScaleDamage(2.5)
 		elseif (inflictor == "q3_plasma") then
 			dmginfo:ScaleDamage(1.25)
 		elseif (inflictor == "concussiveblast") then
