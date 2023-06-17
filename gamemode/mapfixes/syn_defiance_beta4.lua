@@ -17,5 +17,7 @@ end
 HOOKS["EntityKeyValue"] = function(e,k,v)
 	if (e:GetName() == "temp_roue" || e:GetName() == "temp_turret_15_coffre_munition_1" && k == "spawnflags") then
 		return "3"
+	elseif (e:GetName() == "plug_counter" && k == "max") -- Fix plugs breaking sometimes by only requiring one
+		return "1"
 	end
 end
