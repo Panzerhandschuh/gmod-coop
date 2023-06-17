@@ -1,4 +1,4 @@
-local AFK_TIME = 60
+local AFK_TIME = 90
 
 hook.Add("PlayerInitialSpawn", "MakeAFKVar", function(ply)
 	ply.NextAFK = CurTime() + AFK_TIME
