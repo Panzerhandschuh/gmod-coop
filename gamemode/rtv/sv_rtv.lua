@@ -63,6 +63,10 @@ function RTV.RemoveVote()
 end
 
 function RTV.Start()
+	if (RTV.InVote) then
+		return
+	end
+
 	if(!RTV.rtved) then
 		TIMER:Finish()
 	end
@@ -103,7 +107,7 @@ function RTV.ChangeMap( map )
 
 	if not map then
 		RTV.ChangingMaps = false
-		return 
+		return
 	end
 
 	if RTV.TTT then

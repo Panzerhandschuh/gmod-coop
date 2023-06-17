@@ -24,7 +24,7 @@ local voted = false
 function RTV.CreatePanel()
 	if (RTV.Voter and RTV.Voter:IsVisible()) then return end
 
-	timer.Simple(25,function()
+	timer.Simple(30,function()
 		if (RTV.Voter and RTV.Voter:IsVisible()) then 
 			RTV.Voter:Remove()
 			RTV.Keys = {}
