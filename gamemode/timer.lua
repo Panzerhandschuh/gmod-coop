@@ -4,16 +4,18 @@ if SERVER then
 	TIMER = {} 
 	
 	function TIMER:Start()
+		if (self.start) then
+			return
+		end
+
 		self.start = CurTime()
 		SetGlobalFloat("MapTimer_Start",self.start)
 	end
 	
 	function TIMER:Finish()
 		local f = CurTime()
-		if (self.start == nil) then
-			self.start = CurTime()
-		end
-		local rt = string.FormattedTime(f-self.start)
+		local start = tonumber(GetGlobalFloat("MapTimer_Start",CurTime()))
+		local rt = string.FormattedTime(f-start)
 		local tim = string.format("%02i:%02i:%02i.%02i",rt.h,rt.m,rt.s,rt.ms)
 		BroadcastLua("chat.AddText(Color(255,255,255),'[',Color(21,40,132),'Coop',Color(255,255,255),'] The map has been beaten in "..tim..", Well done!')")
 	end
