@@ -674,8 +674,8 @@ local rebelmaps = {
 
 local activePlayerCount = 0
 
-CreateConVar('coop_npc_dmg_scale', 1, {FCVAR_NOTIFY, FCVAR_REPLICATED, FCVAR_ARCHIVE} )
-CreateConVar('coop_plr_dmg_scale', 1, {FCVAR_NOTIFY, FCVAR_REPLICATED, FCVAR_ARCHIVE} )
+CreateConVar('coop_npc_dmg_scale', 1, {FCVAR_REPLICATED, FCVAR_ARCHIVE} )
+CreateConVar('coop_plr_dmg_scale', 1, {FCVAR_REPLICATED, FCVAR_ARCHIVE} )
 
 function GM:Initialize()
 	local s = scripted_ents.Get("info_player_deathmatch")
