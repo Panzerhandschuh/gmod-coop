@@ -1380,7 +1380,9 @@ function GM:OnEntityCreated( ent )
 		ent:SetCurrentWeaponProficiency(WEAPON_PROFICIENCY_VERY_GOOD)
 
 		-- Increase player detection range
-		ent:Fire("SetMaxLookDistance", "99999")
+		if (ent:GetClass() != "npc_strider") then
+			ent:Fire("SetMaxLookDistance", "99999")
+		end
 		
 		-- Immediately alert the NPC
 		-- ent:SetNPCState(NPC_STATE_ALERT)
