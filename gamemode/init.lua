@@ -606,17 +606,6 @@ NPC_POINTS["monster_human_assassin"] = 3
 NPC_POINTS["monster_houndeye"] = 1
 NPC_POINTS["monster_bullchicken"] = 2
 
-local PATROL_BLACKLIST = {}
-PATROL_BLACKLIST["npc_headcrab"] = true
-PATROL_BLACKLIST["npc_headcrab_fast"] = true
-PATROL_BLACKLIST["npc_headcrab_poison"] = true
-PATROL_BLACKLIST["npc_headcrab_black"] = true
-PATROL_BLACKLIST["npc_manhack"] = true
-PATROL_BLACKLIST["npc_barnacle"] = true
-PATROL_BLACKLIST["npc_antlion"] = true
-PATROL_BLACKLIST["npc_helicopter"] = true
-PATROL_BLACKLIST["npc_combinegunship"] = true
-
 for k,_ in pairs(REPLACE_ENTS) do
 	if(string.sub(k,1,4) != "npc_" && string.sub(k,1,8) != "monster_" && k != "weapon_medkit") then
 		scripted_ents.Register({Type="point"}, k, false)
@@ -1019,10 +1008,10 @@ function GM:Think()
 		end
 	end
 
-	-- Improve npc aggression
+	-- Make NPCs detect players from anywhere
 	for _,npc in pairs(ents.FindByClass("npc_*")) do
-		if (npc:IsNPC() && CheckCanPatrol(npc)) then
-			npc:SetSchedule(SCHED_PATROL_WALK)
+		if (npc:IsNPC() && !IsValid(npc:GetEnemy())) then
+			NpcCheckForEnemies(npc)
 		end
 	end
 
@@ -1037,6 +1026,32 @@ function GM:Think()
 
 	if (prevPlayerCount != activePlayerCount) then
 		UpdateDifficulty()
+	end
+end
+
+function NpcCheckForEnemies(npc)
+	local curPly = nil
+	local curPlyPos = nil
+	local curDist = math.huge
+
+	local npcPos = npc:GetPos()
+
+	for k, ply in pairs(player.GetAll()) do
+		if (IsValid(ply) && ply:Health() > 0 && npc:Disposition(ply) == D_HT) then
+			local plyPos = ply:GetPos()
+			local dist = npcPos:DistToSqr(plyPos)
+
+			if (dist < curDist) then
+				curPly = ply
+				curPlyPos = plyPos
+				curDist = dist
+			end
+		end
+	end
+
+	if (curPly) then
+		npc:SetEnemy(curPly)
+		npc:UpdateEnemyMemory(curPly, curPlyPos)
 	end
 end
 
@@ -1083,10 +1098,6 @@ function UpdateDifficulty()
 			npcDmgScale:SetFloat(1.55)
 		end
 	end)
-end
-
-function CheckCanPatrol(npc)
-	return (IsValid(npc) && npc:GetEnemy() == nil && npc:GetTarget() == nil && !npc:IsMoving() && npc:GetNPCState() == NPC_STATE_IDLE && !PATROL_BLACKLIST[npc:GetClass()])
 end
 
 function CheckMaxAmmo(ply, wep, ammoNum)
@@ -1383,10 +1394,6 @@ function GM:OnEntityCreated( ent )
 		if (ent:GetClass() != "npc_strider") then
 			ent:Fire("SetMaxLookDistance", "99999")
 		end
-		
-		-- Immediately alert the NPC
-		-- ent:SetNPCState(NPC_STATE_ALERT)
-		-- ent:SetSchedule(SCHED_PATROL_WALK)
 
 		-- Enable jumping
 		--if (ent:SelectWeightedSequence(ACT_JUMP) != -1) then
