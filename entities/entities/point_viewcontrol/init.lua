@@ -39,8 +39,8 @@ function ENT:Initialize()
 		self.Phys:EnableCollisions(false)
 	end]]
 	
-	local c = self:GetColor()
-	self:SetColor(255,255,255,0)
+	-- local c = self:GetColor()
+	-- self:SetColor(255,255,255,0)
 	
 	self:SetRenderMode(RENDERMODE_TRANSTEXTURE)
 	
@@ -225,7 +225,7 @@ function ENT:DoEnable()
 	
 	for _,p in pairs(self.player) do
 		if(!p:IsValid()) then continue end
-		p:SetViewEntity(self)
+		p:SetViewEntity(p)
 	
 		if(p:GetActiveWeapon() && p:GetActiveWeapon():IsValid()) then
 			p:GetActiveWeapon():AddEffects(EF_NODRAW)
