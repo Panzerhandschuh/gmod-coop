@@ -1045,7 +1045,7 @@ function UpdateDifficulty()
 		local count = activePlayerCount
 		local plrDmgScale = GetConVar("coop_plr_dmg_scale")
 		local npcDmgScale = GetConVar("coop_npc_dmg_scale")
-		if (count <= 1) then
+		if (count <= 1) then -- x0.85
 			plrDmgScale:SetFloat(1)
 			npcDmgScale:SetFloat(1)
 		elseif (count == 2) then
@@ -1057,29 +1057,29 @@ function UpdateDifficulty()
 		elseif (count == 4) then
 			plrDmgScale:SetFloat(0.61)
 			npcDmgScale:SetFloat(1.15)
-		elseif (count == 5) then
-			plrDmgScale:SetFloat(0.52)
+		elseif (count == 5) then -- 0.9x
+			plrDmgScale:SetFloat(0.55)
 			npcDmgScale:SetFloat(1.2)
 		elseif (count == 6) then
-			plrDmgScale:SetFloat(0.44)
+			plrDmgScale:SetFloat(0.49)
 			npcDmgScale:SetFloat(1.25)
 		elseif (count == 7) then
-			plrDmgScale:SetFloat(0.38)
+			plrDmgScale:SetFloat(0.44)
 			npcDmgScale:SetFloat(1.3)
 		elseif (count == 8) then
-			plrDmgScale:SetFloat(0.32)
+			plrDmgScale:SetFloat(0.4)
 			npcDmgScale:SetFloat(1.35)
-		elseif (count == 9) then
-			plrDmgScale:SetFloat(0.27)
+		elseif (count == 9) then -- x0.95
+			plrDmgScale:SetFloat(0.38)
 			npcDmgScale:SetFloat(1.4)
 		elseif (count == 10) then
-			plrDmgScale:SetFloat(0.23)
+			plrDmgScale:SetFloat(0.36)
 			npcDmgScale:SetFloat(1.45)
 		elseif (count == 11) then
-			plrDmgScale:SetFloat(0.2)
+			plrDmgScale:SetFloat(0.34)
 			npcDmgScale:SetFloat(1.5)
 		elseif (count == 12) then
-			plrDmgScale:SetFloat(0.17)
+			plrDmgScale:SetFloat(0.32)
 			npcDmgScale:SetFloat(1.55)
 		end
 	end)
