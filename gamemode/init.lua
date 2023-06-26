@@ -615,7 +615,7 @@ PATROL_BLACKLIST["npc_manhack"] = true
 PATROL_BLACKLIST["npc_barnacle"] = true
 PATROL_BLACKLIST["npc_antlion"] = true
 PATROL_BLACKLIST["npc_helicopter"] = true
-PATROL_BLACKLIST["npc_gunship"] = true
+PATROL_BLACKLIST["npc_combinegunship"] = true
 
 for k,_ in pairs(REPLACE_ENTS) do
 	if(string.sub(k,1,4) != "npc_" && string.sub(k,1,8) != "monster_" && k != "weapon_medkit") then
@@ -973,7 +973,7 @@ function GM:EntityTakeDamage(target, dmginfo)
 		end
 	elseif (target:IsNPC() && dmginfo:GetAttacker():IsPlayer()) then
 		local targetClass = target:GetClass()
-		if (targetClass == "npc_helicopter" || targetClass == "npc_gunship" || targetClass == "npc_strider") then
+		if (targetClass == "npc_helicopter" || targetClass == "npc_combinegunship" || targetClass == "npc_strider") then
 			return
 		elseif ((targetClass == "npc_antlionguard" || targetClass == "npc_hunter") && dmginfo:IsExplosionDamage()) then
 			dmginfo:SetDamageType(DMG_BULLET)
