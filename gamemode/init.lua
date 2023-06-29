@@ -1393,7 +1393,9 @@ function GM:OnEntityCreated( ent )
 			return
 		end
 
-		ent:SetLagCompensated(true)
+		if (ent:GetClass() != "npc_barnacle") then -- For some reason lag compensation breaks barnacle animations
+			ent:SetLagCompensated(true)
+		end
 
 		-- Improve NPC accuracy
 		ent:SetCurrentWeaponProficiency(WEAPON_PROFICIENCY_VERY_GOOD)
