@@ -1398,7 +1398,7 @@ function GM:OnEntityCreated( ent )
 		end
 
 		-- Improve NPC accuracy
-		ent:SetCurrentWeaponProficiency(WEAPON_PROFICIENCY_VERY_GOOD)
+		ent:SetCurrentWeaponProficiency(WEAPON_PROFICIENCY_GOOD)
 
 		-- Increase player detection range
 		if (ent:GetClass() != "npc_strider") then
