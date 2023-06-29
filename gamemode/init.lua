@@ -309,7 +309,7 @@ CLASS_CONFIG["hl1_gordon"].MAX_AMMO["ar2"] = 100 -- gauss
 CLASS_CONFIG["hl1_gordon"].MAX_AMMO["buckshot"] = 32 -- shotgun
 CLASS_CONFIG["hl1_gordon"].MAX_AMMO["xbowbolt"] = 25 -- crossbow
 CLASS_CONFIG["hl1_gordon"].MAX_AMMO["rpg_round"] = 5 -- rpg
-CLASS_CONFIG["hl1_gordon"].MAX_AMMO["grenade"] = 10 -- hand grenade
+CLASS_CONFIG["hl1_gordon"].MAX_AMMO["grenade"] = 5 -- hand grenade
 CLASS_CONFIG["hl1_gordon"].MAX_AMMO["slam"] = 5 -- tripmine
 CLASS_CONFIG["hl1_gordon"].PICKUP_AMMO = {}
 CLASS_CONFIG["hl1_gordon"].PICKUP_AMMO["pistol"] = 36 -- glock
@@ -345,7 +345,7 @@ CLASS_CONFIG["hl1_scientist"].MAX_AMMO["ar2"] = 100 -- egon
 CLASS_CONFIG["hl1_scientist"].MAX_AMMO["buckshot"] = 32 -- shotgun
 CLASS_CONFIG["hl1_scientist"].MAX_AMMO["xbowbolt"] = 25 -- crossbow
 CLASS_CONFIG["hl1_scientist"].MAX_AMMO["rpg_round"] = 5 -- rpg
-CLASS_CONFIG["hl1_scientist"].MAX_AMMO["grenade"] = 5 -- snark
+CLASS_CONFIG["hl1_scientist"].MAX_AMMO["grenade"] = 10 -- snark
 CLASS_CONFIG["hl1_scientist"].MAX_AMMO["slam"] = 5 -- tripmine
 CLASS_CONFIG["hl1_scientist"].PICKUP_AMMO = {}
 CLASS_CONFIG["hl1_scientist"].PICKUP_AMMO["pistol"] = 36 -- glock
@@ -948,6 +948,8 @@ function GM:EntityTakeDamage(target, dmginfo)
 			dmginfo:ScaleDamage(0.6)
 		elseif (inflictor == "func_tank") then
 			dmginfo:ScaleDamage(0.4)
+		elseif (inflictor == "monster_snark") then
+			dmginfo:ScaleDamage(0.5)
 		elseif (dmginfo:GetAttacker():IsNPC()) then
 			local attackerClass = dmginfo:GetAttacker():GetClass()
 			if (attackerClass == "npc_headcrab_black" || attackerClass == "npc_headcrab_poison") then
