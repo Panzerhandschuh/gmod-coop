@@ -1331,6 +1331,12 @@ end
 
 function GM:OnEntityCreated( ent )
 	local class = ent:GetClass()
+
+	if (class == "rpg_missile" || class == "grenade_ar2" || class == "npc_grenade_frag") then
+		ent:SetCollisionGroup(COLLISION_GROUP_NPC_ACTOR)
+		return
+	end
+
 	if (string.sub(class,1,4) != "npc_" && string.sub(class,1,8) != "monster_") then
 		return
 	end
