@@ -1012,8 +1012,8 @@ function GM:Think()
 
 	-- Make NPCs detect players from anywhere
 	for _,npc in pairs(ents.FindByClass("npc_*")) do
-		if (npc:IsNPC() && !IsValid(npc:GetEnemy()) && ent:GetClass() != "npc_barnacle") then
-			NpcCheckForEnemies(npc)
+		if (npc:IsNPC() && !IsValid(npc:GetEnemy()) && npc:GetClass() != "npc_barnacle") then
+			npc:SetSchedule(SCHED_PATROL_WALK)
 		end
 	end
 
