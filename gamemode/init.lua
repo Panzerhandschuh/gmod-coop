@@ -7,7 +7,7 @@ AddCSLuaFile("rtv/cl_rtv.lua")
 AddCSLuaFile("timer.lua")
 
 include("sv_mapseries.lua")
-include("sv_npcconfig.lua")
+include("sv_entityconfig.lua")
 include("shared.lua")
 include("spectate.lua")
 include("sv_afk.lua")
