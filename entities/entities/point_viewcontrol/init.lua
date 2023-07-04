@@ -100,7 +100,6 @@ end
 
 function ENT:AcceptInput(inputName, activator, called, data)
 	if(inputName == "Enable") then
-		self.player = {activator}
 		self:DoEnable()
 		return true
 	elseif(inputName == "Disable") then
@@ -112,15 +111,8 @@ end
 
 function ENT:DoEnable()
 	self.inuse = true
-	if(self.oc || self.synb2 || (self.syn && bit.band(self.spawnflags,128)>0)) then
-		print("cool")
-		self.player = player.GetAll()
-	end
-	if(!self.player) then
-		self.player = {player.GetAll()[1]} --1st player alternative so no crash incase spawnflags ^_^
-	end
 
-	for _,p in pairs(self.player) do
+	for _,p in pairs(player.GetAll()) do
 		if(!p:IsValid() || !p:IsPlayer()) then
 			print("entity is not a player")
 			continue
@@ -165,7 +157,7 @@ function ENT:DoEnable()
 		self.snaptogoal = true
 	end
 	
-	local pc = table.Random(self.player)
+	local pc = table.Random(player.GetAll())
 	
 	self.target = nil
 	if(bit.band(self.spawnflags,2)>0) then
@@ -223,9 +215,9 @@ function ENT:DoEnable()
 		self:SetLocalVelocity(Vector(0,0,0))
 	end
 	
-	for _,p in pairs(self.player) do
+	for _,p in pairs(player.GetAll()) do
 		if(!p:IsValid()) then continue end
-		p:SetViewEntity(p)
+		p:SetViewEntity(self)
 	
 		if(p:GetActiveWeapon() && p:GetActiveWeapon():IsValid()) then
 			p:GetActiveWeapon():AddEffects(EF_NODRAW)
@@ -256,40 +248,39 @@ end
 
 function ENT:DoDisable()
 	if(!self.inuse) then return end
-	if(self.player) then
-		for _,p in pairs(self.player) do
-			if(!p:IsValid()) then continue end
-			p:SetViewEntity(p)
-			
-			if(bit.band(self.spawnflags,32)>0) then
-				p:SetCollisionGroup(COLLISION_GROUP_PLAYER)
-			end
 
-			p.nocdamage = false
-			p.nvistonpc = false
-			if(!p:Alive()) then continue end
-			
-			if(bit.band(self.spawnflags,4)>0) then
-				p:RemoveFlags(FL_FROZEN)
-			end
-			
-			if(p:GetActiveWeapon() && p:GetActiveWeapon():IsValid()) then
-				p:GetActiveWeapon():RemoveEffects(EF_NODRAW)
-			end
+	for _,p in pairs(player.GetAll()) do
+		if(!p:IsValid()) then continue end
+		p:SetViewEntity(p)
 		
-			if(self.oc && bit.band(self.spawnflags,128)>0) then
-				p:RemoveEffects(EF_NODRAW)
-			end
+		if(bit.band(self.spawnflags,32)>0) then
+			p:SetCollisionGroup(COLLISION_GROUP_PLAYER)
+		end
+
+		p.nocdamage = false
+		p.nvistonpc = false
+		if(!p:Alive()) then continue end
+		
+		if(bit.band(self.spawnflags,4)>0) then
+			p:RemoveFlags(FL_FROZEN)
 		end
 		
-		self.inuse = false
-		self.followtarget = false
-		self:TriggerOutput("OnEndFollow",self)
-		
-		self.returntime = CurTime()
-		
-		self:AddEFlags( EFL_FORCE_CHECK_TRANSMIT )
+		if(p:GetActiveWeapon() && p:GetActiveWeapon():IsValid()) then
+			p:GetActiveWeapon():RemoveEffects(EF_NODRAW)
+		end
+	
+		if(self.oc && bit.band(self.spawnflags,128)>0) then
+			p:RemoveEffects(EF_NODRAW)
+		end
 	end
+	
+	self.inuse = false
+	self.followtarget = false
+	self:TriggerOutput("OnEndFollow",self)
+	
+	self.returntime = CurTime()
+	
+	self:AddEFlags( EFL_FORCE_CHECK_TRANSMIT )
 end
 
 function ENT:ShouldUToggle(usetype,state)
@@ -322,13 +313,12 @@ function ENT:Use(activator, caller, useType, value)
 		self.enabled = false
 		self:DoDisable()
 	else
-		self.player = activator
 		self:DoEnable()
 	end
 end
 
 function ENT:FollowTarget()
-	if(!self.player) then return end
+	if(!player.GetAll()) then return end
 	if(!self.target || !self.target:IsValid()) then
 		self.enabled = false
 		self:DoDisable()
@@ -393,7 +383,7 @@ end
 
 function ENT:DoMove()
 	if(bit.band(self.spawnflags,64)>0) then
-		for _,p in pairs(self.player) do
+		for _,p in pairs(player.GetAll()) do
 			if(p && p:IsValid()) then
 				if(p.cbuttons != p.obuttons) then
 					self.enabled = false
@@ -446,8 +436,10 @@ function ENT:DoMove()
 		if(!self.oldvel) then
 			self.oldvel = Vector(0,0,0)
 		end
-		self:SetAbsVelocity(((self.movedir * self.speed) * frac) + (self.oldvel * (1-frac)))
-		self.oldvel = ((self.movedir * self.speed) * frac) + (self.oldvel * (1-frac))
+		if (self.movedir) then
+			self:SetAbsVelocity(((self.movedir * self.speed) * frac) + (self.oldvel * (1-frac)))
+			self.oldvel = ((self.movedir * self.speed) * frac) + (self.oldvel * (1-frac))
+		end
 	elseif(self.plyinterp) then
 		local tt = (CurTime()-self.interpstart)/2
 		
