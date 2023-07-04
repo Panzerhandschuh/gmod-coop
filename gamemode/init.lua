@@ -669,8 +669,8 @@ local rebelmaps = {
 
 local activePlayerCount = 0
 
-CreateConVar('coop_npc_dmg_scale', 1, {FCVAR_REPLICATED, FCVAR_ARCHIVE} )
-CreateConVar('coop_plr_dmg_scale', 1, {FCVAR_REPLICATED, FCVAR_ARCHIVE} )
+CreateConVar('coop_plr_take_dmg_scale', 1, {FCVAR_REPLICATED, FCVAR_ARCHIVE} ) -- How much damage the player takes from npcs and other sources
+CreateConVar('coop_plr_deal_dmg_scale', 1, {FCVAR_REPLICATED, FCVAR_ARCHIVE} ) -- How much damage the player deals to npcs
 
 function GM:Initialize()
 	local s = scripted_ents.Get("info_player_deathmatch")
@@ -953,7 +953,11 @@ function GM:EntityTakeDamage(target, dmginfo)
 		elseif (inflictor == "concussiveblast") then
 			dmginfo:ScaleDamage(0.6)
 		elseif (inflictor == "func_tank") then
-			dmginfo:ScaleDamage(0.4)
+			if (dmginfo:GetDamage() == 1) then
+				dmginfo:ScaleDamage(8)
+			elseif (dmginfo:GetDamage() > 20) then
+				dmginfo:ScaleDamage(0.4)
+			end
 		elseif (inflictor == "monster_snark") then
 			dmginfo:ScaleDamage(0.5)
 		elseif (dmginfo:GetAttacker():IsNPC()) then
@@ -965,7 +969,7 @@ function GM:EntityTakeDamage(target, dmginfo)
 				return
 			end
 			
-			local dmgScale = GetConVar('coop_npc_dmg_scale'):GetFloat()
+			local dmgScale = GetConVar('coop_plr_take_dmg_scale'):GetFloat()
 			dmginfo:ScaleDamage(dmgScale)
 		end
 	elseif (target:IsNPC() && dmginfo:GetAttacker():IsPlayer()) then
@@ -976,7 +980,7 @@ function GM:EntityTakeDamage(target, dmginfo)
 			dmginfo:SetDamageType(DMG_BULLET)
 		end
 		
-		local dmgScale = GetConVar('coop_plr_dmg_scale'):GetFloat()
+		local dmgScale = GetConVar('coop_plr_deal_dmg_scale'):GetFloat()
 		dmginfo:ScaleDamage(dmgScale)
 	end
 end
@@ -1069,44 +1073,44 @@ end
 function UpdateDifficulty()
 	timer.Simple(1, function()
 		local count = activePlayerCount
-		local plrDmgScale = GetConVar("coop_plr_dmg_scale")
-		local npcDmgScale = GetConVar("coop_npc_dmg_scale")
+		local plrDealDmgScale = GetConVar("coop_plr_deal_dmg_scale")
+		local plrTakeDmgScale = GetConVar("coop_plr_take_dmg_scale")
 		if (count <= 1) then -- x0.85
-			plrDmgScale:SetFloat(1)
-			npcDmgScale:SetFloat(1)
+			plrDealDmgScale:SetFloat(1)
+			plrTakeDmgScale:SetFloat(0.9)
 		elseif (count == 2) then
-			plrDmgScale:SetFloat(0.85)
-			npcDmgScale:SetFloat(1.05)
+			plrDealDmgScale:SetFloat(0.85)
+			plrTakeDmgScale:SetFloat(1.00)
 		elseif (count == 3) then
-			plrDmgScale:SetFloat(0.72)
-			npcDmgScale:SetFloat(1.1)
+			plrDealDmgScale:SetFloat(0.72)
+			plrTakeDmgScale:SetFloat(1.1)
 		elseif (count == 4) then
-			plrDmgScale:SetFloat(0.61)
-			npcDmgScale:SetFloat(1.15)
+			plrDealDmgScale:SetFloat(0.61)
+			plrTakeDmgScale:SetFloat(1.15)
 		elseif (count == 5) then -- 0.9x
-			plrDmgScale:SetFloat(0.55)
-			npcDmgScale:SetFloat(1.2)
+			plrDealDmgScale:SetFloat(0.55)
+			plrTakeDmgScale:SetFloat(1.2)
 		elseif (count == 6) then
-			plrDmgScale:SetFloat(0.49)
-			npcDmgScale:SetFloat(1.25)
+			plrDealDmgScale:SetFloat(0.49)
+			plrTakeDmgScale:SetFloat(1.25)
 		elseif (count == 7) then
-			plrDmgScale:SetFloat(0.44)
-			npcDmgScale:SetFloat(1.3)
+			plrDealDmgScale:SetFloat(0.44)
+			plrTakeDmgScale:SetFloat(1.3)
 		elseif (count == 8) then
-			plrDmgScale:SetFloat(0.4)
-			npcDmgScale:SetFloat(1.35)
+			plrDealDmgScale:SetFloat(0.4)
+			plrTakeDmgScale:SetFloat(1.35)
 		elseif (count == 9) then -- x0.95
-			plrDmgScale:SetFloat(0.38)
-			npcDmgScale:SetFloat(1.4)
+			plrDealDmgScale:SetFloat(0.38)
+			plrTakeDmgScale:SetFloat(1.4)
 		elseif (count == 10) then
-			plrDmgScale:SetFloat(0.36)
-			npcDmgScale:SetFloat(1.45)
+			plrDealDmgScale:SetFloat(0.36)
+			plrTakeDmgScale:SetFloat(1.45)
 		elseif (count == 11) then
-			plrDmgScale:SetFloat(0.34)
-			npcDmgScale:SetFloat(1.5)
+			plrDealDmgScale:SetFloat(0.34)
+			plrTakeDmgScale:SetFloat(1.5)
 		elseif (count == 12) then
-			plrDmgScale:SetFloat(0.32)
-			npcDmgScale:SetFloat(1.55)
+			plrDealDmgScale:SetFloat(0.32)
+			plrTakeDmgScale:SetFloat(1.55)
 		end
 	end)
 end
