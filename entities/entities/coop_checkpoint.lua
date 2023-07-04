@@ -17,7 +17,7 @@ function ENT:AcceptInput(inputName, activator, called, data)
 end
 
 function ENT:Think()
-	if (!self.keyvalues["radius"] || self.hasActivated) then
+	if (!self.keyvalues || !self.keyvalues["radius"] || self.hasActivated) then
 		return
 	end
 
