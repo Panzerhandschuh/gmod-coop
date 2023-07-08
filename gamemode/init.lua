@@ -666,6 +666,7 @@ local rebelmaps = {
 	"puzlehl2",
 	"coop_port_sg_zb",
 	"mph_crane_hop_v4",
+	"mph_fire_pit_final_v5",
 	"z_harrier_b",
 	"z_harrier2_f",
 	"coop_citadel_escape_p6",
@@ -1035,7 +1036,7 @@ function GM:Think()
 	for _,npc in pairs(ents.FindByClass("npc_*")) do
 		if (npc:IsNPC() && !IsValid(npc:GetEnemy()) && npc:GetCurrentSchedule() == SCHED_IDLE_STAND) then
 			npc:SetSchedule(SCHED_PATROL_WALK)
-			if (string.find(npc:GetClass(), "zomb") || string.find(npc:GetClass(), "headcrab") || npc:GetClass() == "npc_antlion") then
+			if (string.find(npc:GetClass(), "zomb") || string.find(npc:GetClass(), "headcrab") || npc:GetClass() == "npc_antlion" || npc:GetClass() == "npc_strider") then
 				NpcCheckForEnemies(npc)
 			end
 		end
