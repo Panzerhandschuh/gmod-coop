@@ -1,5 +1,6 @@
 include("shared.lua")
 include("rtv/cl_rtv.lua")
+include("tpmenu/cl_tpmenu.lua")
 
 function GM:HUDPaintBackground()
 	if(LocalPlayer && LocalPlayer():IsValid()) then

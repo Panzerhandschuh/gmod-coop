@@ -1,5 +1,6 @@
 include("player_class/player_coop.lua")
 include("rtv/config.lua")
+include("tpmenu/config.lua")
 include("newstam.lua")
 include("timer.lua")
 
