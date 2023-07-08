@@ -29,7 +29,7 @@ if SERVER then
 		end
 	end)
 else
-	local showtimer = CreateClientConVar("cl_cooptimer_show", "0", true, false) --client cvars are persistent if u set that arg to true :D
+	local showtimer = CreateClientConVar("cl_cooptimer_show", "1", true, false) --client cvars are persistent if u set that arg to true :D
 	
 	function TIMER_Toggle()
 		local entext = nil
