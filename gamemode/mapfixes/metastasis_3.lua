@@ -27,12 +27,24 @@ HOOKS["InitPostEntity"] = function()
 
 	local cp2 = ents.Create("coop_checkpoint")
 	cp2:SetName("cp2")
-	cp2:SetPos(Vector(6144, -896, 1288))
+	cp2:SetPos(Vector(6144, -928, 1288))
 	cp2:Spawn()
 
 	for k,v in pairs(ents.FindByClass("trigger_multiple")) do
-		if (v:GetPos() == Vector(6144, -1048, 1344)) then
+		if (v:GetPos() == Vector(6144, -1048, 7444)) then
 			v:Fire("AddOutput","OnTrigger cp2,SetAsCP,,0,-1",0)
+			v:Fire("AddOutput","OnTrigger player,AddOutput,origin 6144 -1040 7348,0,-1",0)
+		end
+	end
+
+	local cp3 = ents.Create("coop_checkpoint")
+	cp3:SetName("cp3")
+	cp3:SetPos(Vector(6144, -896, 1288))
+	cp3:Spawn()
+
+	for k,v in pairs(ents.FindByClass("trigger_multiple")) do
+		if (v:GetPos() == Vector(6144, -1048, 1344)) then
+			v:Fire("AddOutput","OnTrigger cp3,SetAsCP,,0,-1",0)
 			v:Fire("AddOutput","OnTrigger player,AddOutput,origin 6144 -1040 7360,0,-1",0)
 		end
 	end

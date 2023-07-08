@@ -13,6 +13,12 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 end
 
 HOOKS["InitPostEntity"] = function()
+	for k,v in pairs(ents.FindByClass("trigger_teleport")) do
+		if (v:GetPos() == Vector(-5024, -12192, -10336)) then
+			v:Input("Enable")
+		end
+	end
+
 	local cp1 = ents.Create("coop_checkpoint")
 	cp1:SetName("cp1")
 	cp1:SetPos(Vector(-1040, -1968, -6016))
@@ -33,7 +39,7 @@ HOOKS["InitPostEntity"] = function()
 	for k,v in pairs(ents.FindByClass("trigger_once")) do
 		if (v:GetPos() == Vector(-648, -320, -1584)) then
 			v:Fire("AddOutput","OnTrigger cp2,SetAsCP,,0,-1",0)
-			v:Fire("AddOutput","OnTrigger player,AddOutput,origin -656 -288 -1560,0,-1",0)
+			v:Fire("AddOutput","OnTrigger player,AddOutput,origin -656 -288 -1552,0,-1",0)
 		end
 	end
 
