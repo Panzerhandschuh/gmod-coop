@@ -1034,9 +1034,11 @@ function GM:Think()
 
 	-- Make NPCs detect players from anywhere
 	for _,npc in pairs(ents.FindByClass("npc_*")) do
-		if (npc:IsNPC() && !IsValid(npc:GetEnemy()) && npc:GetCurrentSchedule() == SCHED_IDLE_STAND) then
-			npc:SetSchedule(SCHED_PATROL_WALK)
-			if (string.find(npc:GetClass(), "zomb") || string.find(npc:GetClass(), "headcrab") || npc:GetClass() == "npc_antlion" || npc:GetClass() == "npc_strider") then
+		if (npc:IsNPC() && !IsValid(npc:GetEnemy())) then
+			if (npc:GetCurrentSchedule() == SCHED_IDLE_STAND) then
+				npc:SetSchedule(SCHED_PATROL_WALK)
+			end
+			if (string.find(npc:GetClass(), "zomb") || string.find(npc:GetClass(), "headcrab") || string.find(npc:GetClass(), "antlion") || npc:GetClass() == "npc_manhack" || npc:GetClass() == "npc_strider" || npc:GetClass() == "npc_helicopter" || npc:GetClass() == "npc_combinegunship") then
 				NpcCheckForEnemies(npc)
 			end
 		end
