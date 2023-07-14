@@ -55,7 +55,7 @@ hook.Add( "PlayerInitialSpawn", "SendList", function(ply)
 end)
 
 function RTV.ShouldChange()
-	return RTV.TotalVotes >= math.Round(#player.GetHumans()*0.6)
+	return RTV.TotalVotes >= math.ceil(#player.GetHumans()*0.6)
 end
 
 function RTV.RemoveVote()
@@ -233,7 +233,7 @@ function RTV.AddVote( ply )
 		RTV.TotalVotes = RTV.TotalVotes + 1
 		ply.RTVoted = true
 		MsgN( ply:Nick().." has voted to Rock the Vote." )
-		PrintMessage( HUD_PRINTTALK, ply:Nick().." has voted to Rock the Vote. ("..RTV.TotalVotes.."/"..math.Round(#player.GetHumans()*0.6)..")" )
+		PrintMessage( HUD_PRINTTALK, ply:Nick().." has voted to Rock the Vote. ("..RTV.TotalVotes.."/"..math.ceil(#player.GetHumans()*0.6)..")" )
 
 		if RTV.ShouldChange() then
 			RTV.rtved = true
