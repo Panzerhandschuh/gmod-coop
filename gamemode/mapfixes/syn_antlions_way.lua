@@ -1,5 +1,5 @@
 HOOKS["InitPostEntity"] = function()
-	timer.Simple(60, function()
+	timer.Simple(90, function()
 		for k,v in pairs(ents.FindByName("pilon_act_1")) do
 			v:Input("Trigger")
 		end
