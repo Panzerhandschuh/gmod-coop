@@ -34,8 +34,9 @@ function ENT:Think()
 					end
 				end
 			end
-
+			
 			self.hasActivated = true
+			ply:ChatPrint("Checkpoint reached...")
 		end
 	end
 end
