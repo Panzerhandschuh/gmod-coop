@@ -587,6 +587,8 @@ REPLACE_ENTS["item_box_sniper_rounds"] = "item_ammo_crossbow"
 REPLACE_ENTS["item_ammo_tau"] = "item_ammo_smg1_large"
 REPLACE_ENTS["weapon_scripted"] = "WEAPON_RANDOM"
 REPLACE_ENTS["item_custom"] = "ITEM_RANDOM"
+REPLACE_ENTS["weapon_alyxgun"] = "weapon_357"
+REPLACE_ENTS["item_box_alyxrounds"] = "item_ammo_357"
 
 local NPC_POINTS = {}
 NPC_POINTS["npc_antlion"] = 2
