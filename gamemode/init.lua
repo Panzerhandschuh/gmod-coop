@@ -707,16 +707,28 @@ function GM:Initialize()
 end
 
 function GM:PlayerInitialSpawn(ply)
+	-- Update player count
 	local t = #player.GetAll()
 	for k,v in pairs(ents.FindByClass("trigger_coop")) do
 		if(v.percentage) then
 			v:UpdatePlayerCount(t)
 		end
 	end
+
+	-- Reset death counter
+	ply.deaths = 0
 	
 	if(!TIMER.start) then TIMER:Start() end
 	
 	self.BaseClass:PlayerInitialSpawn(ply)
+end
+
+function GM:PostPlayerDeath( ply )
+	if (ply.deaths) then
+		ply.deaths = ply.deaths + 1
+	end
+
+	return false
 end
 
 function GM:PlayerPostThink(ply)

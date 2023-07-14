@@ -16,8 +16,13 @@ if SERVER then
 		local f = CurTime()
 		local start = tonumber(GetGlobalFloat("MapTimer_Start",CurTime()))
 		local rt = string.FormattedTime(f-start)
-		local tim = string.format("%02i:%02i:%02i.%02i",rt.h,rt.m,rt.s,rt.ms)
-		BroadcastLua("chat.AddText(Color(255,255,255),'[',Color(21,40,132),'Coop',Color(255,255,255),'] The map has been beaten in "..tim..", Well done!')")
+		local time = string.format("%02i:%02i:%02i.%02i",rt.h,rt.m,rt.s,rt.ms)
+		for _, ply in pairs(player.GetAll()) do
+			if (ply.deaths) then
+				ply:ChatPrint("[Coop] The map has been beaten in " .. time .. ", Well done!')")
+				ply:ChatPrint("[Coop] You have died " .. ply.deaths .. " time(s).")
+			end
+		end
 	end
 	
 	hook.Add("PlayerSay","TIMER_Say",function(sender, text, teamChat)
