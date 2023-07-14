@@ -1328,6 +1328,10 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 		end
 
 		local ammo = WEP_TO_AMMO[wepClass]
+		if (!ammo) then
+			print("Player attempting to pick up invalid weapon class: " .. wepClass)
+			return false
+		end
 		local maxAmmo = MAX_AMMO[ammo]
 		local currentAmmo = ply:GetAmmoCount(ammo)
 
