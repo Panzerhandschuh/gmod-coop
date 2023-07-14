@@ -1276,6 +1276,11 @@ end
 function GM:PlayerCanPickupWeapon(ply, wep)
 	local wepClass = wep:GetClass()
 
+	-- Fixes weapon pickup output not firing for replacement weapons
+	if (wep.hasPickupOutput) then
+		wep:Input("FireUser1")
+	end
+
 	-- If this is a custom weapon, then pick it up immediately
 	if (IS_CUSTOM_WEAPON[wep:GetClass()]) then
 		return true
@@ -1488,42 +1493,50 @@ function GM:AcceptInput(ent, input, activator, caller, value)
 end
 
 function GM:EntityKeyValue(e,k,v)
-	if(string.sub(k,1,2) == "On") then
-		if(REPLACE_ENTS[e:GetClass()] && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) == "monster_")) then
-			if(!e.out) then e.out = {} end
+	if (string.sub(k,1,2) == "On") then
+		if (REPLACE_ENTS[e:GetClass()] && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) == "monster_")) then
+			if (!e.out) then e.out = {} end
 			--PrintMessage( HUD_PRINTCONSOLE, "Found Output "..k.." "..v)
 			e.out[k] = v
 		end
 	end
-	if(isOC && k == "health" && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) == "monster_")) then
+
+	if (isOC && k == "health" && (string.sub(e:GetClass(),1,4) == "npc_" || string.sub(e:GetClass(),1,8) == "monster_")) then
 		e.chealth = tonumber(v)
 	end
-	if(e:GetClass() == "trigger_multiple_oc" || e:GetClass() == "trigger_once_oc") then
-		if(string.sub(k,1,2) == "On") then
-			if(!e.oc_out) then e.oc_out = {} end
+
+	if (e:GetClass() == "trigger_multiple_oc" || e:GetClass() == "trigger_once_oc") then
+		if (string.sub(k,1,2) == "On") then
+			if (!e.oc_out) then e.oc_out = {} end
 			table.insert(e.oc_out,k.." "..v)
-		elseif(k == "spawnflags") then
+		elseif (k == "spawnflags") then
 			e.spf = v
-		elseif(k == "wait") then
+		elseif (k == "wait") then
 			e.wa = v
-		elseif(k == "StartDisabled") then
+		elseif (k == "StartDisabled") then
 			e.dis = v
-		elseif(k == "filtername") then
+		elseif (k == "filtername") then
 			e.filter = v
 		end
 	elseif((e:GetClass() == "info_player_coop" || e:GetClass() == "info_player_start") && k == "StartDisabled") then
 		if(tonumber(v) == 1) then
 			e.disabled = true
 		end
-	elseif(e:GetClass() == "info_waypoint" && k == "text") then
+	elseif (e:GetClass() == "info_waypoint" && k == "text") then
 		e:SetNetworkedString("text", v)
-	elseif(e:GetClass() == "prop_vehicle_jeep" && k == "model") then
+	elseif (e:GetClass() == "prop_vehicle_jeep" && k == "model") then
 		return "models/buggy.mdl"
+	elseif (string.StartsWith(e:GetClass(), "weapon_") && k == "OnPlayerPickup") then
+		e:SetKeyValue("OnUser1", v)
+		e.hasPickupOutput = true
+		return ""
 	end
-	if(k == "NPCType" && REPLACE_ENTS[v]) then
+
+	if (k == "NPCType" && REPLACE_ENTS[v]) then
 		return REPLACE_ENTS[v]
 	end
-	if(k == "additionalequipment") then
+	
+	if (k == "additionalequipment") then
 		if(REPLACE_ENTS[v]) then
 			return REPLACE_ENTS[v]
 		end
