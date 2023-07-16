@@ -6,4 +6,8 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 			return math.Round(v * 0.5)
 		end
 	end
+
+	if (e:GetName() == "mines_trip_trg_sec" && k == "OnStartTouch" && string.find(v, "top_deck_doors_trg_ent")) then
+		return ""
+	end
 end

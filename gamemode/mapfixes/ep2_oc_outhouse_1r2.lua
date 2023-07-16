@@ -1,3 +1,23 @@
+HOOKS["PlayerCanPickupWeapon"] = function(ply, wep)
+	-- Fixes weapon pickup output not firing for replacement weapons
+	if (wep.hasPickupOutput) then
+		wep:Input("FireUser1")
+	end
+end
+
+HOOKS["EntityKeyValue"] = function(e,k,v)
+	-- Add pickup output
+	if (string.StartsWith(e:GetClass(), "weapon_") && k == "OnPlayerPickup") then
+		e:SetKeyValue("OnUser1", v)
+		e.hasPickupOutput = true
+		return ""
+	end
+
+	if(k == "OnPass" && v == "startcam_2,Enable,,0.5,1") then
+		return "startcam_1,Disable,,0.5,1"
+	end
+end
+
 -- Adjust weapon loadout
 HOOKS["PlayerSpawn"] = function(ply)
 	timer.Simple( 0.1, function()
@@ -32,12 +52,6 @@ HOOKS["InitPostEntity"] = function()
 	r3.oPos = Vector(-6544, 224, -280)
 	r3.oAng = Angle(0, 0, 0)
 	r3:Spawn()
-end
-
-HOOKS["EntityKeyValue"] = function(e,k,v)
-	if(k == "OnPass" && v == "startcam_2,Enable,,0.5,1") then
-		return "startcam_1,Disable,,0.5,1"
-	end
 end
 
 HOOKS["OnEntityCreated"] = function(ent)
