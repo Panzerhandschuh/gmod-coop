@@ -1276,11 +1276,6 @@ end
 function GM:PlayerCanPickupWeapon(ply, wep)
 	local wepClass = wep:GetClass()
 
-	-- Fixes weapon pickup output not firing for replacement weapons
-	if (wep.hasPickupOutput) then
-		wep:Input("FireUser1")
-	end
-
 	-- If this is a custom weapon, then pick it up immediately
 	if (IS_CUSTOM_WEAPON[wep:GetClass()]) then
 		return true
@@ -1526,10 +1521,6 @@ function GM:EntityKeyValue(e,k,v)
 		e:SetNetworkedString("text", v)
 	elseif (e:GetClass() == "prop_vehicle_jeep" && k == "model") then
 		return "models/buggy.mdl"
-	elseif (string.StartsWith(e:GetClass(), "weapon_") && k == "OnPlayerPickup") then
-		e:SetKeyValue("OnUser1", v)
-		e.hasPickupOutput = true
-		return ""
 	end
 
 	if (k == "NPCType" && REPLACE_ENTS[v]) then
