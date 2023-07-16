@@ -19,7 +19,7 @@ if SERVER then
 		local time = string.format("%02i:%02i:%02i.%02i",rt.h,rt.m,rt.s,rt.ms)
 		for _, ply in pairs(player.GetAll()) do
 			if (ply.deaths) then
-				ply:ChatPrint("[Coop] The map has been beaten in " .. time .. ", Well done!')")
+				ply:ChatPrint("[Coop] The map has been beaten in " .. time .. ", well done!")
 				ply:ChatPrint("[Coop] You have died " .. ply.deaths .. " time(s).")
 			end
 		end
