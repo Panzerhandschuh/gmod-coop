@@ -16,6 +16,7 @@ include("sv_afk.lua")
 include("sv_adverts.lua")
 include("rtv/sv_rtv.lua")
 include("tpmenu/sv_tpmenu.lua")
+include("sv_listmaps.lua")
 include("sv_syntruck.lua")
 include("crowbar_dmg_fix.lua")
 
