@@ -78,6 +78,9 @@ HOOKS["InitPostEntity"] = function()
 	for k,v in pairs(ents.FindByName("ntemp_heli_0*")) do
 		v:Remove()
 	end
+	for k,v in pairs(ents.FindByClass("npc_helicopter")) do
+		v:Remove()
+	end
 	
 	-- Add new game end trigger
 	ents.FindByName("finale_elevator_path3")[1]:Fire("AddOutput", "OnPass game_ender,EndGame,,24,1", 0)
