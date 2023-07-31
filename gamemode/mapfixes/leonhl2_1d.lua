@@ -9,3 +9,14 @@ HOOKS["EntityKeyValue"] = function(e,k,v)
 		end
 	end
 end
+
+HOOKS["InitPostEntity"] = function()
+	local ge = ents.Create("game_end")
+	ge:SetName("fakegameender")
+	ge:Spawn()
+	for k,v in pairs(ents.FindByClass("trigger_once")) do
+		if (v:GetPos() == Vector(1756, 2444, 918.17)) then
+			v:Fire("AddOutput","OnStartTouch fakegameender,EndGame,,33,-1",0)
+		end
+	end
+end

@@ -29,3 +29,17 @@ HOOKS["InitPostEntity"] = function()
 		v:Fire("AddOutput","OnDeath gameender,EndGame,,35,-1",0)
 	end
 end
+
+HOOKS["EntityKeyValue"] = function(e,k,v)
+	if (string.find(e:GetClass(), "npc_")) then
+		if (k == "model") then
+			return ""
+		elseif (k == "gibmodel0") then
+			return ""
+		elseif (k == "gibmodel1") then
+			return ""
+		elseif (k == "gibmodel2") then
+			return ""
+		end
+	end
+end
