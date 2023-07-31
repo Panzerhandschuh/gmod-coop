@@ -31,14 +31,16 @@ function ENT:Think()
 end
 
 function ActivateCP(self, ply)
-	if (self.keyvalues["updatecp"] == "1") then
-		GAMEMODE.currentspawn = self
-	end
-	
-	if (self.keyvalues["moveplayers"] == "1") then
-		for _, ply2 in pairs(player.GetAll()) do
-			if (ply != ply2) then
-				ply2:SetPos(self:GetPos())
+	if (self.keyvalues) then
+		if (self.keyvalues["updatecp"] == "1") then
+			GAMEMODE.currentspawn = self
+		end
+
+		if (self.keyvalues["moveplayers"] == "1") then
+			for _, ply2 in pairs(player.GetAll()) do
+				if (ply != ply2) then
+					ply2:SetPos(self:GetPos())
+				end
 			end
 		end
 	end
