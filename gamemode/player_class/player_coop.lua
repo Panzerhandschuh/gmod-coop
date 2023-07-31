@@ -123,6 +123,22 @@ function PLAYER:Loadout()
 		self.Player:GiveAmmo(90, "357", true)
 
 		self.Player:SelectWeapon("weapon_q3_machinegun")
+	elseif (self.Player._Class == "h3_masterchief") then
+		self.Player:Give("halo3_magnum")
+		self.Player:Give("halo3_assaultrifle")
+
+		--self.Player:GiveAmmo(200, "Pistol", true)
+		--self.Player:GiveAmmo(90, "SMG1", true)
+
+		self.Player:SelectWeapon("halo3_assaultrifle")
+	elseif (self.Player._Class == "h3_arbiter") then
+		self.Player:Give("halo3_plasmapistol")
+		self.Player:Give("halo3_plasmarifle")
+
+		--self.Player:GiveAmmo(200, "Pistol", true)
+		--self.Player:GiveAmmo(90, "SMG1", true)
+
+		self.Player:SelectWeapon("halo3_plasmarifle")
 	else
 		self.Player:Give("weapon_crowbar")
 		self.Player:Give("weapon_pistol")

@@ -446,6 +446,68 @@ CLASS_CONFIG["quake3"].PICKUP_AMMO["slam"] = 5 -- bfg
 CLASS_CONFIG["quake3"].PICKUP_AMMO["ar2altfire"] = 5 -- bfg
 CLASS_CONFIG["quake3"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
 
+CLASS_CONFIG["h3_masterchief"] = {}
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "halo3_sword"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_stunstick"] = "halo3_hammer"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_pistol"] = "halo3_magnum"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_357"] = "halo3_shotgun"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_smg1"] = "halo3_assaultrifle"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_ar2"] = "halo3_battlerifle"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "halo3_bruteshot"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "halo3_sniper"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_slam"] = "halo3_rocketlauncher"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO = {}
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["pistol"] = 48 -- magnum
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["357"] = 24 -- shotgun
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["smg1"] = 384 -- assault rifle
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["ar2"] = 144 -- battle rifle
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["buckshot"] = 18 -- bruteshot
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["xbowbolt"] = 24 -- sniper
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["ar2altfire"] = 10 -- rocket launcher
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO = {}
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["pistol"] = 16 -- magnum
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["357"] = 6 -- shotgun
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["smg1"] = 32 -- assault rifle
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["ar2"] = 36 -- battle rifle
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["buckshot"] = 6 -- bruteshot
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["xbowbolt"] = 4 -- sniper
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["ar2altfire"] = 1 -- rocket launcher
+
+CLASS_CONFIG["h3_arbiter"] = {}
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "halo3_sword"
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_stunstick"] = "halo3_hammer"
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_pistol"] = "halo3_plasmapistol"
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_357"] = "halo3_sntbeam"
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_smg1"] = "halo3_plasmarifle"
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_ar2"] = "halo3_carbine"
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "halo3_needler"
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "halo3_beamrifle"
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_slam"] = "halo3_fuelrodcannon"
+CLASS_CONFIG["h3_arbiter"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO = {}
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO["pistol"] = 100 -- plasma pistol
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO["357"] = 100 -- sentinel beam
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO["smg1"] = 100 -- plasma rifle
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO["ar2"] = 126 -- carbine
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO["buckshot"] = 76 -- needler
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO["xbowbolt"] = 100 -- beam rifle
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO["ar2altfire"] = 10 -- fuel rod cannon
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO = {}
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["pistol"] = 20 -- plasma pistol
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["357"] = 20 -- sentinel beam
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["smg1"] = 20 -- plasma rifle
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["ar2"] = 36 -- carbine
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["buckshot"] = 19 -- needler
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["xbowbolt"] = 20 -- beam rifle
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["ar2altfire"] = 1 -- fuel rod cannon
+CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON = {}
+CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["pistol"] = "halo3_plasmapistol"
+CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["smg1"] = "halo3_plasmarifle"
+CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["xbowbolt"] = "halo3_beamrifle"
+
 local IS_CUSTOM_WEAPON = {}
 
 for k1,v1 in pairs(CLASS_CONFIG) do
@@ -537,6 +599,22 @@ WEP_TO_AMMO["weapon_q3_railgun"] = "xbowbolt"
 WEP_TO_AMMO["weapon_q3_lightninggun"] = "grenade"
 WEP_TO_AMMO["weapon_q3_bfg10k"] = "ar2altfire"
 
+WEP_TO_AMMO["halo3_assaultrifle"] = "smg1"
+WEP_TO_AMMO["halo3_battlerifle"] = "ar2"
+WEP_TO_AMMO["halo3_beamrifle"] = "xbowbolt"
+WEP_TO_AMMO["halo3_bruteshot"] = "buckshot"
+WEP_TO_AMMO["halo3_carbine"] = "ar2"
+WEP_TO_AMMO["halo3_fuelrodcannon"] = "ar2altfire"
+WEP_TO_AMMO["halo3_magnum"] = "pistol"
+WEP_TO_AMMO["halo3_needler"] = "buckshot"
+WEP_TO_AMMO["halo3_plasmapistol"] = "pistol"
+WEP_TO_AMMO["halo3_plasmarifle"] = "357"
+WEP_TO_AMMO["halo3_rocketlauncher"] = "ar2altfire"
+WEP_TO_AMMO["halo3_shotgun"] = "357"
+WEP_TO_AMMO["halo3_smg"] = "smg1"
+WEP_TO_AMMO["halo3_sniper"] = "xbowbolt"
+WEP_TO_AMMO["halo3_sntbeam"] = "357"
+
 local AMMONUM_TO_STRING = {}
 AMMONUM_TO_STRING[1] = "ar2"
 AMMONUM_TO_STRING[2] = "ar2altfire"
@@ -572,9 +650,9 @@ REPLACE_ENTS["weapon_mg1"] = "weapon_ar2"
 REPLACE_ENTS["weapon_sl8"] = "weapon_ar2"
 REPLACE_ENTS["weapon_sniperrifle"] = "weapon_crossbow"
 REPLACE_ENTS["weapon_uzi"] = "weapon_smg1"
-REPLACE_ENTS["weapon_gauss"] = "weapon_smg1"
 REPLACE_ENTS["weapon_deagle"] = "weapon_357"
 REPLACE_ENTS["weapon_healer"] = "weapon_medkit"
+REPLACE_ENTS["npc_ichthyosaur"] = "monster_ichthyosaur"
 REPLACE_ENTS["npc_gargantua"] = "monster_gargantua"
 REPLACE_ENTS["npc_alien_grunt"] = "monster_alien_grunt"
 REPLACE_ENTS["npc_hassassin"] = "monster_human_assassin"
@@ -588,7 +666,35 @@ REPLACE_ENTS["item_ammo_tau"] = "item_ammo_smg1_large"
 REPLACE_ENTS["weapon_scripted"] = "WEAPON_RANDOM"
 REPLACE_ENTS["item_custom"] = "ITEM_RANDOM"
 REPLACE_ENTS["weapon_alyxgun"] = "weapon_357"
+REPLACE_ENTS["weapon_annabelle"] = "weapon_shotgun"
 REPLACE_ENTS["item_box_alyxrounds"] = "item_ammo_357"
+
+local REPLACE_AMMO = {}
+REPLACE_AMMO["ammo_357"] = "item_ammo_357"
+REPLACE_AMMO["ammo_mp5clip"] = "item_ammo_smg1"
+REPLACE_AMMO["ammo_9mmAR"] = "item_ammo_smg1"
+REPLACE_AMMO["ammo_ARgrenades"] = "item_ammo_smg1_grenade"
+REPLACE_AMMO["ammo_9mmbox"] = "item_ammo_pistol_large"
+REPLACE_AMMO["ammo_9mmclip"] = "item_ammo_pistol"
+REPLACE_AMMO["ammo_glockclip"] = "item_ammo_pistol"
+REPLACE_AMMO["ammo_buckshot"] = "item_box_buckshot"
+REPLACE_AMMO["ammo_crossbow"] = "item_ammo_crossbow"
+REPLACE_AMMO["ammo_gaussclip"] = "item_ammo_ar2"
+REPLACE_AMMO["ammo_rpgclip"] = "item_rpg_round"
+
+local REPLACE_WEAPON = {}
+REPLACE_WEAPON["weapon_python"] = "weapon_357"
+REPLACE_WEAPON["weapon_glock"] = "weapon_pistol"
+REPLACE_WEAPON["weapon_9mmhandgun"] = "weapon_pistol"
+REPLACE_WEAPON["weapon_9mmAR"] = "weapon_smg1"
+REPLACE_WEAPON["weapon_mp5"] = "weapon_smg1"
+REPLACE_WEAPON["weapon_gauss"] = "weapon_ar2"
+REPLACE_WEAPON["weapon_egon"] = "weapon_ar2"
+REPLACE_WEAPON["weapon_hornetgun"] = "weapon_ar2"
+REPLACE_WEAPON["weapon_handgrenade"] = "weapon_frag"
+REPLACE_WEAPON["weapon_satchel"] = "weapon_frag"
+REPLACE_WEAPON["weapon_snark"] = "weapon_frag"
+REPLACE_WEAPON["weapon_tripmine"] = "weapon_slam"
 
 local NPC_POINTS = {}
 NPC_POINTS["npc_antlion"] = 2
@@ -880,7 +986,7 @@ function GM:InitPostEntity()
 				ne:SetPos(pos)
 				ne:SetAngles(v:GetAngles())
 				ne:SetName(v:GetName())
-				if(string.sub(ent,1,7) == "weapon_" || string.sub(ent,1,5) == "item_") then
+				if(string.sub(ent,1,7) == "weapon_" || string.sub(ent,1,5) == "item_" || string.sub(ent,1,5) == "ammo_") then
 					ne.oPos = v:GetPos()
 					ne.oAng = v:GetAngles()
 					ne.ei = v:EntIndex()
@@ -927,6 +1033,13 @@ function GM:InitPostEntity()
 		end
 	end
 	for k,v in pairs(ents.FindByClass("item_ammo_*")) do
+		if(v:CreatedByMap()) then
+			v.oPos = v:GetPos()
+			v.oAng = v:GetAngles()
+			v.ei = v:EntIndex()
+		end
+	end
+	for k,v in pairs(ents.FindByClass("ammo_*")) do
 		if(v:CreatedByMap()) then
 			v.oPos = v:GetPos()
 			v.oAng = v:GetAngles()
@@ -1004,6 +1117,8 @@ function GM:EntityTakeDamage(target, dmginfo)
 			return
 		elseif ((targetClass == "npc_antlionguard" || targetClass == "npc_hunter") && dmginfo:IsExplosionDamage()) then
 			dmginfo:SetDamageType(DMG_BULLET)
+		elseif (targetClass == "monster_barney" || targetClass == "monster_scientist") then
+			return true
 		end
 		
 		local dmgScale = GetConVar('coop_plr_deal_dmg_scale'):GetFloat()
@@ -1172,6 +1287,11 @@ end
 
 function GM:PlayerCanPickupItem(ply, item)
 	local itemClass = item:GetClass()
+	local originalClass = itemClass
+
+	if (REPLACE_AMMO[itemClass]) then
+		itemClass = REPLACE_AMMO[itemClass]
+	end
 	
 	-- Check for health/suit items
 	if (itemClass == "item_healthkit" || itemClass == "item_healthvial") then
@@ -1190,7 +1310,7 @@ function GM:PlayerCanPickupItem(ply, item)
 		end
 	end
 	
-	if(itemClass == "item_custom") then
+	if (itemClass == "item_custom") then
 		local ammo = item.AmmoType
 		local maxAmmo = MAX_AMMO[string.lower(ammo)]
 		local currentAmmo = ply:GetAmmoCount(ammo)
@@ -1205,39 +1325,70 @@ function GM:PlayerCanPickupItem(ply, item)
 		local replacementAmmo = GetReplacementAmmoType(ply, ammo)
 		if (replacementAmmo) then
 			local maxAmmo = GetMaxAmmo(ply, replacementAmmo)
-			local currentAmmo = ply:GetAmmoCount(replacementAmmo)
-			if currentAmmo >= maxAmmo then
-				return false
-			else
+
+			-- Energy weapons
+			local energyWep = GetEnergyWeapon(ply, ammo)
+			if (energyWep) then
+				local haloEnergyWep = ply:GetWeapon(energyWep)
+				if (!IsValid(haloEnergyWep)) then
+					return false
+				end
+
+				-- Check ammo capacity
+				local currentClip = haloEnergyWep:Clip1()
+				if currentClip >= maxAmmo then
+					return false
+				end
+
 				local pickupAmmo = GetPickupAmmo(ply, replacementAmmo)
-				ply:GiveAmmo(pickupAmmo, replacementAmmo)
+				haloEnergyWep:SetClip1(math.min(haloEnergyWep:Clip1() + pickupAmmo, haloEnergyWep:GetMaxClip1()))
 				item:Remove()
-				TryDuplicateItem(item, itemClass)
+				TryDuplicateItem(item, originalClass)
 
 				return false
 			end
+
+			local currentAmmo = ply:GetAmmoCount(replacementAmmo)
+			if currentAmmo >= maxAmmo then
+				return false
+			end
+
+			local pickupAmmo = GetPickupAmmo(ply, replacementAmmo)
+			ply:GiveAmmo(pickupAmmo, replacementAmmo)
+			item:Remove()
+			TryDuplicateItem(item, originalClass)
+
+			return false
 		else
 			local maxAmmo = GetMaxAmmo(ply, ammo)
 			local currentAmmo = ply:GetAmmoCount(ammo)
 			if currentAmmo >= maxAmmo then
 				return false
-			else
-				TryDuplicateItem(item, itemClass)
-				return true
 			end
+
+			TryDuplicateItem(item, originalClass)
+			return true
 		end
 	end
 
-	TryDuplicateItem(item, itemClass)
+	TryDuplicateItem(item, originalClass)
     return true
 end
 
 function GetReplacementAmmoType(ply, ammo)
-	if (ply._Class && CLASS_CONFIG[ply._Class] && CLASS_CONFIG[ply._Class].REPLACEMENT_AMMO[ammo]) then
+	if (ply._Class && CLASS_CONFIG[ply._Class] && CLASS_CONFIG[ply._Class].REPLACEMENT_AMMO && CLASS_CONFIG[ply._Class].REPLACEMENT_AMMO[ammo]) then
 		return CLASS_CONFIG[ply._Class].REPLACEMENT_AMMO[ammo]
 	end
 
 	return ammo
+end
+
+function GetEnergyWeapon(ply, ammo)
+	if (ply._Class && CLASS_CONFIG[ply._Class] && CLASS_CONFIG[ply._Class].ENERGY_WEAPON && CLASS_CONFIG[ply._Class].ENERGY_WEAPON[ammo]) then
+		return CLASS_CONFIG[ply._Class].ENERGY_WEAPON[ammo]
+	end
+
+	return nil
 end
 
 function GetPickupAmmo(ply, ammo)
@@ -1275,6 +1426,11 @@ end
 
 function GM:PlayerCanPickupWeapon(ply, wep)
 	local wepClass = wep:GetClass()
+	local originalClass = wepClass
+
+	if (REPLACE_WEAPON[wepClass]) then
+		wepClass = REPLACE_WEAPON[wepClass]
+	end
 
 	-- If this is a custom weapon, then pick it up immediately
 	if (IS_CUSTOM_WEAPON[wep:GetClass()]) then
@@ -1288,6 +1444,8 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 		if (repWep) then
 			wepClassOverride = repWep
 		end
+	elseif (wepClass != originalClass) then -- HL1 replacement weapon
+		wepClassOverride = wepClass
 	end
 
 	if (wepClassOverride) then -- Equip player with custom weapon
@@ -1298,35 +1456,58 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 				else -- Player does not have this weapon, so equip it and duplicate if possible
 					ply:Give(wepClassOverride)
 					wep:Remove()
-					TryDuplicateWeapon(wep, wepClass)
+					TryDuplicateWeapon(wep, originalClass)
 		
 					return false -- Return false since player is manually being equipped
 				end
 			end
 		end
 
-		local ammo = WEP_TO_AMMO[wepClassOverride]
-		local maxAmmo = CLASS_CONFIG[ply._Class].MAX_AMMO[ammo]
-		local currentAmmo = ply:GetAmmoCount(ammo)
-
 		-- Pickup new weapon
-		if !ply:HasWeapon(wepClassOverride) then
+		if (!ply:HasWeapon(wepClassOverride)) then
 			ply:Give(wepClassOverride)
 			wep:Remove()
-			TryDuplicateWeapon(wep, wepClass)
+			TryDuplicateWeapon(wep, originalClass)
+
+			return false
+		end
+
+		local ammo = WEP_TO_AMMO[wepClassOverride]
+		local maxAmmo
+		if (ply._Class) then
+			maxAmmo = CLASS_CONFIG[ply._Class].MAX_AMMO[ammo]
+		else
+			maxAmmo = MAX_AMMO[ammo]
+		end
+
+		-- Energy weapons
+		if (ply._Class && CLASS_CONFIG[ply._Class].ENERGY_WEAPON && table.HasValue(CLASS_CONFIG[ply._Class].ENERGY_WEAPON, wepClassOverride)) then
+			local haloEnergyWep = ply:GetWeapon(wepClassOverride)
+			local currentClip = haloEnergyWep:Clip1()
+
+			-- Check ammo capacity
+			if currentClip >= maxAmmo then
+				return false
+			end
+
+			local pickupAmmo = GetPickupAmmo(ply, ammo)
+			haloEnergyWep:SetClip1(math.min(haloEnergyWep:Clip1() + pickupAmmo, haloEnergyWep:GetMaxClip1()))
+			wep:Remove()
+			TryDuplicateWeapon(wep, originalClass)
 
 			return false
 		end
 
 		-- Check ammo capacity
+		local currentAmmo = ply:GetAmmoCount(ammo)
 		if currentAmmo >= maxAmmo then
 			return false
 		end
-
+		
 		local pickupAmmo = GetPickupAmmo(ply, ammo)
 		ply:GiveAmmo(pickupAmmo, ammo)
 		wep:Remove()
-		TryDuplicateWeapon(wep, wepClass)
+		TryDuplicateWeapon(wep, originalClass)
 
 		return false
 	else -- Equip player with HL2 weapon
@@ -1334,7 +1515,7 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 			if ply:HasWeapon(wepClass) then -- Do not pickup the item if the player already has it
 				return false
 			else -- Player does not have this weapon, so equip it and duplicate if possible
-				TryDuplicateWeapon(wep, wepClass)
+				TryDuplicateWeapon(wep, originalClass)
 				return true
 			end
 		end
@@ -1349,7 +1530,7 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 
 		-- Pickup new weapon
 		if !ply:HasWeapon(wepClass) then
-			TryDuplicateWeapon(wep, wepClass)
+			TryDuplicateWeapon(wep, originalClass)
 			return true
 		end
 		
@@ -1358,7 +1539,7 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 			return false
 		end
 		
-		TryDuplicateWeapon(wep, wepClass)
+		TryDuplicateWeapon(wep, originalClass)
 		return true
 	end
 end
