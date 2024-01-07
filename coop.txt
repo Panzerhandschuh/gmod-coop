@@ -1,7 +1,7 @@
 "coop"
 {
 	"base"		"base"
-	"title"		"Coop"
+	"title"		"Convergence Coop"
 	"maps"		"^coop_"
 	"menusystem"	"1"
 }
