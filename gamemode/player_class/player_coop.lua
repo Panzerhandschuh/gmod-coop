@@ -74,6 +74,7 @@ function PLAYER:Loadout()
 		self.Player:Give("tf_weapon_wrench")
 		self.Player:Give("tf_weapon_pistol")
 		self.Player:Give("tf_weapon_shotgun_primary")
+		self.Player:Give("tf_weapon_pda")
 
 		self.Player:SelectWeapon("tf_weapon_shotgun_primary")
 	elseif (self.Player._Class == "medic") then

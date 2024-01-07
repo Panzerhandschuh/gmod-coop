@@ -52,7 +52,7 @@ MAX_AMMO["ar2"] = 60
 MAX_AMMO["ar2altfire"] = 3
 MAX_AMMO["buckshot"] = 30
 MAX_AMMO["xbowbolt"] = 10
-MAX_AMMO["rpg_round"] = 3
+MAX_AMMO["rpg_round"] = 5
 MAX_AMMO["grenade"] = 5
 MAX_AMMO["slam"] = 5
 
@@ -145,6 +145,8 @@ CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_pistol_s
 CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_pistol_scout"
 CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_smg1"] = "tf_weapon_scattergun"
 CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_ar2"] = "tf_weapon_scattergun"
+CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "tf_weapon_scattergun"
+CLASS_CONFIG["scout"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "tf_weapon_scattergun"
 CLASS_CONFIG["scout"].REPLACEMENT_AMMO = {}
 CLASS_CONFIG["scout"].REPLACEMENT_AMMO["357"] = "pistol"
 CLASS_CONFIG["scout"].REPLACEMENT_AMMO["ar2"] = "smg1"
@@ -243,12 +245,14 @@ CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_pistol"] = "tf_weapon_pisto
 CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_357"] = "tf_weapon_pistol"
 CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_smg1"] = "tf_weapon_shotgun_primary"
 CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_ar2"] = "tf_weapon_shotgun_primary"
+CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "tf_weapon_pda"
+CLASS_CONFIG["engineer"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "tf_weapon_pda"
 CLASS_CONFIG["engineer"].REPLACEMENT_AMMO = {}
 CLASS_CONFIG["engineer"].REPLACEMENT_AMMO["357"] = "pistol"
 CLASS_CONFIG["engineer"].REPLACEMENT_AMMO["ar2"] = "smg1"
 CLASS_CONFIG["engineer"].MAX_AMMO = {}
 CLASS_CONFIG["engineer"].MAX_AMMO["pistol"] = 200 -- pistol
-CLASS_CONFIG["engineer"].MAX_AMMO["smg1"] = 128 -- shotgun
+CLASS_CONFIG["engineer"].MAX_AMMO["smg1"] = 64 -- shotgun
 CLASS_CONFIG["engineer"].PICKUP_AMMO = {}
 CLASS_CONFIG["engineer"].PICKUP_AMMO["pistol"] = 24 -- pistol
 CLASS_CONFIG["engineer"].PICKUP_AMMO["smg1"] = 12 -- shotgun
@@ -451,29 +455,32 @@ CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS = {}
 CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "halo3_sword"
 CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_stunstick"] = "halo3_hammer"
 CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_pistol"] = "halo3_magnum"
-CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_357"] = "halo3_shotgun"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_357"] = "halo3_bruteshot"
 CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_smg1"] = "halo3_assaultrifle"
 CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_ar2"] = "halo3_battlerifle"
-CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "halo3_bruteshot"
+CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "halo3_shotgun"
 CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "halo3_sniper"
-CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_slam"] = "halo3_rocketlauncher"
+--CLASS_CONFIG["h3_masterchief"].REPLACEMENT_WEAPONS["weapon_slam"] = "halo3_rocketlauncher"
 CLASS_CONFIG["h3_masterchief"].REPLACEMENT_AMMO = {}
 CLASS_CONFIG["h3_masterchief"].MAX_AMMO = {}
 CLASS_CONFIG["h3_masterchief"].MAX_AMMO["pistol"] = 48 -- magnum
-CLASS_CONFIG["h3_masterchief"].MAX_AMMO["357"] = 24 -- shotgun
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["357"] = 18 -- bruteshot
 CLASS_CONFIG["h3_masterchief"].MAX_AMMO["smg1"] = 384 -- assault rifle
 CLASS_CONFIG["h3_masterchief"].MAX_AMMO["ar2"] = 144 -- battle rifle
-CLASS_CONFIG["h3_masterchief"].MAX_AMMO["buckshot"] = 18 -- bruteshot
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["buckshot"] = 24 -- shotgun
 CLASS_CONFIG["h3_masterchief"].MAX_AMMO["xbowbolt"] = 24 -- sniper
-CLASS_CONFIG["h3_masterchief"].MAX_AMMO["ar2altfire"] = 10 -- rocket launcher
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["grenade"] = 5 -- grenade
+--CLASS_CONFIG["h3_masterchief"].MAX_AMMO["ar2altfire"] = 10 -- rocket launcher
 CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO = {}
 CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["pistol"] = 16 -- magnum
-CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["357"] = 6 -- shotgun
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["357"] = 6 -- bruteshot
 CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["smg1"] = 32 -- assault rifle
 CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["ar2"] = 36 -- battle rifle
-CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["buckshot"] = 6 -- bruteshot
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["buckshot"] = 6 -- shotgun
 CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["xbowbolt"] = 4 -- sniper
-CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["ar2altfire"] = 1 -- rocket launcher
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["grenade"] = 1 -- grenade
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
+--CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["ar2altfire"] = 1 -- rocket launcher
 
 CLASS_CONFIG["h3_arbiter"] = {}
 CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS = {}
@@ -485,7 +492,7 @@ CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_smg1"] = "halo3_plasmarif
 CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_ar2"] = "halo3_carbine"
 CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "halo3_needler"
 CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "halo3_beamrifle"
-CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_slam"] = "halo3_fuelrodcannon"
+--CLASS_CONFIG["h3_arbiter"].REPLACEMENT_WEAPONS["weapon_slam"] = "halo3_fuelrodcannon"
 CLASS_CONFIG["h3_arbiter"].REPLACEMENT_AMMO = {}
 CLASS_CONFIG["h3_arbiter"].MAX_AMMO = {}
 CLASS_CONFIG["h3_arbiter"].MAX_AMMO["pistol"] = 100 -- plasma pistol
@@ -494,17 +501,21 @@ CLASS_CONFIG["h3_arbiter"].MAX_AMMO["smg1"] = 100 -- plasma rifle
 CLASS_CONFIG["h3_arbiter"].MAX_AMMO["ar2"] = 126 -- carbine
 CLASS_CONFIG["h3_arbiter"].MAX_AMMO["buckshot"] = 76 -- needler
 CLASS_CONFIG["h3_arbiter"].MAX_AMMO["xbowbolt"] = 100 -- beam rifle
-CLASS_CONFIG["h3_arbiter"].MAX_AMMO["ar2altfire"] = 10 -- fuel rod cannon
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO["grenade"] = 5 -- grenade
+--CLASS_CONFIG["h3_arbiter"].MAX_AMMO["ar2altfire"] = 10 -- fuel rod cannon
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO = {}
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["pistol"] = 20 -- plasma pistol
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["357"] = 20 -- sentinel beam
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["smg1"] = 20 -- plasma rifle
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["ar2"] = 36 -- carbine
-CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["buckshot"] = 19 -- needler
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["buckshot"] = 38 -- needler
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["xbowbolt"] = 20 -- beam rifle
-CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["ar2altfire"] = 1 -- fuel rod cannon
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["grenade"] = 1 -- grenade
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
+--CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["ar2altfire"] = 1 -- fuel rod cannon
 CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON = {}
 CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["pistol"] = "halo3_plasmapistol"
+CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["357"] = "halo3_sntbeam"
 CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["smg1"] = "halo3_plasmarifle"
 CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["xbowbolt"] = "halo3_beamrifle"
 
@@ -599,21 +610,21 @@ WEP_TO_AMMO["weapon_q3_railgun"] = "xbowbolt"
 WEP_TO_AMMO["weapon_q3_lightninggun"] = "grenade"
 WEP_TO_AMMO["weapon_q3_bfg10k"] = "ar2altfire"
 
+WEP_TO_AMMO["halo3_magnum"] = "pistol"
+WEP_TO_AMMO["halo3_bruteshot"] = "357"
+WEP_TO_AMMO["halo3_smg"] = "smg1"
 WEP_TO_AMMO["halo3_assaultrifle"] = "smg1"
 WEP_TO_AMMO["halo3_battlerifle"] = "ar2"
-WEP_TO_AMMO["halo3_beamrifle"] = "xbowbolt"
-WEP_TO_AMMO["halo3_bruteshot"] = "buckshot"
-WEP_TO_AMMO["halo3_carbine"] = "ar2"
-WEP_TO_AMMO["halo3_fuelrodcannon"] = "ar2altfire"
-WEP_TO_AMMO["halo3_magnum"] = "pistol"
-WEP_TO_AMMO["halo3_needler"] = "buckshot"
-WEP_TO_AMMO["halo3_plasmapistol"] = "pistol"
-WEP_TO_AMMO["halo3_plasmarifle"] = "357"
-WEP_TO_AMMO["halo3_rocketlauncher"] = "ar2altfire"
-WEP_TO_AMMO["halo3_shotgun"] = "357"
-WEP_TO_AMMO["halo3_smg"] = "smg1"
+WEP_TO_AMMO["halo3_shotgun"] = "buckshot"
 WEP_TO_AMMO["halo3_sniper"] = "xbowbolt"
+--WEP_TO_AMMO["halo3_rocketlauncher"] = "ar2altfire"
+WEP_TO_AMMO["halo3_plasmapistol"] = "pistol"
 WEP_TO_AMMO["halo3_sntbeam"] = "357"
+WEP_TO_AMMO["halo3_plasmarifle"] = "smg1"
+WEP_TO_AMMO["halo3_carbine"] = "ar2"
+WEP_TO_AMMO["halo3_needler"] = "buckshot"
+WEP_TO_AMMO["halo3_beamrifle"] = "xbowbolt"
+--WEP_TO_AMMO["halo3_fuelrodcannon"] = "ar2altfire"
 
 local AMMONUM_TO_STRING = {}
 AMMONUM_TO_STRING[1] = "ar2"
@@ -674,7 +685,7 @@ REPLACE_AMMO["ammo_357"] = "item_ammo_357"
 REPLACE_AMMO["ammo_mp5clip"] = "item_ammo_smg1"
 REPLACE_AMMO["ammo_9mmAR"] = "item_ammo_smg1"
 REPLACE_AMMO["ammo_ARgrenades"] = "item_ammo_smg1_grenade"
-REPLACE_AMMO["ammo_9mmbox"] = "item_ammo_pistol_large"
+REPLACE_AMMO["ammo_9mmbox"] = "item_ammo_smg1_large"
 REPLACE_AMMO["ammo_9mmclip"] = "item_ammo_pistol"
 REPLACE_AMMO["ammo_glockclip"] = "item_ammo_pistol"
 REPLACE_AMMO["ammo_buckshot"] = "item_box_buckshot"
@@ -683,17 +694,19 @@ REPLACE_AMMO["ammo_gaussclip"] = "item_ammo_ar2"
 REPLACE_AMMO["ammo_rpgclip"] = "item_rpg_round"
 
 local REPLACE_WEAPON = {}
-REPLACE_WEAPON["weapon_python"] = "weapon_357"
-REPLACE_WEAPON["weapon_glock"] = "weapon_pistol"
-REPLACE_WEAPON["weapon_9mmhandgun"] = "weapon_pistol"
-REPLACE_WEAPON["weapon_9mmAR"] = "weapon_smg1"
-REPLACE_WEAPON["weapon_mp5"] = "weapon_smg1"
+REPLACE_WEAPON["weapon_crowbar_hl1"] = "weapon_crowbar"
+REPLACE_WEAPON["weapon_glock_hl1"] = "weapon_pistol"
+REPLACE_WEAPON["weapon_357_hl1"] = "weapon_357"
+REPLACE_WEAPON["weapon_mp5_hl1"] = "weapon_smg1"
 REPLACE_WEAPON["weapon_gauss"] = "weapon_ar2"
 REPLACE_WEAPON["weapon_egon"] = "weapon_ar2"
 REPLACE_WEAPON["weapon_hornetgun"] = "weapon_ar2"
+REPLACE_WEAPON["weapon_shotgun_hl1"] = "weapon_shotgun"
+REPLACE_WEAPON["weapon_crossbow_hl1"] = "weapon_crossbow"
 REPLACE_WEAPON["weapon_handgrenade"] = "weapon_frag"
 REPLACE_WEAPON["weapon_satchel"] = "weapon_frag"
 REPLACE_WEAPON["weapon_snark"] = "weapon_frag"
+REPLACE_WEAPON["weapon_rpg_hl1"] = "weapon_rpg"
 REPLACE_WEAPON["weapon_tripmine"] = "weapon_slam"
 
 local NPC_POINTS = {}
@@ -1099,6 +1112,8 @@ function GM:EntityTakeDamage(target, dmginfo)
 			end
 		elseif (inflictor == "monster_snark") then
 			dmginfo:ScaleDamage(0.5)
+		elseif (inflictor == "sent_sentry") then
+			dmginfo:ScaleDamage(0)
 		elseif (dmginfo:GetAttacker():IsNPC()) then
 			local attackerClass = dmginfo:GetAttacker():GetClass()
 			if (attackerClass == "npc_headcrab_black" || attackerClass == "npc_headcrab_poison") then
@@ -1188,8 +1203,8 @@ function GM:Think()
 end
 
 function NpcCheckForEnemies(npc)
-	local curPly = nil
-	local curPlyPos = nil
+	local curEnt = nil
+	local curEntPos = nil
 	local curDist = math.huge
 
 	local npcPos = npc:GetPos()
@@ -1200,16 +1215,30 @@ function NpcCheckForEnemies(npc)
 			local dist = npcPos:DistToSqr(plyPos)
 
 			if (dist < curDist) then
-				curPly = ply
-				curPlyPos = plyPos
+				curEnt = ply
+				curEntPos = plyPos
 				curDist = dist
 			end
 		end
 	end
 
-	if (curPly) then
-		npc:SetEnemy(curPly)
-		npc:UpdateEnemyMemory(curPly, curPlyPos)
+	-- Check for sentries
+	for k, ent in pairs(ents.FindByClass("sent_sentry")) do
+		if (IsValid(ent) && ent:Health() > 0) then
+			local pos = ent:GetPos()
+			local dist = npcPos:DistToSqr(pos)
+
+			if (dist < curDist) then
+				curEnt = ent
+				curEntPos = pos
+				curDist = dist
+			end
+		end
+	end
+
+	if (curEnt) then
+		npc:SetEnemy(curEnt)
+		npc:UpdateEnemyMemory(curEnt, curEntPos)
 	end
 end
 
@@ -1428,28 +1457,25 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 	local wepClass = wep:GetClass()
 	local originalClass = wepClass
 
+	-- If this is a custom weapon, then pick it up immediately
+	if (IS_CUSTOM_WEAPON[wepClass]) then
+		return true
+	end
+
 	if (REPLACE_WEAPON[wepClass]) then
 		wepClass = REPLACE_WEAPON[wepClass]
 	end
 
-	-- If this is a custom weapon, then pick it up immediately
-	if (IS_CUSTOM_WEAPON[wep:GetClass()]) then
-		return true
-	end
-
 	-- If the player is a custom class, look for a replacement weapon
 	local wepClassOverride = nil
-	if (CLASS_CONFIG[ply._Class]) then
-		local repWep = CLASS_CONFIG[ply._Class].REPLACEMENT_WEAPONS[wepClass]
-		if (repWep) then
-			wepClassOverride = repWep
-		end
+	if (CLASS_CONFIG[ply._Class] && CLASS_CONFIG[ply._Class].REPLACEMENT_WEAPONS[wepClass]) then
+		wepClassOverride = CLASS_CONFIG[ply._Class].REPLACEMENT_WEAPONS[wepClass]
 	elseif (wepClass != originalClass) then -- HL1 replacement weapon
 		wepClassOverride = wepClass
 	end
 
 	if (wepClassOverride) then -- Equip player with custom weapon
-		if wep:GetPrimaryAmmoType() == -1 || wepClassOverride == "tf_weapon_medigun" then -- Weapon type does not have ammo (crowbar, grav gun, etc)
+		if wep:GetPrimaryAmmoType() == -1 || wepClassOverride == "tf_weapon_medigun" || wepClassOverride == "tf_weapon_pda" then -- Weapon type does not have ammo (crowbar, grav gun, etc)
 			if (wepClassOverride) then
 				if ply:HasWeapon(wepClassOverride) then -- Do not pickup the item if the player already has it
 					return false
