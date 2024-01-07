@@ -4,7 +4,9 @@ HOOKS["InitPostEntity"] = function()
 		v:Fire("AddOutput","OnHitMax sas101,Open,,5,-1",0)
 	end
 
-	for k,v in pairs(ents.FindByName("count_gu1")) do
-		v:Fire("AddOutput","OnHitMax relay2,Trigger,,5,-1",0)
+	for k,v in pairs(ents.FindByName("sas40")) do
+		v:Fire("AddOutput","OnOpen relay2,Trigger,,80,-1",0)
 	end
+
+	ents.FindByName("trig_p1")[1]:Remove()
 end

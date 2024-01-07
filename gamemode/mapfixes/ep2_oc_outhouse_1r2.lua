@@ -52,6 +52,21 @@ HOOKS["InitPostEntity"] = function()
 	r3.oPos = Vector(-6544, 224, -280)
 	r3.oAng = Angle(0, 0, 0)
 	r3:Spawn()
+
+	for k,v in pairs(ents.FindByClass("func_breakable")) do
+		if (v:GetPos() == Vector(-6, -2872, 563.52)) then
+			v:Remove()
+		elseif (v:GetPos() == Vector(-6, -3554, 563.522)) then
+			v:SetKeyValue("health", "99999999")
+			v:SetKeyValue("spawnflags", "1")
+		end
+	end
+
+	for k,v in pairs(ents.FindByClass("env_sprite")) do
+		if (v:GetPos() == Vector(-6, -3633, 568)) then
+			v:Remove()
+		end
+	end
 end
 
 HOOKS["OnEntityCreated"] = function(ent)
