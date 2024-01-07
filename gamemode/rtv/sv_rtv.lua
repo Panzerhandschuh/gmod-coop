@@ -22,12 +22,12 @@ local files, dirs = file.Find( "maps/*.bsp", "GAME" )
 GM:LoadMapsConfig()
 
 --if RTV.UsePrefixes then
-for k,v in pairs(GM:GetAllMaps()) do
+for k,v in pairs(GM:GetRTVMaps()) do
 	if v == game.GetMap() then continue end
 	RTV.NominateList[#RTV.NominateList+1] = v
 end
 
-for k, v in RandomPairs(GM:GetAllMaps()) do
+for k, v in RandomPairs(GM:GetRTVMaps()) do
 	if v == game.GetMap() then continue end
 	if get > RTV.Limit then break end
 	RTV.Maps[#RTV.Maps+1] = v
@@ -43,8 +43,6 @@ util.AddNetworkString( "RTVMaps" )
 util.AddNetworkString( "RTVNominate" )
 
 hook.Add( "Initialize", "Check for TTT GM", function()
-	
-	
 	RTV.TTT = string.find( string.lower(gmod.GetGamemode().Name), "trouble in terror" )
 end )
 
@@ -55,7 +53,7 @@ hook.Add( "PlayerInitialSpawn", "SendList", function(ply)
 end)
 
 function RTV.ShouldChange()
-	return RTV.TotalVotes >= math.ceil(#player.GetHumans()*0.6)
+	return RTV.TotalVotes >= math.ceil(RTV.PlayerCount()*0.6)
 end
 
 function RTV.RemoveVote()
@@ -233,7 +231,7 @@ function RTV.AddVote( ply )
 		RTV.TotalVotes = RTV.TotalVotes + 1
 		ply.RTVoted = true
 		MsgN( ply:Nick().." has voted to Rock the Vote." )
-		PrintMessage( HUD_PRINTTALK, ply:Nick().." has voted to Rock the Vote. ("..RTV.TotalVotes.."/"..math.ceil(#player.GetHumans()*0.6)..")" )
+		PrintMessage( HUD_PRINTTALK, ply:Nick().." has voted to Rock the Vote. ("..RTV.TotalVotes.."/"..math.ceil(RTV.PlayerCount()*0.6)..")" )
 
 		if RTV.ShouldChange() then
 			RTV.rtved = true
@@ -386,3 +384,14 @@ hook.Add( "PlayerSay", "RTV Chat Commands", function( ply, text )
 		end
 	end
 end )
+
+function RTV.PlayerCount()
+	activePlayerCount = 0
+	for _, ply in pairs(player.GetAll()) do
+		if (!ply.IsAFK) then
+			activePlayerCount = activePlayerCount + 1
+		end
+	end
+
+	return activePlayerCount
+end
