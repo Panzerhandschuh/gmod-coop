@@ -17,7 +17,7 @@ local STAM = {}
 local minWalkSpeed = 100
 
 function STAM.Move(ply,data)
-	if(!ply || !ply.GetAux) then return end
+	if(!ply || !ply.GetAux || (ply:GetActiveWeapon():IsValid() && ply:GetActiveWeapon():GetClass() == "weapon_mp_powersuit")) then return end
 	if(ply:Alive() && ply:GetMoveType() != MOVETYPE_NOCLIP) then
 		local sprinter = data:KeyDown(IN_SPEED) && !ply:Crouching() && ply:GetMoveType() != MOVETYPE_LADDER && (data:GetForwardSpeed() != 0 || data:GetSideSpeed() != 0)
 		local stam = ply:GetAux()

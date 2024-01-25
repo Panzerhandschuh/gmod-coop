@@ -436,6 +436,7 @@ CLASS_CONFIG["quake3"].MAX_AMMO["ar2"] = 25 -- grenade launcher
 CLASS_CONFIG["quake3"].MAX_AMMO["buckshot"] = 200 -- plasma gun
 CLASS_CONFIG["quake3"].MAX_AMMO["xbowbolt"] = 25 -- rail gun
 CLASS_CONFIG["quake3"].MAX_AMMO["grenade"] = 200 -- lightning gun
+CLASS_CONFIG["quake3"].MAX_AMMO["rpg_round"] = 5 -- rpg
 CLASS_CONFIG["quake3"].MAX_AMMO["slam"] = 25 -- bfg
 CLASS_CONFIG["quake3"].MAX_AMMO["ar2altfire"] = 25 -- bfg
 CLASS_CONFIG["quake3"].PICKUP_AMMO = {}
@@ -470,6 +471,8 @@ CLASS_CONFIG["h3_masterchief"].MAX_AMMO["ar2"] = 144 -- battle rifle
 CLASS_CONFIG["h3_masterchief"].MAX_AMMO["buckshot"] = 24 -- shotgun
 CLASS_CONFIG["h3_masterchief"].MAX_AMMO["xbowbolt"] = 24 -- sniper
 CLASS_CONFIG["h3_masterchief"].MAX_AMMO["grenade"] = 5 -- grenade
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["rpg_round"] = 5 -- rpg
+CLASS_CONFIG["h3_masterchief"].MAX_AMMO["slam"] = 5 -- slam
 --CLASS_CONFIG["h3_masterchief"].MAX_AMMO["ar2altfire"] = 10 -- rocket launcher
 CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO = {}
 CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["pistol"] = 16 -- magnum
@@ -480,6 +483,7 @@ CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["buckshot"] = 6 -- shotgun
 CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["xbowbolt"] = 4 -- sniper
 CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["grenade"] = 1 -- grenade
 CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
+CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["slam"] = 1 -- slam
 --CLASS_CONFIG["h3_masterchief"].PICKUP_AMMO["ar2altfire"] = 1 -- rocket launcher
 
 CLASS_CONFIG["h3_arbiter"] = {}
@@ -502,6 +506,8 @@ CLASS_CONFIG["h3_arbiter"].MAX_AMMO["ar2"] = 126 -- carbine
 CLASS_CONFIG["h3_arbiter"].MAX_AMMO["buckshot"] = 76 -- needler
 CLASS_CONFIG["h3_arbiter"].MAX_AMMO["xbowbolt"] = 100 -- beam rifle
 CLASS_CONFIG["h3_arbiter"].MAX_AMMO["grenade"] = 5 -- grenade
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO["rpg_round"] = 5 -- rpg
+CLASS_CONFIG["h3_arbiter"].MAX_AMMO["slam"] = 5 -- slam
 --CLASS_CONFIG["h3_arbiter"].MAX_AMMO["ar2altfire"] = 10 -- fuel rod cannon
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO = {}
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["pistol"] = 20 -- plasma pistol
@@ -512,12 +518,191 @@ CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["buckshot"] = 38 -- needler
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["xbowbolt"] = 20 -- beam rifle
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["grenade"] = 1 -- grenade
 CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
+CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["slam"] = 1 -- slam
 --CLASS_CONFIG["h3_arbiter"].PICKUP_AMMO["ar2altfire"] = 1 -- fuel rod cannon
 CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON = {}
 CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["pistol"] = "halo3_plasmapistol"
 CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["357"] = "halo3_sntbeam"
 CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["smg1"] = "halo3_plasmarifle"
 CLASS_CONFIG["h3_arbiter"].ENERGY_WEAPON["xbowbolt"] = "halo3_beamrifle"
+
+CLASS_CONFIG["l4d_bill"] = {}
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_l4d2_machete"
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS["weapon_stunstick"] = "weapon_l4d2_chainsaw"
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_l4d2_pistol"
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_l4d2_pistol_magnum"
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_l4d2_smg"
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_l4d2_rifle"
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_l4d2_pumpshotgun"
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_l4d2_sniper_military"
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS["weapon_slam"] = "weapon_l4d2_rifle_m60"
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_WEAPONS["weapon_medkit"] = "weapon_l4d2_first_aid_kit"
+CLASS_CONFIG["l4d_bill"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["l4d_bill"].MAX_AMMO = {}
+CLASS_CONFIG["l4d_bill"].MAX_AMMO["pistol"] = 15 -- pistol
+CLASS_CONFIG["l4d_bill"].MAX_AMMO["357"] = 8 -- deagle
+CLASS_CONFIG["l4d_bill"].MAX_AMMO["smg1"] = 250 -- smg
+CLASS_CONFIG["l4d_bill"].MAX_AMMO["ar2"] = 150 -- rifle
+CLASS_CONFIG["l4d_bill"].MAX_AMMO["buckshot"] = 40 -- shotgun
+CLASS_CONFIG["l4d_bill"].MAX_AMMO["xbowbolt"] = 60 -- sniper
+CLASS_CONFIG["l4d_bill"].MAX_AMMO["grenade"] = 5 -- grenade
+CLASS_CONFIG["l4d_bill"].MAX_AMMO["rpg_round"] = 5 -- rpg
+CLASS_CONFIG["l4d_bill"].MAX_AMMO["slam"] = 150 -- m60
+CLASS_CONFIG["l4d_bill"].PICKUP_AMMO = {}
+CLASS_CONFIG["l4d_bill"].PICKUP_AMMO["pistol"] = 0 -- pistol
+CLASS_CONFIG["l4d_bill"].PICKUP_AMMO["357"] = 0 -- deagle
+CLASS_CONFIG["l4d_bill"].PICKUP_AMMO["smg1"] = 50 -- smg
+CLASS_CONFIG["l4d_bill"].PICKUP_AMMO["ar2"] = 30 -- rifle
+CLASS_CONFIG["l4d_bill"].PICKUP_AMMO["buckshot"] = 8 -- shotgun
+CLASS_CONFIG["l4d_bill"].PICKUP_AMMO["xbowbolt"] = 5 -- sniper
+CLASS_CONFIG["l4d_bill"].PICKUP_AMMO["grenade"] = 1 -- grenade
+CLASS_CONFIG["l4d_bill"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
+CLASS_CONFIG["l4d_bill"].PICKUP_AMMO["slam"] = 1 -- m60
+
+CLASS_CONFIG["l4d_francis"] = {}
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_l4d2_baseball_bat"
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS["weapon_stunstick"] = "weapon_l4d2_chainsaw"
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_l4d2_pistol"
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_l4d2_pistol_magnum"
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_l4d2_smg"
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_l4d2_rifle_ak47"
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_l4d2_shotgun_chrome"
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_l4d2_sniper_military"
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS["weapon_slam"] = "weapon_l4d2_rifle_m60"
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_WEAPONS["weapon_medkit"] = "weapon_l4d2_first_aid_kit"
+CLASS_CONFIG["l4d_francis"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["l4d_francis"].MAX_AMMO = {}
+CLASS_CONFIG["l4d_francis"].MAX_AMMO["pistol"] = 15 -- pistol
+CLASS_CONFIG["l4d_francis"].MAX_AMMO["357"] = 8 -- deagle
+CLASS_CONFIG["l4d_francis"].MAX_AMMO["smg1"] = 250 -- smg
+CLASS_CONFIG["l4d_francis"].MAX_AMMO["ar2"] = 150 -- rifle
+CLASS_CONFIG["l4d_francis"].MAX_AMMO["buckshot"] = 40 -- shotgun
+CLASS_CONFIG["l4d_francis"].MAX_AMMO["xbowbolt"] = 60 -- sniper
+CLASS_CONFIG["l4d_francis"].MAX_AMMO["grenade"] = 5 -- grenade
+CLASS_CONFIG["l4d_francis"].MAX_AMMO["rpg_round"] = 5 -- rpg
+CLASS_CONFIG["l4d_francis"].MAX_AMMO["slam"] = 150 -- m60
+CLASS_CONFIG["l4d_francis"].PICKUP_AMMO = {}
+CLASS_CONFIG["l4d_francis"].PICKUP_AMMO["pistol"] = 0 -- pistol
+CLASS_CONFIG["l4d_francis"].PICKUP_AMMO["357"] = 0 -- deagle
+CLASS_CONFIG["l4d_francis"].PICKUP_AMMO["smg1"] = 50 -- smg
+CLASS_CONFIG["l4d_francis"].PICKUP_AMMO["ar2"] = 30 -- rifle
+CLASS_CONFIG["l4d_francis"].PICKUP_AMMO["buckshot"] = 8 -- shotgun
+CLASS_CONFIG["l4d_francis"].PICKUP_AMMO["xbowbolt"] = 5 -- sniper
+CLASS_CONFIG["l4d_francis"].PICKUP_AMMO["grenade"] = 1 -- grenade"weapon_l4d2_
+CLASS_CONFIG["l4d_francis"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
+CLASS_CONFIG["l4d_francis"].PICKUP_AMMO["slam"] = 1 -- m60
+
+CLASS_CONFIG["l4d_louis"] = {}
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_l4d2_electric_guitar"
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS["weapon_stunstick"] = "weapon_l4d2_chainsaw"
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_l4d2_pistol"
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_l4d2_pistol_magnum"
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_l4d2_smg_silenced"
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_l4d2_rifle_desert"
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_l4d2_shotgun_spas"
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_l4d2_sniper_military"
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS["weapon_slam"] = "weapon_l4d2_rifle_m60"
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_WEAPONS["weapon_medkit"] = "weapon_l4d2_first_aid_kit"
+CLASS_CONFIG["l4d_louis"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["l4d_louis"].MAX_AMMO = {}
+CLASS_CONFIG["l4d_louis"].MAX_AMMO["pistol"] = 15 -- pistol
+CLASS_CONFIG["l4d_louis"].MAX_AMMO["357"] = 8 -- deagle
+CLASS_CONFIG["l4d_louis"].MAX_AMMO["smg1"] = 250 -- smg
+CLASS_CONFIG["l4d_louis"].MAX_AMMO["ar2"] = 150 -- rifle
+CLASS_CONFIG["l4d_louis"].MAX_AMMO["buckshot"] = 40 -- shotgun
+CLASS_CONFIG["l4d_louis"].MAX_AMMO["xbowbolt"] = 60 -- sniper
+CLASS_CONFIG["l4d_louis"].MAX_AMMO["grenade"] = 5 -- grenade
+CLASS_CONFIG["l4d_louis"].MAX_AMMO["rpg_round"] = 5 -- rpg
+CLASS_CONFIG["l4d_louis"].MAX_AMMO["slam"] = 150 -- m60
+CLASS_CONFIG["l4d_louis"].PICKUP_AMMO = {}
+CLASS_CONFIG["l4d_louis"].PICKUP_AMMO["pistol"] = 0 -- pistol
+CLASS_CONFIG["l4d_louis"].PICKUP_AMMO["357"] = 0 -- deagle
+CLASS_CONFIG["l4d_louis"].PICKUP_AMMO["smg1"] = 50 -- smg
+CLASS_CONFIG["l4d_louis"].PICKUP_AMMO["ar2"] = 30 -- rifle
+CLASS_CONFIG["l4d_louis"].PICKUP_AMMO["buckshot"] = 10 -- shotgun
+CLASS_CONFIG["l4d_louis"].PICKUP_AMMO["xbowbolt"] = 5 -- sniper
+CLASS_CONFIG["l4d_louis"].PICKUP_AMMO["grenade"] = 1 -- grenade
+CLASS_CONFIG["l4d_louis"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
+CLASS_CONFIG["l4d_louis"].PICKUP_AMMO["slam"] = 1 -- m60
+
+CLASS_CONFIG["l4d_zoey"] = {}
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_l4d2_katana"
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS["weapon_stunstick"] = "weapon_l4d2_chainsaw"
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_l4d2_pistol"
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_l4d2_pistol_magnum"
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_l4d2_smg_silenced"
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_l4d2_rifle_sg552"
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_l4d2_autoshotgun"
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_l4d2_sniper_military"
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS["weapon_slam"] = "weapon_l4d2_rifle_m60"
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_WEAPONS["weapon_medkit"] = "weapon_l4d2_first_aid_kit"
+CLASS_CONFIG["l4d_zoey"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["l4d_zoey"].MAX_AMMO = {}
+CLASS_CONFIG["l4d_zoey"].MAX_AMMO["pistol"] = 15 -- pistol
+CLASS_CONFIG["l4d_zoey"].MAX_AMMO["357"] = 8 -- deagle
+CLASS_CONFIG["l4d_zoey"].MAX_AMMO["smg1"] = 250 -- smg
+CLASS_CONFIG["l4d_zoey"].MAX_AMMO["ar2"] = 150 -- rifle
+CLASS_CONFIG["l4d_zoey"].MAX_AMMO["buckshot"] = 40 -- shotgun
+CLASS_CONFIG["l4d_zoey"].MAX_AMMO["xbowbolt"] = 60 -- sniper
+CLASS_CONFIG["l4d_zoey"].MAX_AMMO["grenade"] = 5 -- grenade
+CLASS_CONFIG["l4d_zoey"].MAX_AMMO["rpg_round"] = 5 -- rpg
+CLASS_CONFIG["l4d_zoey"].MAX_AMMO["slam"] = 150 -- m60
+CLASS_CONFIG["l4d_zoey"].PICKUP_AMMO = {}
+CLASS_CONFIG["l4d_zoey"].PICKUP_AMMO["pistol"] = 0 -- pistol
+CLASS_CONFIG["l4d_zoey"].PICKUP_AMMO["357"] = 0 -- deagle
+CLASS_CONFIG["l4d_zoey"].PICKUP_AMMO["smg1"] = 50 -- smg
+CLASS_CONFIG["l4d_zoey"].PICKUP_AMMO["ar2"] = 30 -- rifle
+CLASS_CONFIG["l4d_zoey"].PICKUP_AMMO["buckshot"] = 10 -- shotgun
+CLASS_CONFIG["l4d_zoey"].PICKUP_AMMO["xbowbolt"] = 5 -- sniper
+CLASS_CONFIG["l4d_zoey"].PICKUP_AMMO["grenade"] = 1 -- grenade
+CLASS_CONFIG["l4d_zoey"].PICKUP_AMMO["rpg_round"] = 1 -- rpg
+CLASS_CONFIG["l4d_zoey"].PICKUP_AMMO["slam"] = 1 -- m60
+
+CLASS_CONFIG["mp_samus"] = {}
+CLASS_CONFIG["mp_samus"].REPLACEMENT_WEAPONS = {}
+CLASS_CONFIG["mp_samus"].REPLACEMENT_WEAPONS["weapon_crowbar"] = "weapon_mp_powersuit"
+CLASS_CONFIG["mp_samus"].REPLACEMENT_WEAPONS["weapon_stunstick"] = "weapon_mp_powersuit"
+CLASS_CONFIG["mp_samus"].REPLACEMENT_WEAPONS["weapon_pistol"] = "weapon_mp_powersuit"
+CLASS_CONFIG["mp_samus"].REPLACEMENT_WEAPONS["weapon_357"] = "weapon_mp_powersuit"
+CLASS_CONFIG["mp_samus"].REPLACEMENT_WEAPONS["weapon_smg1"] = "weapon_mp_powersuit"
+CLASS_CONFIG["mp_samus"].REPLACEMENT_WEAPONS["weapon_ar2"] = "weapon_mp_powersuit"
+CLASS_CONFIG["mp_samus"].REPLACEMENT_WEAPONS["weapon_shotgun"] = "weapon_mp_powersuit"
+CLASS_CONFIG["mp_samus"].REPLACEMENT_WEAPONS["weapon_crossbow"] = "weapon_mp_powersuit"
+CLASS_CONFIG["mp_samus"].REPLACEMENT_WEAPONS["weapon_slam"] = "weapon_mp_powersuit"
+CLASS_CONFIG["mp_samus"].REPLACEMENT_AMMO = {}
+CLASS_CONFIG["mp_samus"].MAX_AMMO = {}
+CLASS_CONFIG["mp_samus"].MAX_AMMO["pistol"] = 0
+CLASS_CONFIG["mp_samus"].MAX_AMMO["357"] = 0
+CLASS_CONFIG["mp_samus"].MAX_AMMO["smg1"] = 0
+CLASS_CONFIG["mp_samus"].MAX_AMMO["ar2"] = 0
+CLASS_CONFIG["mp_samus"].MAX_AMMO["buckshot"] = 0
+CLASS_CONFIG["mp_samus"].MAX_AMMO["xbowbolt"] = 0
+CLASS_CONFIG["mp_samus"].MAX_AMMO["grenade"] = 5
+CLASS_CONFIG["mp_samus"].MAX_AMMO["rpg_round"] = 5
+CLASS_CONFIG["mp_samus"].MAX_AMMO["slam"] = 3
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO = {}
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO["pistol"] = 0
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO["357"] = 0
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO["smg1"] = 0
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO["ar2"] = 0
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO["buckshot"] = 0
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO["xbowbolt"] = 0
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO["grenade"] = 0
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO["rpg_round"] = 1
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO["slam"] = 0
+CLASS_CONFIG["mp_samus"].POWERSUIT_WEAPON = {}
+CLASS_CONFIG["mp_samus"].POWERSUIT_WEAPON["weapon_crowbar"] = 1 -- Power beam
+CLASS_CONFIG["mp_samus"].POWERSUIT_WEAPON["weapon_stunstick"] = 1 -- Power beam
+CLASS_CONFIG["mp_samus"].POWERSUIT_WEAPON["weapon_pistol"] = 1 -- Power beam
+CLASS_CONFIG["mp_samus"].POWERSUIT_WEAPON["weapon_357"] = 1 -- Power beam
+CLASS_CONFIG["mp_samus"].POWERSUIT_WEAPON["weapon_smg1"] = 1 -- Power beam
+CLASS_CONFIG["mp_samus"].POWERSUIT_WEAPON["weapon_ar2"] = 2 -- Wave beam
+CLASS_CONFIG["mp_samus"].POWERSUIT_WEAPON["weapon_shotgun"] = 3 -- Ice beam
+CLASS_CONFIG["mp_samus"].POWERSUIT_WEAPON["weapon_crossbow"] = 4 -- Plasma beam
 
 local IS_CUSTOM_WEAPON = {}
 
@@ -625,6 +810,21 @@ WEP_TO_AMMO["halo3_carbine"] = "ar2"
 WEP_TO_AMMO["halo3_needler"] = "buckshot"
 WEP_TO_AMMO["halo3_beamrifle"] = "xbowbolt"
 --WEP_TO_AMMO["halo3_fuelrodcannon"] = "ar2altfire"
+
+WEP_TO_AMMO["weapon_l4d2_pistol"] = "pistol"
+WEP_TO_AMMO["weapon_l4d2_pistol_magnum"] = "357"
+WEP_TO_AMMO["weapon_l4d2_smg"] = "smg1"
+WEP_TO_AMMO["weapon_l4d2_smg_silenced"] = "smg1"
+WEP_TO_AMMO["weapon_l4d2_rifle"] = "ar2"
+WEP_TO_AMMO["weapon_l4d2_rifle_ak47"] = "ar2"
+WEP_TO_AMMO["weapon_l4d2_rifle_desert"] = "ar2"
+WEP_TO_AMMO["weapon_l4d2_rifle_m60"] = "ar2altfire"
+WEP_TO_AMMO["weapon_l4d2_rifle_sg552"] = "ar2"
+WEP_TO_AMMO["weapon_l4d2_pumpshotgun"] = "buckshot"
+WEP_TO_AMMO["weapon_l4d2_shotgun_chrome"] = "buckshot"
+WEP_TO_AMMO["weapon_l4d2_shotgun_spas"] = "buckshot"
+WEP_TO_AMMO["weapon_l4d2_autoshotgun"] = "buckshot"
+WEP_TO_AMMO["weapon_l4d2_sniper_military"] = "xbowbolt"
 
 local AMMONUM_TO_STRING = {}
 AMMONUM_TO_STRING[1] = "ar2"
@@ -1347,6 +1547,14 @@ function GM:PlayerCanPickupItem(ply, item)
 			return false
 		end
 	end
+
+	-- Metroid Prime class
+	if (ply._Class && ply._Class == "mp_samus" && ply:GetPowerSuitAmmo("Missile") && ply:GetPowerSuitAmmo("Missile") < 25 && itemClass != "item_rpg_round") then
+		ply:AddPowerSuitAmmo("Missile", 2)
+		
+		TryDuplicateItem(item, itemClass)
+		return true
+	end
 	
 	-- Limit max ammo
 	if (ITEM_TO_AMMO[itemClass]) then -- Item exists in conversion table
@@ -1464,6 +1672,39 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 
 	if (REPLACE_WEAPON[wepClass]) then
 		wepClass = REPLACE_WEAPON[wepClass]
+	end
+
+	-- Metroid Prime class
+	if (CLASS_CONFIG[ply._Class] && CLASS_CONFIG[ply._Class].POWERSUIT_WEAPON) then
+		if (wepClass == "weapon_slam" && ply:GetPowerSuitPowerBombAmmo() && ply:GetPowerSuitPowerBombAmmo() < 3) then
+			ply:AddPowerSuitPowerBombAmmo(1)
+
+			wep:Remove()
+			TryDuplicateWeapon(wep, originalClass)
+
+			return false
+		end
+
+		local powerSuitWeapon = CLASS_CONFIG[ply._Class].POWERSUIT_WEAPON[wepClass]
+		if (powerSuitWeapon) then
+			if (!ply:HasWeapon("weapon_mp_powersuit")) then -- Do not pickup the item if the player already has it
+				ply:Give("weapon_mp_powersuit")
+			end
+
+			if (ply:IsPowerSuitBeamEnabled(powerSuitWeapon)) then
+				return false
+			end
+
+			ply:EnablePowerSuitBeam(powerSuitWeapon, true)
+			ply:EnablePowerSuitMissileCombo(powerSuitWeapon, true)
+
+			wep:Remove()
+			TryDuplicateWeapon(wep, originalClass)
+
+			return false
+		end
+
+		return false
 	end
 
 	-- If the player is a custom class, look for a replacement weapon
@@ -1672,6 +1913,29 @@ function GM:OnEntityCreated( ent )
 			ent:SetSaveValue("m_iPlayerAggression", 1)
 		end
 	end)
+end
+
+function GM:WeaponEquip(weapon, ply)
+	if (ply._Class && ply._Class == "mp_samus" && weapon:GetClass() == "weapon_mp_powersuit") then
+		timer.Simple(0.25, function()
+			ply:EnablePowerSuitBeam(1, true)
+			ply:EnablePowerSuitMissileCombo(1, true)
+			ply:EnablePowerSuitChargeBeam(true)
+			ply:SetPowerSuitMaxAmmo("Missile", 25)
+	
+			ply:EnablePowerSuitVisor(1, true)
+			ply:EnablePowerSuitVisor(2, false)
+			ply:EnablePowerSuitVisor(3, true)
+			ply:EnablePowerSuitVisor(4, true)
+	
+			ply:EnablePowerSuitSuit(3, true)
+
+			ply:EnableMorphBall(true)
+			ply:EnableMorphBallBombs(true)
+			ply:SetPowerSuitPowerBombMaxAmmo(3)
+			ply:EnableMorphBallBoost(true)
+		end)
+	end
 end
 
 local randselect = {

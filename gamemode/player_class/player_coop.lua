@@ -140,6 +140,16 @@ function PLAYER:Loadout()
 		--self.Player:GiveAmmo(90, "SMG1", true)
 
 		self.Player:SelectWeapon("halo3_plasmarifle")
+	elseif (self.Player._Class == "l4d_bill" || self.Player._Class == "l4d_francis") then
+		self.Player:Give("weapon_l4d2_pistol")
+		self.Player:Give("weapon_l4d2_smg")
+		self.Player:Give("weapon_l4d2_first_aid_kit")
+	elseif (self.Player._Class == "l4d_louis" || self.Player._Class == "l4d_zoey") then
+		self.Player:Give("weapon_l4d2_pistol")
+		self.Player:Give("weapon_l4d2_smg_silenced")
+		self.Player:Give("weapon_l4d2_first_aid_kit")
+	elseif (self.Player._Class == "mp_samus") then
+		self.Player:Give("weapon_mp_powersuit")
 	else
 		self.Player:Give("weapon_crowbar")
 		self.Player:Give("weapon_pistol")
