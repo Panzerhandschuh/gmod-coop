@@ -12,15 +12,16 @@ end
 
 HOOKS["InitPostEntity"] = function()
 	-- Remove crashing entities
-	-- ents.FindByName("Npc_teleport_maker_manhack1")[1]:Remove()
-	-- ents.FindByName("Npc_teleport_maker_manhack2")[1]:Remove()
+	for k,v in pairs(ents.FindByName("Combine_ship")) do
+		v:Remove()
+	end
 
-	ents.FindByName("Simple_heli1")[1]:Remove()
-	ents.FindByName("HeavyHeli1")[1]:Remove()
-	ents.FindByName("Combine_ship")[1]:Remove()
+	for k,v in pairs(ents.FindByName("HeavyHeli1")) do
+		v:Remove()
+	end
 
 	-- End game after special helicopter is defeated
-	for k,v in pairs(ents.FindByName("CombineGunship2")) do
+	for k,v in pairs(ents.FindByName("Simple_heli1")) do
 		v:Fire("AddOutput","OnDeath Objectives_Set_10,Trigger,,0,-1",0)
 		v:Fire("AddOutput","OnDeath muziekend,PlaySound,,5,-1",0)
 		v:Fire("AddOutput","OnDeath Objectives_Set_11,Trigger,,20,-1",0)
