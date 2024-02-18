@@ -3,6 +3,7 @@ HOOKS["InitPostEntity"] = function()
 	ents.FindByName("morbut")[1]:Remove()
 	ents.FindByName("turreth")[1]:SetKeyValue("ammo_count", "-1")
 	ents.FindByName("sh")[1]:SetKeyValue("spawnflags", "5")
+	ents.FindByName("ss")[1]:Remove()
 	
 	local board = ents.FindByName("board")[1]
 	board:Fire("AddOutput","OnPlayerUse butf,Unlock,,0,1",0)
