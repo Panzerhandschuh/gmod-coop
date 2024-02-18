@@ -683,7 +683,7 @@ CLASS_CONFIG["mp_samus"].MAX_AMMO["buckshot"] = 0
 CLASS_CONFIG["mp_samus"].MAX_AMMO["xbowbolt"] = 0
 CLASS_CONFIG["mp_samus"].MAX_AMMO["grenade"] = 5
 CLASS_CONFIG["mp_samus"].MAX_AMMO["rpg_round"] = 5
-CLASS_CONFIG["mp_samus"].MAX_AMMO["slam"] = 3
+CLASS_CONFIG["mp_samus"].MAX_AMMO["slam"] = 0
 CLASS_CONFIG["mp_samus"].PICKUP_AMMO = {}
 CLASS_CONFIG["mp_samus"].PICKUP_AMMO["pistol"] = 0
 CLASS_CONFIG["mp_samus"].PICKUP_AMMO["357"] = 0
@@ -691,7 +691,7 @@ CLASS_CONFIG["mp_samus"].PICKUP_AMMO["smg1"] = 0
 CLASS_CONFIG["mp_samus"].PICKUP_AMMO["ar2"] = 0
 CLASS_CONFIG["mp_samus"].PICKUP_AMMO["buckshot"] = 0
 CLASS_CONFIG["mp_samus"].PICKUP_AMMO["xbowbolt"] = 0
-CLASS_CONFIG["mp_samus"].PICKUP_AMMO["grenade"] = 0
+CLASS_CONFIG["mp_samus"].PICKUP_AMMO["grenade"] = 1
 CLASS_CONFIG["mp_samus"].PICKUP_AMMO["rpg_round"] = 1
 CLASS_CONFIG["mp_samus"].PICKUP_AMMO["slam"] = 0
 CLASS_CONFIG["mp_samus"].POWERSUIT_WEAPON = {}
@@ -1062,6 +1062,25 @@ function GM:PlayerPostThink(ply)
 				ply.CurrentJeep = nil
 			end
 		end
+	end
+
+	if (ply._Class == "mp_samus" && !ply:IsPowerSuitChargeBeamEnabled()) then
+		ply:EnablePowerSuitBeam(1, true)
+		ply:EnablePowerSuitMissileCombo(1, true)
+		ply:EnablePowerSuitChargeBeam(true)
+		ply:SetPowerSuitMaxAmmo("Missile", 25)
+
+		ply:EnablePowerSuitVisor(1, true)
+		ply:EnablePowerSuitVisor(2, false)
+		ply:EnablePowerSuitVisor(3, true)
+		ply:EnablePowerSuitVisor(4, true)
+
+		ply:EnablePowerSuitSuit(3, true)
+
+		ply:EnableMorphBall(true)
+		ply:EnableMorphBallBombs(true)
+		ply:SetPowerSuitPowerBombMaxAmmo(3)
+		--ply:EnableMorphBallBoost(true)
 	end
 	
 	self.BaseClass:PlayerPostThink(ply)
@@ -1531,7 +1550,7 @@ function GM:PlayerCanPickupItem(ply, item)
 			return true
 		end
 	elseif (itemClass == "item_battery") then
-		if (ply:Armor() == 100) then
+		if (ply:Armor() == 100 || ply._Class == "mp_samus") then
 			return false
 		else
 			TryDuplicateItem(item, itemClass)
@@ -1703,8 +1722,6 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 
 			return false
 		end
-
-		return false
 	end
 
 	-- If the player is a custom class, look for a replacement weapon
@@ -1908,34 +1925,11 @@ function GM:OnEntityCreated( ent )
 		-- 	ent:AddEntityRelationship(v, D_HT)
 		-- end
 
+		-- Increase aggression
 		if (class == "npc_stalker") then
-			-- Increase aggression
 			ent:SetSaveValue("m_iPlayerAggression", 1)
 		end
 	end)
-end
-
-function GM:WeaponEquip(weapon, ply)
-	if (ply._Class && ply._Class == "mp_samus" && weapon:GetClass() == "weapon_mp_powersuit") then
-		timer.Simple(0.25, function()
-			ply:EnablePowerSuitBeam(1, true)
-			ply:EnablePowerSuitMissileCombo(1, true)
-			ply:EnablePowerSuitChargeBeam(true)
-			ply:SetPowerSuitMaxAmmo("Missile", 25)
-	
-			ply:EnablePowerSuitVisor(1, true)
-			ply:EnablePowerSuitVisor(2, false)
-			ply:EnablePowerSuitVisor(3, true)
-			ply:EnablePowerSuitVisor(4, true)
-	
-			ply:EnablePowerSuitSuit(3, true)
-
-			ply:EnableMorphBall(true)
-			ply:EnableMorphBallBombs(true)
-			ply:SetPowerSuitPowerBombMaxAmmo(3)
-			ply:EnableMorphBallBoost(true)
-		end)
-	end
 end
 
 local randselect = {
