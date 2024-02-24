@@ -1764,6 +1764,10 @@ function GM:PlayerCanPickupWeapon(ply, wep)
 			maxAmmo = MAX_AMMO[ammo]
 		end
 
+		if (!maxAmmo) then
+			return false
+		end
+
 		-- Energy weapons
 		if (ply._Class && CLASS_CONFIG[ply._Class].ENERGY_WEAPON && table.HasValue(CLASS_CONFIG[ply._Class].ENERGY_WEAPON, wepClassOverride)) then
 			local haloEnergyWep = ply:GetWeapon(wepClassOverride)
@@ -2103,6 +2107,22 @@ function GM:GravGunOnPickedUp(ply, ent)
 			ent:AddEntityRelationship(pl, D_NU, 99)
 		end
 	end
+end
+
+function GM:GravGunPickupAllowed(ply, ent)
+	if (ent:GetClass() == "mp_morphball") then
+		return false
+	end
+
+	return true
+end
+
+function GM:GravGunPunt(ply, ent)
+	if (ent:GetClass() == "mp_morphball") then
+		return false
+	end
+
+	return true
 end
 
 function GM:OnNPCKilled(npc, attacker, inflictor)
