@@ -150,6 +150,12 @@ function PLAYER:Loadout()
 		self.Player:Give("weapon_l4d2_first_aid_kit")
 	elseif (self.Player._Class == "mp_samus") then
 		self.Player:Give("weapon_mp_powersuit")
+	elseif (self.Player._Class == "dystopia_corp") then
+		self.Player:Give("weapon_dystopia_fist")
+		self.Player:Give("weapon_dystopia_heavymachpistol")
+	elseif (self.Player._Class == "dystopia_punk") then
+		self.Player:Give("weapon_dystopia_katana")
+		self.Player:Give("weapon_dystopia_machpistol")
 	else
 		self.Player:Give("weapon_crowbar")
 		self.Player:Give("weapon_pistol")
